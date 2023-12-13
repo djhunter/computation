@@ -1,0 +1,229 @@
+---
+title: "Section 7.2: More Languages in P"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    self_contained: yes
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+date: "April 8, 2020"
+---
+
+# Prework 
+
+## Which is something else?
+
+1. Let $D$ be a TM decider for $E_\text{DFA}$. Classify each of the following objects as *languages*, *strings*, *machines*, or something else.
+$$ D, \quad E_\text{DFA}, \quad \langle D \rangle, \quad A_\text{TM}, \quad \mathit{RELPRIME}, \quad \langle 17,31\rangle, \quad \text{P}$$
+
+Answer the poll on Discord.
+
+## Prework Discussion
+
+- See the #macs-135 channel for a link to the shared Google Doc.
+- Go to the voice channel (Group 1, Group 2, Group 3) corresponding to your group. 
+- The starred person should be the presenter/writer on the board, but everyone can write and/or paste images.
+
+Groups: 
+
+1. (Question 2) Wesley, Tristan, Carolyn*
+2. (Question 3) Ryley, Sam, James*
+3. (Question 4) Sophia*, Drake, Trevor
+
+https://docs.google.com/document/d/1mJDi2_ocFsijEG7jtVGFgzY_8s8tZo4aMdihmEdcRgU/edit?usp=sharing
+
+# More languages in $\text{P}$
+
+## Last time
+
+The simplest possible *class of problems* (i.e., set of languages) are those that are solvable in polynomial time. This is the class $\text{P}$.
+$$\scriptsize \text{P} = \{ A \mid \text{ there is a polynomial-time TM decider } M \text{ with } L(M) = A \} $$
+
+- To show that a *language* $A$ is in $\text{P}$, we need to:
+    - Find a TM that decides $A$.
+    - Show that the TM decides $A$ in polynomial time.
+
+## Example: Regular Langages
+
+Let $R$ be a regular language. Then $R \in \text{P}$, because there is a DFA $M$ such that $L(M) = R$, and here's a decider:
+
+- Given an input string $w$, 
+    - Follow the arrows in $M$ (i.e, compute the transition function for each symbol in $w$).
+    - If you end at an accept state, accept. Otherwise reject.
+
+This TM decides $R$ in linear time ($O(n)$).
+
+# Context-Free Languages
+
+## Recall: Grammars
+
+A language $A$ is called *context free* if there is a CFG (i.e., a context-free grammar) $G$ such that $L(G) = A$.
+
+- Grammars are lists of substitution rules: $\text{variable} \rightarrow \text{expression}$
+- *Chomsky Normal Form:* Every CFG can be written so that the rules are all of the form $X \rightarrow a$ where $a$ is a terminal, or $X \rightarrow UV$ where $U,V$ are variables different from the start varaible $S$. (Also can have $S\rightarrow \varepsilon$.)
+- Consequence: A string $w \in A$ can be derived in $2n-1$ steps, where $n$ is the length of $w$.
+
+## Deciding a CFL
+
+Let $A$ be a context-free language. Let $G$ be a CFG in Chomsky normal form such that $L(G)=A$. Here is a decider for $A$:
+
+- On input $w$,
+    - Try every possible derivation of length $2|w|-1$.
+    - If any of these derive $w$, accept.
+    - Otherwise reject.
+    
+Therefore, any context-free language is *decidable*.
+
+## Running time?
+
+- On input $w$,
+    - Try every possible derivation of length $2|w|-1$.
+    - If any of these derive $w$, accept.
+    - Otherwise reject.
+
+If there are $k$ rules, there are (about) $k^{2n-1}$ derivations of length $2n-1$ to try. So the running time is $O(k^{2n-1}) = 2^{O(n)}$.
+
+- This algorithm shows that $A$ is decidable, but it doesn't show that $A \in \text{P}$.
+
+## Dynamic Programming Decider
+
+*Overview:* Given a grammar with rules of the form $X \rightarrow a$ and $X \rightarrow UV$ and a string $w$ of length $n$:
+
+- Figure out what symbols in $w$ can be generated using the $X \rightarrow a$ rules.
+- Use those results to figure out what substrings of $w$ of length 2 can be generated using the $X \rightarrow UV$ rules.
+- Use all of the above results to figure out what substrings of length 3 can be generated using the $X \rightarrow UV$ rules.
+- Continue until you get to the length $n$ substring.
+
+## Start with the length 1 substrings
+
+Given $G$ in Chomsky normal form such that $L(G)=A$, and an input string $w = a_1a_2a_3\cdots a_n$, make an $n\times n$ table:
+
+- The diagonal entries in locations $(i,i)$ are the variables $X$ in any rules of the form $X \rightarrow a_i$. (Could be empty, or have multiple variables.)
+   - Notice: if any of these is $S$, then $a_i \in A$.
+
+## Example: Main Diagonal
+
+\begin{align*}
+S &\rightarrow RT && w = \mathtt{baba}\\
+R &\rightarrow TR \mid \mathtt{a}\\
+T &\rightarrow TR \mid \mathtt{b}
+\end{align*}
+
+$$
+\begin{array}{c|c|c|c|c}
+ & 1 & 2 & 3 & 4  \\ \hline
+ 1  & T &  & & \\ \hline
+ 2 &  & R &  & \\ \hline
+ 3 &  &  &  T &  \\ \hline
+ 4 &  &  &    & R
+\end{array}
+$$
+
+
+## Fill in the Second diagonal
+
+- The diagonal above the main diagonal (locations $(i,i+1)$) contains the variables $X$ in any rules of the form $X \rightarrow UV$, where $U$ and $V$ are in the closest spots on the main diagonal.
+   - Notice: if any of these is $S$, then $a_ia_{i+1} \in A$.
+   
+## Example: Second Diagonal
+
+\begin{align*}
+S &\rightarrow RT && w = \mathtt{baba}\\
+R &\rightarrow TR \mid \mathtt{a}\\
+T &\rightarrow TR \mid \mathtt{b}
+\end{align*}
+
+$$
+\begin{array}{c|c|c|c|c}
+ & 1 & 2 & 3 & 4  \\ \hline
+ 1  & T & T,R & & \\ \hline
+ 2 &  & R & S & \\ \hline
+ 3 &  &  &  T & T,R  \\ \hline
+ 4 &  &  &    & R
+\end{array}
+$$
+
+## Fill in the third diagonal
+
+- The diagonal above that (locations $(i, i+2)$) contains variables $X$ from rules $X\rightarrow UV$, where $U$ and $V$ come from corresponding spots on the first two diagonals (one from the main diagonal, and one from the second).
+   - Notice: if any of these is $S$, then $a_ia_{i+1}a_{i+2} \in A$.
+
+## Example: Third Diagonal
+
+\begin{align*}
+S &\rightarrow RT && w = \mathtt{baba}\\
+R &\rightarrow TR \mid \mathtt{a}\\
+T &\rightarrow TR \mid \mathtt{b}
+\end{align*}
+
+$$
+\begin{array}{c|c|c|c|c}
+ & 1 & 2 & 3 & 4  \\ \hline
+ 1  & T & T,R & S & \\ \hline
+ 2 &  & R & S & S \\ \hline
+ 3 &  &  &  T & T,R  \\ \hline
+ 4 &  &  &    & R
+\end{array}
+$$
+
+## Continue until full
+
+- Keep going. For each new entry, list all the $X$'s from rules $X \rightarrow UV$ where $U$ is on the row and $V$ is in the column of the new entry, in correponding places.
+- If $S$ ends up in the upper-right corner of the table, then $w \in A$. If not, then $w \not\in A$.
+
+In other words, this algorithm *decides* A.
+
+## Example: Fill up the table
+
+\begin{align*}
+S &\rightarrow RT && w = \mathtt{baba}\\
+R &\rightarrow TR \mid \mathtt{a}\\
+T &\rightarrow TR \mid \mathtt{b}
+\end{align*}
+
+$$
+\begin{array}{c|c|c|c|c}
+ & 1 & 2 & 3 & 4  \\ \hline
+ 1  & T & T,R & S & S,R,T \\ \hline
+ 2 &  & R & S & S \\ \hline
+ 3 &  &  &  T & T,R  \\ \hline
+ 4 &  &  &    & R
+\end{array}
+$$
+
+## Running Time?
+
+- There are $n + (n-1) + \cdots + 1 = O(n^2)$ entries to fill.
+- Every time you fill one, you have to run through its row and column: $O(n)$.
+
+Total running time: $O(n^2)\cdot O(n) = O(n^3)$. 
+
+So $A \in \text{P}$.
+
+## Formal Algorithm
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/cfgdecider.png", auto_pdf = TRUE)
+```
+
+Look at the nested loops to estimate running time.

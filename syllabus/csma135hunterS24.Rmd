@@ -1,0 +1,129 @@
+---
+geometry: left=1.0in, right=1.0in, top=0.8in, bottom=0.4in
+classoption: twoside
+output: 
+  pdf_document:
+    keep_tex: true
+    includes:
+      in_header: latexheader.tex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(kableExtra)
+```
+
+# Formal Languages and Automata (CS/MA-135) Westmont College, Spring 2024
+
+## What is this course about?
+
+This course provides a mathematical introduction to the theory of computation, including finite automata, regular languages, context-free languages, the Church-Turing thesis, decidability, reducibility, and complexity. These topics are mainly theoretical, but they do have some important applications in compiler design, natural language processing, and software development. They also raise some interesting philosophical questions.
+
+## Can you explain it another way?
+
+OK, here's the catalog description: "(Four credit hours) Prerequisite: CS/MA-015 Discrete Mathematics.  In his early  thirties,  Alan Turing cracked the Enigma code, thereby shortening WWII by two to four years. As a consequence of this work, he established the theoretical foundation for what is computable, and what is not. At the age of 41, he tragically died from eating a poisoned apple. This course explores what it means to compute, what features are necessary for a machine to compute, and the respective limits on what different machines can compute."
+
+## How is the course structured?
+
+Interactive
+
+You should expect a written \textbf{prework} assignment after every class meeting. These assignments will be due before the beginning of the next class meeting.  Each problem on the prework will include a list of students who are responsible for \textbf{presenting} the problem; one of the students on this list will be chosen to explain the problem to the class. I expect you to have mostly complete solutions to all the questions on the prework, but your solutions do not have to be perfect to receive full credit. However, you should be very confident that you understand and have a correct solution to the problems you are assigned to present, because you may be required to explain your reasoning and answer questions. Please come to Student Hours if you need help with the prework.
+
+## Is there a textbook?
+
+We will be working through the excellent *Introduction to the Theory of Computation*, by Michael Sipser, 3nd Edition. (The 2nd Edition of this text will also suffice.)
+
+## How are grades determined?
+
+```{r echo=FALSE}
+kbl(data.frame(x = c("Written Prework Assignments",  "Presentations and Participation", "Exams (3)", "Final Exam"),
+                 y = c("20%", "15%", "15% each", "20%")), col.names = NULL, booktabs = TRUE)
+```
+
+## What other policies should students be aware of?
+
+If you miss a significant number of classes, you will almost definitely do poorly in this class.  If you miss more than six classes without a valid excuse, I reserve the right to terminate you from the course with a failing grade.  Work missed (including tests) without a valid excuse will receive a zero.
+
+I expect you to check your email on a regular basis.  If you use a non-Westmont email account, please forward your Westmont email to your preferred account. I'll send out notices on Canvas, so make sure you receive Canvas notifications in your email.
+
+Learning communities function best when students have academic integrity.  Cheating is primarily an offense against your classmates because it undermines our learning community.  Therefore, dishonesty of any kind may result in loss of credit for the work involved and the filing of a report with the Provost's Office. Major or repeated infractions may result in dismissal from the course with a failing grade. Be familiar with the College's plagiarism policy, found at https://www.westmont.edu/office-provost/academic-program/academic-integrity-policy.
+
+In particular, providing someone with an electronic copy of your work is a breach of the academic integrity policy. Do not email, post online, or otherwise disseminate any of the work that you do in this class. If you keep your work on a repository, make sure it is private. You may work with others on the assignments, but make sure that you write or type up your own answers yourself. You are on your honor that the work you hand in represents your own understanding.
+
+\clearpage
+
+## Other Information
+
+\begin{description} 
+
+\item[Professor:] David J. Hunter, Ph.D.
+  (\verb!dhunter@westmont.edu!). Student hours are on Tuesdays from 1:00--3:20pm and Thursdays from 2:00--4:40pm in Winter Hall 303.
+
+ \item[Tentative Schedule:] The following schedule is a rough first approximation of the topics in \textit{Sipser} that we plan to cover; it is subject to revision at the instructor's discretion. Chapter 0 (Mathematical Notions and Terminology) should be familiar to you from Discrete Mathematics, but these topics will be reviewed as necessary when they arise.
+  \begin{itemize}
+      \item Chapter 1: Regular Languages
+         \begin{quote}
+          \textit{Hour Exam \#1}     (through Chapter 1)
+         \end{quote}
+      \item Chapter 2: Context-Free Languages
+      \item Chapter 3: The Church-Turing Thesis
+         \begin{quote}
+          \textit{Hour Exam \#2}     (through Chapter 3)
+         \end{quote}
+      \item Chapter 4: Decidability
+      \item Chapter 5: Reducibility
+         \begin{quote}
+          \textit{Hour Exam \#3}     (through Chapter 5)
+         \end{quote}
+      \item Chapter 7: Time Complexity 
+   \begin{quote}
+    \textit{Final Exam}     (cumulative)
+   \end{quote}
+  \end{itemize}
+
+\clearpage
+
+\item[Accommodations for Students with Disabilities:] Students who choose to disclose a disability, diagnosis, or injury are encouraged to contact the Office of Disability Services (ODS) as early as possible in the semester to discuss potential accommodations for this course. Formal accommodations will only be granted for students whose diagnoses have been verified by the ODS. Accommodations are designed to minimize the impact of a diagnosis and to ensure equal access to programs for all students who have a diagnosed condition that impacts their participation in college activities. Please contact \href{mailto:ods@westmont.edu}{\tt ods@westmont.edu} or visit the website for more information: \url{https://www.westmont.edu/disability-services-welcome}. Seth Miller, Director of ODS and the ODS team are located upstairs in Voskuyl Library 310, 311A. 
+
+\item[Program and Institutional Learning Outcomes:] The
+         mathematics department at Westmont College has formulated the
+         following learning outcomes for all of its classes. (PLO's)
+\begin{enumerate}[noitemsep]
+\item Core Knowledge: Students will demonstrate knowledge of the
+                  main concepts, skills, and facts of the discipline of
+                  mathematics.
+\item Communication: Students will be able to communicate mathematical ideas
+     following the standard conventions of writing or speaking in the
+     discipline.
+\item Creativity: Students will demonstrate the ability to formulate and make
+     progress toward solving non-routine problems.
+\item Christian Connection: Students will incorporate their mathematical skills
+     and knowledge into their thinking about their vocations as followers of
+     Christ.
+         \end{enumerate}
+         In addition, the faculty of Westmont College have established common
+         learning outcomes for all courses at the institution
+         (ILO's). These outcomes are summarized as follows:
+(1) Christian Understanding, Practices, and Affections,
+(2) Global Awareness and Diversity,
+(3) Critical Thinking,
+(4) Quantitative Literacy,
+(5) Written Communication,
+(6) Oral Communication, and
+(7) Information Literacy.
+
+\begin{itemize}
+    \item Demonstrate understanding of the theoretical basis for languages and computation.
+             (PLO 1, ILOs 3,4)
+    \item Write and evaluate mathematical arguments according to the
+             standards of the discipline. (PLO 2,
+              ILOs 3,5)
+    \item Construct solutions to novel problems,
+               demonstrating perseverance in the face of open-ended or
+               partially-defined contexts. (PLO 3, ILO 3)
+    \item Consider the theological implications of the subject matter. (PLO 4, ILO 1)
+\end{itemize}
+These outcomes will be assessed by written assignments, presentations, and written exams, as described above.
+
+\end{description}

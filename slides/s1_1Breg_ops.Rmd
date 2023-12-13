@@ -1,0 +1,212 @@
+---
+title: "Section 1.1: Automata and Regular Operations"
+output:
+  pdf_document:
+    keep_tex: true
+    includes:
+      in_header: notesheader.tex
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+date: "January 8, 2020"
+---
+
+```{r include=FALSE}
+set.seed(1620)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+# Prework Presentations
+
+## 2. [`r paste(fnames[1:3], sep = ',')`] 
+
+Refer to Definition 1.5. For the finite automaton with the following state diagram, identify $Q$, $\Sigma$, $\delta$, $q_0$, and $F$, and describe the language it recognizes.
+
+```{r, echo=FALSE, fig.width=8, fig.height=3.5, message=FALSE, fig.align='center'}
+library(igraph)
+a3 <- graph_from_literal(" "-+q1-+q2-+q3-+q2-+q2, q1-+q1, q3-+q1, simplify=FALSE)
+coords <- layout_on_grid(a3, width = 4)
+plot(a3, 
+     edge.curved = c(0, 0, 0.5, 0.5, 0.5, 0.5, 0.5), 
+     layout=coords,
+     vertex.size = 15,
+     vertex.shape = c("none", "circle", "circle", "circle"),
+     vertex.label = c(" ", expression(italic(q)[1]), expression(italic(q)[2]), expression(italic(q)[3])),
+     edge.loop.angle=3.14*1.5,
+     mark.groups = list(4), mark.shape = 0.75, mark.col = "pink", mark.border = "black",
+     vertex.label.cex = 1,
+     edge.label = c("","     0\n","1\n","  0\n","0\n","1\n","1\n"), 
+     edge.label.cex = 1,
+     edge.width = 2,
+     ylim = c(-1.1,-0.6), xlim=c(-0.5,1))
+```
+
+
+## 3. [`r paste(fnames[4:6], sep = ',')`] 
+
+Consider the finite automaton with $Q = \{q_1, q_2, q_3, q_4, q_5\}$, $\Sigma = \{\text{a},\text{b}\}$, transition function $\delta$ given by the table below, initial state $q_3$, and $F = \{q_3\}$. Draw its state diagram, and describe the language it recognizes.
+
+\begin{center}
+\begin{tabular}{c|ccccc}
+  & $q_1$ & $q_2$ & $q_3$ & $q_4$ & $q_5$ \\ \hline
+a & $q_1$ & $q_1$ & $q_2$ & $q_3$ & $q_4$ \\
+b & $q_2$ & $q_3$ & $q_4$ & $q_5$ & $q_5$ \\
+\end{tabular}
+\end{center}
+
+## 4. [`r paste(fnames[7:9], sep = ',')`] 
+
+Let $\Sigma = \{0,1\}$, and let $A$ be the set of all strings that end in 1 or have an even number of symbols (or both). Draw a state diagram for a finite automaton that recognizes $A$.
+
+# Languages and Computation
+
+## Last time
+
+A **language** over a set of symbols $\Sigma$ is a set of strings in those symbols.
+
+The set of all strings that are accepted by an automaton is called the language **recognized** by the automaton.
+
+A language is called **regular** if some finite automaton recogizes it.
+
+<div class="notes">
+Discuss analogy: languages <--> machines
+</div>
+
+# Regular Operations
+
+## Regular Operations
+
+Let $A$ and $B$ be languages. Three ways to get new languages:
+
+- Union: $A \cup B = \{ x \mid x \in A \text{ or } x \in B\}$
+- Concatenation: $A \circ B = \{xy \mid x \in A \text{ and } y \in B\}$
+- Star: $A^* = \{x_1x_2\cdots x_k \mid k \geq 0 \text{ and each } x_i \in A\}$
+
+Example: 
+
+$\Sigma = \{\mathtt{a, b, d, i, n, o, p, u, y}\}$, $A = \{\mathtt{an, do}\}$, $B = \{\mathtt{is, up, by}\}$ 
+
+## Closure under Union
+
+If we have automata $M_1$ and $M_2$ that recognize languages $A_1$ and $A_2$, can we construct an automaton that recognizes $A_1 \cup A_2$?
+
+Example: 
+
+- $A_1 = \{ w \mid w \text{ ends in } \mathtt{1}  \}$
+- $A_2 = \{ w \mid w \text{ has an even number of symbols} \}$
+- $A_1 \cup A_2 = \{ w \mid w \text{ ends in } \mathtt{1} \text{ or has an even number of symbols} \}$  (Prework #4)
+
+## Closure under Union: States
+
+Given: $L(M_1) = A_1$, $L(M_2) = A_2$, find $M$ so that $L(M) = A_1 \cup A_2$.
+
+- Suppose $M_1$ has states $Q_1 = \{p_1, p_2, \ldots, p_k\}$ and $M_2$ has states $Q_2 = \{q_1, q_2, \ldots, q_l\}$
+- States of $M$: Cartesian product $Q_1 \times Q_2$
+
+$$
+\begin{array}{cccc} \small
+(p_1, q_1) & (p_1, q_2) & \cdots & (p_1, q_l) \\
+(p_2, q_1) & (p_2, q_2) & \cdots & (p_2, q_l) \\
+\vdots & \ddots & & \vdots \\
+\vdots &  & \ddots & \vdots \\
+(p_k, q_1) & (p_k, q_2) & \cdots & (p_k, q_l) \\
+\end{array}
+$$
+
+## Closure under Union: Transition Function
+
+- Suppose $M_1$ has transition function $\delta_1$ and $M_2$ has transition function $\delta_2$.
+- Transition function of $M$: Do $\delta_1$ on first component and $\delta_2$ on second.
+
+$$
+\delta((p_i, q_j), a) = (\delta_1(p_i,a), \delta_2(q_j,a))
+$$
+
+## Closure under Union: Initial state
+
+- Suppose $M_1$ has initial state $p_0$ and $M_2$ has initial state $q_0$
+- Initial state of $M$: $(p_0, q_0)$
+
+## Closure under Union: Accepting states
+
+- We want $M$ to end in an accepting state exactly when $M_1$ would have, or $M_2$ would have, or both.
+- So $(p_i, q_j)$ is an accepting state if $p_i$ is an accepting state for $M_1$ or $q_j$ is an accepting state for $M_2$.
+
+$$
+F = \{ (p_i, q_j) \mid p_i \in F_1 \text{ or } q_j \in F_2 \} 
+$$
+$$
+= (F_1 \times Q_2) \cup (Q_1 \times F_2)
+$$
+
+## Closure under union: summary
+
+- We have proved: If $M_1$ recognizes $A_1$ and $M_2$ recognizes $A_2$, then we can construct an $M$ recognizing $A_1 \cup A_2$.
+- In other words, $A_1 \cup A_2$ is a regular language.
+- In other words, the set of regular languages is **closed under the operation of union.**
+
+# What about the other regular operations?
+
+## Closure under concatination?
+
+Suppose $M_1$ recognizes $A_1$ and $M_2$ recognizes $A_2$. Can we construct an automaton $M$ that recognizes  $A_1 \circ A_2$?
+
+<div class="notes">
+Illustrate M1 --> M2. Problem: How will M know where x ends and y begins?
+</div>
+
+# Nondeterminism
+
+## DFA vs NFA
+
+- DFA: **Deterministic** Finite Automaton (what we have been doing)
+- NFA: **Non-Deterministic** Finite Automaton (new)
+
+In an NFA, we can have multiple arrows for the same symbol, or label an arrow with $\varepsilon$.
+
+- Each arrow spawns a new machine in the new state.
+- $\varepsilon$ spawns a new machine in the new state without consuming an input character.
+- Similar to Multithreading
+- If any machine ends in an accept state, the NFA accepts.
+
+## Example NFA
+
+```{r, echo=FALSE, fig.width=8, fig.height=3.5, message=FALSE, fig.align='center'}
+library(igraph)
+a4 <- graph_from_literal(" "-+q1-+q2-+q3-+q4-+q4, q1-+q1, simplify=FALSE)
+coords <- layout_on_grid(a4, width = 5)
+plot(a4, 
+     edge.curved = c(0, 0, 0, 0, 0.5, 0.5), 
+     layout=coords,
+     vertex.size = 15,
+     vertex.shape = c("none", "circle", "circle", "circle", "circle"),
+     vertex.label = c(" ", expression(italic(q)[1]), expression(italic(q)[2]), expression(italic(q)[3]), expression(italic(q)[4])),
+     edge.loop.angle=3.14*1.5,
+     mark.groups = list(5), mark.shape = 0.75, mark.col = "pink", mark.border = "black",
+     vertex.label.cex = 1,
+     edge.label = c("","     1\n", expression(atop("   0," ~ epsilon,  " ")), "  1\n","0,1\n","0,1\n"), 
+     edge.label.cex = 1,
+     edge.width = 2,
+     ylim = c(-1.02,-0.65), xlim=c(-0.1,0.5))
+```
+
+<div class="notes">
+Illustrate Accepting 010110, 101, Not accepting 100. Magnets? Tree?
+Accepts anything with 101 or 11 in it? If time, do an NFA for concatination.
+</div>

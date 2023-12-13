@@ -1,0 +1,121 @@
+---
+title: "Section 3.1: Turing Machines, continued"
+output:
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+date: "February 12, 2020"
+---
+
+```{r include=FALSE}
+set.seed(21020)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+# Prework Presentations
+
+## 1. [`r paste(fnames[1:3], sep = ',')`]  
+
+Describe the sequence of configurations (states and tape) that the following TM takes while processing (a) the input string $\mathtt{10\#11}$, (b) the input string $\mathtt{10\#10}$, and (c) the input string $\mathtt{1\#1\#1}$.
+
+```{r echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/tmM1.png", auto_pdf = TRUE)
+```
+
+## 3. [`r paste(fnames[4:6], sep = ',')`] 
+
+Give a formal description (i.e., state diagram) of a TM for the language $A = \{\mathtt{a}^n\mathtt{b}^n\mathtt{c}^n \mid n\geq 1\}$.
+
+## 4. [`r paste(fnames[7:9], sep = ',')`] 
+
+Let $\Sigma = \{\mathtt{0}, \mathtt{1}\}$. Give an implementation description of a TM for the language $B$ consisting of all strings in $\Sigma^*$ that contain twice as many $\mathtt{0}$'s as $\mathtt{1}$'s.
+
+# Recognizing vs. Deciding
+
+## Simple Turing Machine example {data-transition="slide-in fade-out"}
+
+```{r echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/simpletmnoreject.png", auto_pdf = TRUE)
+```
+
+## Equivalent TM? {data-transition="fade-in slide-out"}
+
+```{r echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/simpletmloop.png", auto_pdf = TRUE)
+```
+
+## Recognizing and Deciding
+
+- A TM **recognizes** a language $A$ if the set of strings that it accepts is the set $A$. (*Recognizers* might have infinite loops.)
+- A TM **decides** $A$ if it accepts every string that is in $A$ and rejects every string that is not in $A$. (*Deciders* always *halt*.)
+
+If a language has a decider, it is called **decidable**.
+
+## Decider for $A = \{\mathtt{0}^{2^n}\}$
+
+```{r echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/tmM2.png", auto_pdf = TRUE)
+```
+
+# More TM examples
+
+## Implementation descriptions
+
+- Say how the tape is processed.
+- Don't need to enumerate all the states.
+- You have enough detail if someone can follow your description and process a tape.
+- Each step must only accomplish a finite amount of work, though there is no bound on the amount of tape used.
+
+## Multiplication checker
+
+Decider for $C = \{\mathtt{a}^i\mathtt{b}^j\mathtt{c}^k \mid ij = k \text{ and } i,j,k \geq 1\}$
+
+## $\{\mathtt{a}^i\mathtt{b}^j\mathtt{c}^k \mid ij = k \text{ and } i,j,k \geq 1\}$
+
+1. Scan tape from left to right to check that input is of the form $\mathtt{a}^+\mathtt{b}^+\mathtt{c}^+$. If not, reject.
+2. Return to front of tape.
+3. $\mathtt{x}$-out an $\mathtt{a}$. Scan right to the next $\mathtt{b}$. Alternately mark $\mathtt{b}$'s and $\mathtt{c}$, moving left and right as you go, until no more unmarked $\mathtt{b}$'s remain. (By "mark", we mean replace $\mathtt{b}$ with the symbol $\stackrel{\bullet}{\mathtt{b}}$). If you run out of $\mathtt{c}$'s, reject.
+4. Remove the marks, go back to the first $\mathtt{a}$, and repeat step 3, until all $\mathtt{a}$'s are gone. If $\mathtt{c}$'s remain, reject. Otherwise, accept.
+
+## Distinct string checker
+
+Decider for $E = \{\mathtt{\#}x_1\mathtt{\#}x_2\mathtt{\#}\cdots\mathtt{\#}x_l \mid x_i \in \{\mathtt{0}, \mathtt{1}\}^\ast \text{ and } x_i \neq x_j \text{ for } i\neq j\}$
+
+## $\{\mathtt{\#}x_1\mathtt{\#}x_2\mathtt{\#}\cdots\mathtt{\#}x_l \mid x_i \in \{\mathtt{0}, \mathtt{1}\}^\ast \text{ and } x_i \neq x_j \text{ for } i\neq j\}$
+
+1. If the first symbol is $\mathtt{\#}$, mark it. (If blank, accept. Else reject.)
+2. Move right on the tape and mark the next $\mathtt{\#}$.
+3. Move back and forth, comparing the two strings after the marked $\mathtt{\#}$'s. If they match reject.
+4. Unmark the second marked $\mathtt{\#}$ and mark the next $\mathtt{\#}$. Then repeat 3. Keep moving the second marked $\mathtt{\#}$ and repeating 3 until you reach the last marked $\mathtt{\#}$. 
+5. Unmark the first marked $\mathtt{\#}$ and mark the next $\mathtt{\#}$. Then unmark the second marked $\mathtt{\#}$ and mark the first $\mathtt{\#}$ after the first marked $\mathtt{\#}$. Go to 3. 
+6. If you run out of room in step 5, accept. 
+
+## Multiplier?
+
+

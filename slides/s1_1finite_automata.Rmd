@@ -1,0 +1,199 @@
+---
+title: "Section 1.1: Introduction to Automata"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: yes
+    theme: black
+    transition: slide
+---
+
+# Formal Languages and Automata
+
+## Course Overview
+
+- What does it mean to *compute*? 
+- What *features* are necessary for a machine to compute?
+- What are the respective *limits* on what different machines can compute?
+
+Topics:
+
+- Regular Languages
+- Context-Free Languages
+- The Church-Turing Thesis (Turing Machines)
+- Decidability (The Halting Problem)
+- Reducibility
+- Time Complexity (if time permits)
+
+## Course Mechanics
+
+- Prework
+- Presentations
+- Exams
+
+## Prework
+
+- Regular, written homework assignments
+- Due at the start of class on most class meetings
+- Do on looseleaf paper, so they can be scanned
+- Perfection not required for full credit
+
+## Presentations
+
+- You will find your name assigned to one of the prework problems, usually with others.
+- You (or one of the others) will be chosen to present this problem in class.
+- Make sure you know how to do these problems. Come to student hours if you need help.
+- You will be presenting about one problem per week.
+
+## Exams
+
+- Hour Exams (3)
+- Final Exam
+
+## Student Hours
+
+- Drop in whenever my door is open (Winter 303).
+- I promise to be there from 2-4pm MTWTh.
+- Email me if you want to set up another time to meet.
+
+
+# Section 1.1: Finite Automata
+
+## {data-background="https://media.giphy.com/media/gDy4RetF4NVGo/giphy.gif"}
+
+## Finite Automata: Example
+
+Consider an automatic swinging door.
+
+- The door has two states: OPEN and CLOSED.
+- There are sensors in the FRONT and REAR to tell if someone is standing there.
+- We want to program the door so that it opens when someone is standing in front of it, but doesn't hit someone standing behind it.
+- If BOTH sensors are activated, the door stays in its current state.
+- In NEITHER sensor is activated, the door closes.
+
+<div class="notes">
+Explain how such a door works.
+</div>
+
+## Automatic door automaton
+
+```{r, echo=FALSE, fig.width=12, fig.height=6, message=FALSE, fig.align='center'}
+library(igraph)
+door <- graph(c("OPEN", "OPEN", 
+                "OPEN", "CLOSED", 
+                "CLOSED", "OPEN", 
+                "CLOSED", "CLOSED"))
+elabs <- c("FRONT\nREAR\nBOTH\n\n\n\n", "NEITHER\n\n", "FRONT\n\n", "REAR\nBOTH\nNEITHER\n\n\n\n")
+coords <- layout_on_grid(door)
+plot(door, 
+     layout=coords, 
+     edge.curved = TRUE, 
+     edge.loop.angle=3.14*1.5, 
+     vertex.size=50, 
+     vertex.label.cex = 2,
+     edge.label = elabs, 
+     edge.label.cex = 2,
+     edge.width = 4,
+     ylim = c(-1.0,-0.2))
+```
+
+## Finite Automata as a computational model
+
+The "machines" that we will study in this class will be very simple:
+
+- Input: a *string* in an *alphabet* of *symbols*
+    - e.g., 011001
+- Output: A yes/no decision: *accept* or *reject*
+
+## Example: Accepting and Rejecting
+
+```{r, echo=FALSE, fig.width=12, fig.height=6, message=FALSE, fig.align='center'}
+a3 <- graph_from_literal(" "-+q1-+q2-+q3-+q2-+q2, q1-+q1, q2-+q2, simplify=FALSE)
+coords <- layout_on_grid(a3, width = 4)
+plot(a3, 
+     edge.curved = c(0, 0, 0.5, 0.5, 0.5, 0.5), 
+     layout=coords,
+     vertex.size = 25,
+     vertex.shape = c("none", "circle", "circle", "circle"),
+     vertex.label = c(" ", expression(italic(q)[1]), expression(italic(q)[2]), expression(italic(q)[3])),
+     edge.loop.angle=3.14*1.5,
+     mark.groups = list(3), mark.shape = 0.75, mark.col = "pink", mark.border = "black",
+     vertex.label.cex = 2,
+     edge.label = c("","     1\n","0\n","  0,1\n","1\n","0\n"), 
+     edge.label.cex = 2,
+     edge.width = 4,
+     ylim = c(-1.1,-0.6), xlim=c(-0.5,1))
+```
+
+<div class="notes">
+Step through, and illustrate some strings that are accepted.
+Accepted strings: Must contain at least one 1, and an even number of 0's after the last 1.
+</div>
+
+# Formal Languages
+
+## Languages
+
+A **language** over a set of symbols $\Sigma$ is a set of strings in those symbols.
+
+The set of all strings that are accepted by an automaton is called the language **recognized** by the automaton.
+
+- Given an automaton, determine the language it recognizes.
+- Given a language, find an automaton that recognizes it.
+- Are there languages that an automaton cannot recognize?
+
+## Example: What language does this recognize?
+
+## Activity: Constructing automata
+
+For each language in the symbols $\{\mathtt{0}, \mathtt{1}\}$, draw a state diagram for an automaton that recognizes it.
+
+1. $\{w \mid w \text{ begins with a } \mathtt{1} \text{ and ends with a } \mathtt{0}\}$
+2. $\{w \mid \text{every odd position of $w$ is a }{\mathtt{1}}\}$
+3. $\{w \mid w \text{ does not contain the substring }\mathtt{110}\}$
+
+<div class="notes">
+Send three different groups to the board; one example each.
+</div>
+
+## Formal Definition of an Automaton
+
+A **finite automaton** is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$, where
+
+1. $Q$ is a finite set called the **states**,
+2. $\Sigma$ is a finite set called the **alphabet**,
+3. $\delta: Q \times \Sigma \longrightarrow Q$ is the **transition function**,
+4. $q_0 \in Q$ is the **start state**, and
+5. $F \subseteq Q$ is the set of **accept states**.
+
+<div class="notes">
+Illustrate these for the examples on the board.
+</div>
+
+## Regular Languages
+
+A language is called **regular** if some finite automaton recogizes it.
+
+<div class="notes">
+Hand out prework assignment.
+</div>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,135 @@
+---
+title: "Chapters 4-5 Review: Decidability, Recognizability, and Reduction"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    self_contained: yes
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+date: "March 27, 2020"
+---
+
+# Exam #3
+
+## Exam #3 Plan
+
+- Take-home, open book, open slides, open notes.
+- Do not collaborate.
+- Do not use outside resources (e.g., Internet or other books).
+- Hand in a PDF (written or typed) to Canvas.
+- Will open this afternoon (around 1pm). Due 11:59pm Monday.
+    - No class meeting on Monday.
+    - No time limit (other than due date).
+
+# Prework Presentations
+
+```{r include=FALSE}
+set.seed(32520)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+## 1. 
+
+Show that $\overline{E_\text{TM}}$ is recognizable by describing a TM that accepts $\langle M \rangle$ whenever $L(M) \neq \emptyset$. What does your TM do if $L(M) = \emptyset$?
+
+## 2. [`r paste(fnames[1:3], sep = ',')`] 
+
+Show that a language $A$ is recognizable if and only if $A \leq_\text{m} A_\text{TM}$.
+
+## 3. [`r paste(fnames[4:6], sep = ',')`] 
+
+Let $J = \{w \mid w=\mathtt{0}x \text{ for some } x\in A_\text{TM}\text{, or } w=\mathtt{1}y \text{ for some } y \in \overline{A_\text{TM}}\}$.
+    a. Show that $J$ is not recognizable by showing that $\overline{A_\text{TM}} \leq_\text{m} J$. 
+    b. Show that $\overline{J}$ is not recognizable by showing that $A_\text{TM} \leq_\text{m} J$. 
+
+## 4. [`r paste(fnames[7:9], sep = ',')`] 
+
+Let $J$ be as given in #3. Show that $J \leq_\text{m} \overline{J}$.
+
+## 5. 
+
+Let $X = \{\langle M, w\rangle \mid M \text{ is a single-tape TM that never writes over its input when computing on }w\}$. Suppose (to the contrary) that $D$ is a TM that decides $X$. Describe how to use $D$ to build a TM $E$ that decides $A_\text{TM}$. What does this prove about $X$? 
+
+# Main Results of Chapters 4
+
+## Languages as problems
+
+- If $L(M) = A$ for some TM decider $M$, then $A$ is decidable.
+- If $L(M) = A$ for some TM recognizer $M$, then $A$ is recognizable.
+
+We state certain decision problems as languages, where a valid string in the language is an instance of the decision problem that results in *accept*. (e.g., $\langle M, w\rangle$)
+
+## Emptiness problems
+
+These languages are decidable. 
+
+- $E_\text{DFA} = \{\langle A\rangle \mid A \text{ is a DFA and } L(A) = \emptyset\}$
+- $E_\text{CFG} = \{ \langle G \rangle \mid G \text{ is a CFG and } L(G) = \emptyset \}$
+
+In other words, the *emptiness problems* for DFA's and CFG's are decidable. A TM can tell if a DFA or CFG has an empty language.
+
+## Equivalence problems
+
+- $EQ_\text{DFA} = \{\langle A, B\rangle \mid A,B \text{ are DFA's and } L(A) = L(B)\}$ is decidable.
+
+In other words, the *equivalence problem* for DFA's is decidable. A TM can tell if two DFA's generate the same language.
+
+## Acceptance problems
+
+These languages are decidable. 
+
+- $A_\text{DFA} = \{\langle B,w \rangle \mid B\text{ is a DFA accepting } w \}$
+- $A_\text{CFG} =  \{\langle G, w\rangle \mid G \text{ is a CFG generating } w\}$
+
+In other words, the *acceptance problems* for DFA's and CFG's are decidable. A TM can tell if a given DFA or CFG recognizes a given string.
+
+# An undecidable language
+
+## $A_\text{TM}$ is undecidable
+
+- Observation: $A_\text{TM} = \{ \langle M, w\rangle \mid M \text{ is a TM that accepts } w\}$ is recognizable.
+    - There are countably many TM's, but uncountably many languages (diagonalization argument), so some languages are not recognizable.
+- Theorem: $A_\text{TM}$ is undecidable.
+    - Diagonalization proof.
+- Corollary: $\overline{A_\text{TM}}$ is not recognizable.
+
+# Chapter 5 Main Results
+
+## Reduction arguments
+
+We say "$A$ reduces to $B$" if a TM decider for $B$ can be used to build a TM decider for $A$.
+
+- If $A$ reduces to $B$ and $B$ is decidable, then $A$ is decidable.
+- If $A$ reduces to $B$ and $A$ is undecidable, then $B$ is undecidable.
+
+We proved that several languages/problems were undecidable, by reducing from $A_\text{TM}$. (Notable examples: $\mathit{EQ}_\text{CFG}$, $PCP$)
+
+## Mapping reductions
+
+Let $A$ and $B$ be languages over an alphabet $\Sigma$. We say that $A$ is *mapping reducible* to $B$, written $A \leq_\text{m} B$, if there is a computable function (i.e., a *reduction*) $f:\Sigma^\ast \longrightarrow \Sigma^\ast$ such that, for every $w \in \Sigma^\ast$, 
+$$
+w \in A \Longleftrightarrow f(w) \in B
+$$
+
+-  **Theorem 5.22.** Suppose $A \leq_\text{m} B$. If $B$ is decidable, then $A$ is decidable. If $A$ is undecidable, then $B$ is undecidable.
+-  **Theorem 5.28.** Suppose $A \leq_\text{m} B$. If $B$ is recognizable, then $A$ is recognizable. If $A$ is not recognizable, then $B$ is not recognizable.
+

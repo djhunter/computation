@@ -1,0 +1,115 @@
+---
+title: "Section 7.1: Polynomial versus Exponential Time"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    self_contained: yes
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+date: "April 3, 2020"
+---
+
+# Prework Presentations
+
+## Activity
+
+- See the #macs-135 channel for a link to the shared Google Doc.
+- Go to the voice channel (Group 1, Group 2, Group 3) corresponding to your group. 
+- The starred person should be the presenter/writer on the board, but everyone can write.
+    - You can also paste images.
+
+Groups: 
+
+1. (Question 2) Carolyn*, Ryley, Trevor
+2. (Question 3) Sam*, Drake, Wesley
+3. (Question 4) James, Tristan*, Sophia
+
+https://docs.google.com/document/d/1TEyGRe9v4I23CLehzdroKko8nEF2o259_jLdbC3u4Z0/edit?usp=sharing
+
+# Running Times of Other Computational Models
+
+## Time depends on the computational model
+
+Last time, we observed different running times for the same problem on
+
+- Single-tape TM's
+- Multiple-tape TM's
+
+Today, we'll quantify the difference this distinction makes, and also consider nondeterministic TM's.
+
+## Multi-tape TM's
+
+**Theorem 7.8.** Suppose $M$ is a $k$-tape TM with running time $t(n)$. Then $M$ can be converted to a single-tape TM with running time $O\left([t(n)]^2\right)$. 
+
+Proof. For every step of $M$, our single-tape simulator $S$ has to
+
+- Scan its whole tape to find the dotted symbols.
+- Scan its whole tape again to update using $M$'s transitions.
+- Potentally, shift the whole tape to emulate $M$ going off the right end of a tape. (Up to $k$ times).
+
+So every transition of $M$ requires, potentially, $k+2$ scans of $S$'s tape.
+
+## Multi-tape TM's, cont'd
+
+So *one step of $M$* requires (at most) *$k+2$ scans of $S$'s tape.*
+
+- How long do $k+2$ scans of $S$'s tape take?
+- How long is $S$'s tape? At most $t(n)$. (prework)
+- $k+2$ scans take $(k+2)O(t(n))$ steps, which is $O(t(n))$, since $k$ is constant (with respect to $n$).
+- $M$ makes $t(n)$ transitions/steps. So $S$ makes $t(n)O(t(n)) = O\left([t(n)]^2\right)$ steps. $\Box$
+
+## Polynomial equivalence
+
+If one process can be converted to another at only a polynomial increase in time, the two processes are called *polynomially equivalent*.
+
+- Emulating multi-tape TM by a single-tape TM requires squaring running time.
+- Multi-tape TM's are polynomially equivalent to single-tape TM's.
+
+In real life, that's a big deal. In complexity theory, however, it's not a big deal.
+
+## Nondeterministic TM's
+
+**Theorem 7.11.** Suppose $N$ is a *nondeterministic* TM with running time $t(n)$. Then $N$ can be emulated on a deterministic TM with running time $2^{O(t(n))}$.
+
+Proof. Our deterministic simulator $D$ works by doing a breadth-first search of $N$'s computation tree. 
+
+- Every path from the root to a leaf is at most $t(n)$ long.
+- WLOG tree is binary. If not, you can convert it to a binary tree in constant time. So the number of leaves is at most $2^{t(n)}$.
+- The number of nodes in the tree is less than $2\cdot 2^{t(n)} = O(2^{t(n)})$.
+- Every visit to a node costs $O(t(n))$. 
+
+## Nondeterministic TM's, cont'd
+
+- Every path from the root to a leaf is at most $t(n)$ long.
+- WLOG tree is binary. The number of leaves is at most $2^{t(n)}$.
+- The number of nodes in the tree is less than $2\cdot 2^{t(n)} = O(2^{t(n)})$.
+- Every visit to a node costs $O(t(n))$. 
+
+*Total time:* $O(t(n))O(2^{t(n)}) = 2^{O(t(n))}$. If you want $D$ to be a single-tape machine, you have to square that. But $\left(2^{O(t(n))}\right)^2 = 2^{O(t(n))}$. $\Box$
+
+## Exponential costs
+
+- Theorem 7.11 doesn't say going from a nondeterministic TM *must* come at an exponential cost.
+- Theorem 7.11 says it can't be more than exponential cost.
+
+However, exponential differences are *huge*. Polynomial equivalences are dwarfed in comparison.
+

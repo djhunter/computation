@@ -49,7 +49,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 
 # Other Resources
 
-- [Syllabus](syllabus/csma135S24.pdf) (PDF)
+- [Syllabus](syllabus/csma135hunterS24.pdf) (PDF)
 
 All of the pages and slides on this site were authored in RMarkdown. The source code is available on GitHub: https://github.com/djhunter/computation
 

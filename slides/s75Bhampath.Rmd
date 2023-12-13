@@ -1,0 +1,164 @@
+---
+title: "Section 7.5: HAMPATH is NP-complete"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    self_contained: yes
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+date: "April 22, 2020"
+---
+
+# Prework 
+
+## Prework Discussion
+
+- See the #macs-135 channel for a link to the shared Google Doc.
+- Go to the voice channel (Group 1, Group 2, Group 3) corresponding to your group. 
+- The starred person should be the presenter/writer on the board, but everyone can write and/or paste images.
+
+Groups: 
+
+1. (Question 2) Sophia, Trevor, Wesley*
+2. (Question 3) Carolyn, James, Tristan*
+3. (Question 4) Ryley, Sam*, Drake
+
+https://docs.google.com/document/d/1NbyJtTxqkbgEiKLzUUISsu0OODft2SYCxWAZfRwHAf4/edit?usp=sharing
+
+# $\textit{HAMPATH}$ is $\text{NP}$-complete
+
+## Polynomial time reducibility
+
+Let $A$ and $B$ be languages over an alphabet $\Sigma$. We say that $A$ is *polynomial time reducible* to $B$, written $A \leq_\text{P} B$, if there is a polynomial-time function (i.e., a *reduction*) $f:\Sigma^\ast \longrightarrow \Sigma^\ast$ such that, for every $w \in \Sigma^\ast$, 
+$$
+w \in A \Longleftrightarrow f(w) \in B
+$$
+
+- If $A$ is $\text{NP}$-complete and $B \in \text{NP}$, then $B$ is $\text{NP}$-complete.
+
+## $\mathit{3SAT}$
+
+A *3cnf-formula* is a Boolean formula of the form
+$$
+(a_1 \vee b_1 \vee c_1) \wedge (a_2 \vee b_2 \vee c_2) \wedge \cdots \wedge (a_k \vee b_k \vee c_k) 
+$$
+
+- The $a_i$'s, $b_i$'s, $c_i$'s are called *literals*. Each has the form $x_j$ or $\overline{x_j}$ for some *variable* $x_j$. The triples $(a_i \vee b_i \vee c_i)$ are called *clauses*.
+- $\mathit{3SAT} = \{\langle \phi \rangle \mid \phi \text{ is a satisfiable 3cnf-formula} \}$.
+- $\mathit{3SAT}$ is $\text{NP}$-complete.
+
+## $\mathit{HAMPATH} \in \text{NP}$
+
+We define $\mathit{HAMPATH}$ on *directed* graphs. Recall that a Hamilton path is a path that visits each *vertex* in the graph exactly once.
+
+$$
+\mathit{HAMPATH} = \{ \langle G \rangle \mid G \text{ has a Hamilton path} \}
+$$
+
+Easy to show that $\mathit{HAMPATH}$ can be *verified* in polynomial time:
+
+- Given a certificate (a list of vertices), check to see if each vertex has an edge going to the next vertex in the list. (at most $O(n^3)$, if $n$ is the number of vertices and we are being sloppy)
+
+So $\mathit{HAMPATH} \in \text{NP}$.
+
+## Reduction: $\mathit{3SAT} \leq_\text{P} \mathit{3SAT}$
+
+Our *reduction function* needs to input a $\langle \phi \rangle$ and output a $\langle G \rangle$, such that $\langle \phi \rangle \in \mathit{3SAT}$ *iff* $\langle G \rangle \in \mathit{HAMPATH}$.
+
+- Variable gadgets (diamond graphs)
+- Clause gadgets (single vertices)
+
+## Variable Gadget
+
+Each variable $x_i$ will be represented as a subgraph of the form:
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/hpvgad.png", auto_pdf = TRUE)
+```
+
+## Variable Gadget Detail
+
+Each clause gets a pair of vertices in the chain:
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/hpvgad2.png", auto_pdf = TRUE)
+```
+
+Each clause $c_i$ is also represented by a single separate vertex.
+
+## Connection when $x_i$ is part of $c_j$
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/hpconnect.png", auto_pdf = TRUE)
+```
+
+## Connection when $\overline{x_i}$ is part of $c_j$
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/hpconnect2.png", auto_pdf = TRUE)
+```
+
+## Output of reduction function
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/hpgraph.png", auto_pdf = TRUE)
+```
+
+## Example
+
+- $(x_1 \vee x_1 \vee x_2) \wedge (\overline{x_1} \vee \overline{x_2} \vee \overline {x_2}) \wedge (\overline{x_1}\vee x_2 \vee x_2)$
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/hampathgad1.png", auto_pdf = TRUE)
+```
+
+## Satisfiable $\Rightarrow$ Hamilton Path
+
+Satisfying assignment: $x_1 = 0$, $x_2 = 1$
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/hampathgad.png", auto_pdf = TRUE)
+```
+
+## Hamilton Path $\Rightarrow$ satisfiable
+    
+- Every path is forced to cross each chain, and visit each clause.
+- The direction of the chain crossing gives the 1/0 assignment.
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/hampathgad.png", auto_pdf = TRUE)
+```
+
+## Parts of the reduction argument
+
+- *Describe a function* that inputs a $\langle \phi \rangle$ and outputs a $\langle G \rangle$.
+- Show that $\langle \phi \rangle \in \mathit{3SAT}$ *iff* $\langle G \rangle \in \mathit{HAMPATH}$.
+- Check that the function is computable in *polynomial time*.
+- To show $\text{NP}$-completeness, you also need to check that $\mathit{HAMPATH} \in \text{NP}$.

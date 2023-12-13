@@ -1,0 +1,121 @@
+---
+title: "Section 5.3: Mapping Reducibilty and Recognizability"
+output:
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    self_contained: yes
+    theme: black
+    transition: slide
+date: "March 25, 2020"
+---
+
+# Prework Presentations
+
+## Mapping Reduciblity
+
+Let $A$ and $B$ be languages over an alphabet $\Sigma$. We say that $A$ is *mapping reducible* to $B$, written $A \leq_\text{m} B$, if there is a computable function (i.e., a *reduction*) $f:\Sigma^\ast \longrightarrow \Sigma^\ast$ such that, for every $w \in \Sigma^\ast$, 
+$$
+w \in A \Longleftrightarrow f(w) \in B
+$$
+
+## Online presentations
+
+- 1. Tristan, James$^\ast$, Drake
+- 2. Sam, Carolyn, Sophia
+- 4. Trevor, Ryley$^\ast$, Wesley
+ 
+# Mapping Reductions and Recognizability
+
+## Recall: Recognizability and decidability
+
+- A language $A$ is *decidable* if there is a TM that accepts every element of $A$ and rejects every element of $\overline{A}$. (i.e., a *decider*)
+- A language $A$ is *recognizable* if there is a TM that accepts every element of $A$ and either rejects or runs forever on every element of $\overline{A}$.
+
+So every decidable language is recognizable, but not vice versa (e.g., $A_\text{TM}$.)
+
+## Recall: Recognizability and complements
+
+- **Lemma.** If $A$ and its complement $\overline{A}$ are both recognizable, then $A$ is decidable. 
+    - Proof: Run the recognizers in parallel to decide $A$.
+- If $A$ is undecidable but recognizable, then $\overline{A}$ is not recognizable.
+    - Therefore, $\overline{A_\text{TM}}$ is not recognizable.
+- *Question:* Is there an unrecognizable $A$ with $\overline{A}$ also unrecognizable?
+
+## $\leq_\text{m}$ and recognizability
+
+**Theorem 5.28.** Suppose $A \leq_\text{m} B$. If $B$ is recognizable, then $A$ is recognizable. If $A$ is not recognizable, then $B$ is not recognizable.
+
+*Proof.* Since $A \leq_\text{m} B$ there is a computable reduction function $f$. Suppose $M$ is a TM that recognizes $B$. Then we can recognize $A$:
+
+- On input $w$,
+    + Compute $f(w)$.
+    + Run $M$ on input $f(w)$ and accept if $M$ accepts.
+    
+Since $w \in A \Longleftrightarrow f(w) \in B$, this TM recognizes $A$. (The contrapositive is immediate.)
+
+## Using complements
+
+- *Observe:* $A \leq_\text{m} B \Longleftrightarrow \overline{A} \leq_\text{m} \overline{B}$
+    - This is because $x \in A \Longleftrightarrow f(x) \in B$ is the same as $x \in \overline{A} \Longleftrightarrow f(x) \in \overline{B}$ 
+- So we can *show that $B$ is not recognizable* by showing $A_\text{TM} \leq_\text{m} \overline{B}$.
+    - using Theorem 5.28, the above observation,
+    - the fact that $\overline{\overline{B}} =B$, and
+    - the fact that $\overline{A_\text{TM}}$ is not recognizable,
+
+## Last time: $A_\text{TM} \leq_\text{m} \overline{E_\text{TM}}$
+
+- On *input* $\langle M, w\rangle$,
+    - Construct a new TM $M_w$: On input $x$,
+        + If $x\neq w$, reject.
+        + If $x = w$, run $M$ on $w$ and accept if $M$ does.
+    - *Output* $\langle M_w \rangle$.
+
+Notice that $\langle M, w\rangle \in A_\text{TM} \Longleftrightarrow \langle M_w \rangle \not\in E_\text{TM}$. 
+
+- This proves that $E_\text{TM}$ is not recognizable. 
+- However, $\overline{E_\text{TM}}$ is recognizable. (Exercise)
+
+## $A_\text{TM} \leq_\text{m} \overline{\mathit{EQ}_\text{TM}}$
+
+- On *input* $\langle M, w \rangle$,
+    - Construct $M_\emptyset$ that rejects everything.
+    - Construct $M_w$: On input $x$:
+        - Disregard $x$. Run $M$ on $w$. If $M$ accepts, accept.
+- *Output* $\langle M_\emptyset, M_w \rangle$.
+
+Notice: $\langle M, w\rangle \in A_\text{TM} \Longleftrightarrow \langle M_\emptyset, M_w \rangle \not\in \mathit{EQ}_\text{TM}$.
+
+This shows that *$\mathit{EQ}_\text{TM}$ is not recognizable.*
+
+## $A_\text{TM} \leq_\text{m} \mathit{EQ}_\text{TM}$
+
+- On *input* $\langle M, w \rangle$,
+    - Construct $M_\text{ALL}$ that accepts everything.
+    - Construct $M_w$: On input $x$:
+        - Disregard $x$. Run $M$ on $w$. If $M$ accepts, accept.
+- *Output* $\langle M_\text{ALL}, M_w \rangle$.
+
+Notice: $\langle M, w\rangle \in A_\text{TM} \Longleftrightarrow \langle M_\text{ALL}, M_w \rangle \in \mathit{EQ}_\text{TM}$.
+
+This shows that *$\overline{\mathit{EQ}_\text{TM}}$ is not recognizable.*
+
+- **Punchline:** Both $\overline{\mathit{EQ}_\text{TM}}$ and $\mathit{EQ}_\text{TM}$ are not recognizable.

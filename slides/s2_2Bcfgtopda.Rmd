@@ -1,0 +1,124 @@
+---
+title: "Section 2.2: Building a PDA for a CFG"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+date: "February 5, 2020"
+---
+
+```{r include=FALSE}
+set.seed(20320)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+# Prework Presentations
+
+## 2. [`r paste(fnames[1:3], sep = ',')`] 
+
+Give a state diagram for a PDA that recognizes the set of all palindromes in $\Sigma = \{\mathtt{0}, \mathtt{1}\}$.
+
+## 3. [`r paste(fnames[4:6], sep = ',')`] 
+
+Give a state diagram for a PDA that recognizes the set of all strings in $\Sigma = \{\mathtt{0}, \mathtt{1}\}$ that have the same number of $\mathtt{0}$'s as $\mathtt{1}$'s.
+
+## 4. [`r paste(fnames[7:9], sep = ',')`] 
+
+Let $A = \{\mathtt{a}^i\mathtt{b}^j\mathtt{c}^k \mid i = j \text{ or } j=k \text{ where } i,j,k\geq 0\}$. Give a state diagram for a PDA that recognizes the language $A$.
+
+## Look at Prework #1
+
+```{r echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("/home/dhunter/Dropbox/macs135/R135/prework/images/pda3ipe.png", auto_pdf = TRUE)
+```
+
+# Building a PDA for a CFG
+
+## Context-free languages so far
+
+- A *context-free language* is a language described by a *context-free grammar (CFG)*.
+- CFG's can describe languages that regular expressions cannot.
+- *Pushdown automata (PDA's)* can recognize everything that NFA/DFA's can, and more.
+
+Today we'll show how to construct a PDA to recognize any given CFG's language.
+
+## Programming a PDA for a CFG
+
+**Lemma 2.21** Given a CFG that describes a language $A$, there is a PDA that recognizes $A$.
+
+Proof: Construct a PDA that:
+
+1. Pushes the start variable $S$ to the stack, then
+2. Nondeterministically replaces any variables on the stack according to CFG rules, while it
+3. Matches terminals on stack with terminals on input string. 
+
+## Top-level structure
+
+```{r echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/toplevelpda.png", auto_pdf = TRUE)
+```
+
+## Example: Prework #1
+
+```{r echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("/home/dhunter/Dropbox/macs135/R135/prework/images/pda3ipe.png", auto_pdf = TRUE)
+```
+
+## Example: On board
+
+Use the procedure in the proof of Lemma 2.21 to build a PDA that recognizes the language described by the following CFG.
+
+\begin{align*}
+S & \rightarrow \mathtt{a}T\mathtt{b} \mid \mathtt{b} \\
+T & \rightarrow T\mathtt{a} \mid \varepsilon
+\end{align*}
+
+## Why does it always work?
+
+- Nondeterminism takes into account any possible substitution at any point.
+- Input string only gets processed as long as it matches the stack.
+- Any discrepancy will terminate the nondeterministic thread.
+
+# Equivalence of CFG's and PDA's
+
+## Converse is also true
+
+**Lemma 2.27.** Given any PDA, it is possible to construct a CFG that describes the language it recognizes.
+
+*Proof:* Omit. (Read book if you are curious.)
+
+## Punchline
+
+The context-free languages are precisely those recognized by PDA's, and these languages include the regular languages as a proper subset.
+
+- Next time: Pumping Lemma for context-free languages!
+
+
+
+
+

@@ -1,0 +1,64 @@
+---
+title: "Chapters 2-3 Review"
+output:
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+date: "February 21, 2020"
+---
+
+```{r include=FALSE}
+set.seed(21920)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+# Prework Presentations
+
+## 2. [`r paste(fnames[1:3], sep = ',')`] 
+
+Give an implementation description of a TM (possibly multitape or nondeterministic) that decides the language of all strings of the form $\mathtt{0}^n\mathtt{\#}q$, where $q$ is an encoding of the quadratic polynomial $Ax^2 + Bx + C$ (as defined in Problem 1), and $n$ is a root of this polynomial (i.e., $An^2 + Bn + C = 0$).
+
+## 3. [`r paste(fnames[4:6], sep = ',')`] 
+
+Determine the language recognized by the following two-stack PDA.
+```{r, echo=FALSE, fig.align='center', fig.width=3}
+library(knitr)
+include_graphics("../prework/images/twostackpda.png", auto_pdf = TRUE)
+```
+
+## 5. [`r paste(fnames[7:9], sep = ',')`] 
+
+Explain how to simulate a TM with a two-stack PDA. (For each type of transition of the TM (left or right), explain how the two stacks are managed in a way that is equivalent to writing on the TM's tape.)
+
+# Study Guide
+
+## Other Questions?
+
+## Practice Problems (groups)
+
+Consider the language $A = \{\mathtt{0}^n \mid n \text{ is prime}\}$.
+
+1. Prove that $A$ is not context free.
+2. Give an implementation description of a TM that decides $A$.

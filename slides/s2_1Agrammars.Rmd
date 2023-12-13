@@ -1,0 +1,157 @@
+---
+title: "Chapter 2: Context Free Languages"
+output:
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+date: "January 31, 2020"
+---
+
+# Grammars and Context-Free Languages
+
+## Languages and Computation
+
+- Our computational models can input a string and output one bit of information.
+- So we can characterize computational models by the languages they recognize.
+- Regular languages are the languages recognized by DFA's, NFA's, GNFA's, and described by regular expressions.
+- Not all languages are regular (Pumping Lemma).
+
+In Chapter 2, we introduce a more powerful computational model and determine what it can and cannot do.
+
+# Applications to compiler design
+
+## Lexical Analyzers ("lexers")
+
+Numerical constants can be integers, decimals, possibly with leading 0's, possibly with +/- signs. When parsing code, it is useful to describe the set of legal numbers as a regular language.
+
+- $D = \{0,1,2,3,4,5,6,7,8,9\}$
+- $\Sigma = D \cup \{+, -, .\}$
+
+Numerical constant:
+
+$$
+(+ \cup - \cup \varepsilon)(D^+ \cup D^+.D^* \cup D^*.D^+)
+$$
+
+## Nonregular structures in code
+
+However, not all syntax can be described with regular languages.
+
+```{r, eval=FALSE}
+if(b1) {
+  if(b2) {
+    if(b3) {
+      dosomething(1)
+    } else
+      dosomething(2)
+  } else
+    dosomething(3)
+} else
+  dosomething(4)
+```
+
+Morally, structures like these are the same as $\{0^p1^p \mid p>0\}$, which is nonregular. So a parser can't be a DFA.
+
+# Application to lingustics
+
+## Word-chain automata
+
+$\Sigma =$ words from a language. Can we describe all sentences?
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/wordchaindfa.png", auto_pdf = TRUE)
+```
+
+## Long-distance dependencies
+
+> The fact that Bill thinks that if someone needs glasses to read a magazine then that person shouldn't be allowed to drive makes me want to scream.
+  
+- The concluding phrase "makes me want to scream" depends on the opening phrase "The fact that".
+- Long-distance dependencies are essentially nonregular features.
+- Noam Chomsky famously observed that human languages have structures that DFA's can't recognize (recursion).
+
+# Context-Free Grammars
+
+## Recursively Defined Sets
+
+Define a set of strings $A$ over $\{\mathtt{0}, \mathtt{1}\}$ as follows.
+
+- Base case: $\varepsilon \in A$.
+- Recursive case: If $s \in A$, then so is $\mathtt{1}s\mathtt{0}$.
+
+Describe all the elements of $A$.
+
+## Context-Free Grammar
+
+A **context-free grammar** is a 4-tuple $(V, \Sigma, R, S)$, where
+
+1. $V$ is a finite set, called the *variables*,
+2. $\Sigma$ is a finite set, disjoint from $V$, called the *terminals*,
+3. $R$ is a finite set of *rules*, with each rule of the form $X \rightarrow \mathcal{Q}$, where $X$ is a variable and $\mathcal{Q}$ is a string of variables and terminals.
+4. $S \in V$ is the start variable.
+
+The set of all strings of terminals that can be derived from the start symbol $S$ is called the **language of the grammar**. The language of a context-free grammar (CFG) is a **context-free language** (CFL).
+
+## Context-Free Grammar: example
+
+1. $V$ is a finite set, called the *variables*,
+2. $\Sigma$ is a finite set, disjoint from $V$, called the *terminals*,
+3. $R$ is a finite set of *rules*, with each rule of the form $X \rightarrow \mathcal{Q}$, where $X$ is a variable and $\mathcal{Q}$ is a string of variables and terminals.
+4. $S \in V$ is the start variable.
+
+Example: $V = \{S\}$, $\Sigma = \{\mathtt{0}, \mathtt{1}\}$, and the rules $R$ are:
+
+\begin{align*}
+S & \rightarrow \varepsilon \\
+S & \rightarrow \mathtt{0}S\mathtt{1}
+\end{align*}
+
+Abbreviate this as $S \rightarrow \varepsilon \mid \mathtt{0}S\mathtt{1}$.
+
+## Example: parsing arithmetic
+
+- Variables: $V = \{E, T, F\}$, with $S = E$.
+- Terminals: $\{\mathtt{a}, +, \ast, \mathtt{(}, \mathtt{)}\}$.
+- Rules:
+
+\begin{align*}
+E & \rightarrow E + T \mid T \\
+T & \rightarrow T \ast F \mid F \\
+F & \rightarrow \mathtt{(} E \mathtt{)} \mid \mathtt{a}
+\end{align*}
+
+Show that $\mathtt{a}+\mathtt{a}*\mathtt{a}$ and $(\mathtt{a}+\mathtt{a})*\mathtt{a}$ are strings in this grammar (give *derivations*).
+
+## Exercise
+
+1. Construct a context-free grammar (CFG) describes the language over $\Sigma=\{\mathtt{0},\mathtt{1}\}$ consisting of all strings with the same number of $\mathtt{0}$'s as $\mathtt{1}$'s.
+
+2. Give derivations for $\mathtt{01}$, $\mathtt{0011}$, and $\mathtt{0110100011}$.
+
+## Ambiguity
+
+## Return the Exams
+

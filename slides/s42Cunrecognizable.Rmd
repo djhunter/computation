@@ -1,0 +1,67 @@
+---
+title: "Section 4.2: An Unrecognizable Language"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+date: "March 6, 2020"
+---
+
+```{r include=FALSE}
+set.seed(3420)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+# Prework Presentations
+
+## 2. [`r paste(fnames[1:3], sep = ',')`] 
+
+Sometimes pushdown automata have states that are never entered on any input. Construct a TM decider that will input a PDA description $\langle P \rangle$ and accept if $P$ has such a state and reject if $P$ doesn't have such a state. (Hint: We know that $E_\text{CFG}$ is decidable, so there is a TM decider $M_\emptyset$ that decides $E_\text{PDA} = \{\langle P \rangle \mid P \text{ is a PDA and } L(P) = \emptyset\}$. Use $M_\emptyset$ in your construction.)
+
+## 3. [`r paste(fnames[4:6], sep = ',')`] 
+
+We say that a language is *closed under reversal* if, for every $w$ in the language, its reverse $w^R$ is also in the language. Construct a TM decider that inputs a DFA description $\langle D \rangle$ and accepts iff $L(D)$ is closed under reversal. (Hint: We have a decider for $EQ_\text{DFA}$.)
+
+## 4. [`r paste(fnames[7:9], sep = ',')`] 
+
+Let $Q = \{\langle D \rangle \mid D \text{ is a DFA and } L(D) \text{ contains a string with } \mathtt{01110} \text{ as a substring}\}$. Show that $Q$ is decidable by building a TM decider for it. (Hint: We have a decider for $E_\text{DFA}$.)
+
+# An Unrecognizable Language
+
+## Prework #1
+
+1. Suppose that $A$ and its complement $\overline{A}$ are both recognizable. Prove that $A$ is decidable. 
+
+## $\overline{A_\text{TM}}$ is unrecognizable
+
+# Gödel, Escher, Bach
+
+## {data-background="https://i.pinimg.com/originals/88/0e/1f/880e1f7c71ecf950de5dde824a900270.jpg" data-background-size="contain"}
+
+## "Limitative Theorems"
+
+All the limitative Theorems of ... the theory of computation suggest that once the ability to represent your own structure has reached a certain critical point, that is the kiss fo death: it guarantees that you never represent yourself totally. [These theorems] all have the flavor of some ancient fairy tale which warns you that "To seek self-knowledge is to embark on a journey which will always be incomplete, cannot be charted on any map, will never halt, cannot be described." -- Douglas Hofstadter
+ 
+

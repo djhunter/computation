@@ -1,0 +1,114 @@
+---
+title: "Section 3.2: Turing Machine Variants"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+date: "February 14, 2020"
+---
+
+```{r include=FALSE}
+set.seed(21220)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+# Prework Presentations
+
+## 1. [`r paste(fnames[1:3], sep = ',')`]  
+
+Read pages 176--177 (or pages 148--149 in the Second Edition). Explain (in your own words) how you can simulate a Multitape Turing Machine on a regular single-tape TM.
+
+## 2. [`r paste(fnames[4:6], sep = ',')`] 
+
+Let $A = \{\mathtt{a}^i\mathtt{b}^j\mathtt{c}^k\mathtt{d}^l \mid ij = kl,\, i,j,k,l\geq 1\}$. Give an implementation description of a decider for $A$.
+
+## 3. [`r paste(fnames[7:9], sep = ',')`] 
+
+Let $B = \{b_1\mathtt{\#}b_2 \mid b_1,b_2\in\{\mathtt{0},\mathtt{1}\}^\ast \text{ and } b_1 > b_2 \text{ as binary numbers}\}$. Give an implementation description of a decider for $B$.
+
+# Recall: Deciders vs. Recognizers
+
+## Decider {data-transition="slide-in fade-out"}
+
+```{r echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/simpletmnoreject.png", auto_pdf = TRUE)
+```
+
+## Recognizer, not Decider {data-transition="fade-in slide-out"}
+
+```{r echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/simpletmloop.png", auto_pdf = TRUE)
+```
+
+## Recognizing and Deciding
+
+- A TM **recognizes** a language $A$ if the set of strings that it accepts is the set $A$. (*Recognizers* might have infinite loops.)
+- A TM **decides** $A$ if it accepts every string that is in $A$ and rejects every string that is not in $A$. (*Deciders* always *halt*.)
+
+If a language has a decider, it is called **decidable**.
+
+# Enumerators
+
+## Can we list the elements of $\Sigma^\ast$?
+
+>- Given a set $S$, is there a way to write all the elements of $S$ in a (possibly infinite) listing $s_1, s_2, s_3, \ldots$?
+>- More formally, is there a one-to-one map $S \longrightarrow \mathbb{N}$?
+>- If such a map exists, $S$ is called *countable*.
+>    - $\Sigma^*$ is countable, for any finite alphabet $\Sigma$.
+>    - Every language over $\Sigma$ is countable.
+
+## Enumerator
+
+- An **enumerator** is a TM with an attached "printer".
+- Instead of accepting strings, it prints them out.
+- Can run without halting.
+
+A string $w$ belongs to *the language enumerated* by an enumerator $E$ if $E$ eventually prints $w$.
+
+## Enumerator $\leftrightarrow$ Recognizer
+
+- Given an enumerator for a language, we can build a TM recognizer for it.
+    - Obvious?
+- Given a recognizer for a language, we can build an enumerator for it.
+    - Subtle?
+
+# Nondeterminism
+
+## Nondeterministic Turing Machines
+
+- A **Nondeterministic Turing Machine** allows multiple threads for the same input symbol:
+$$
+\delta: Q \times \Gamma \longrightarrow \mathcal{P}(Q\times \Gamma \times \{\mathrm{L}, \mathrm{R}\})
+$$
+- Can be simulated on a TM, but there's a subtlety.
+    - Can't run threads in series. (why?)
+    - Run each thread to the same depth, for depths $1,2,3,\ldots$ 
+    - Use three tapes:
+        - One for input (leave unchanged)
+        - One to simulate the tape for the current thread 
+        - One to keep track of which thread to run and how deep to run it
+

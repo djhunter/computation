@@ -1,0 +1,116 @@
+---
+title: "Section 5.2: Computation Histories"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    self_contained: yes
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+date: "March 18, 2020"
+---
+
+# Prework Presentations
+
+## Online presentations
+
+We can present PDF's on Google Meet and talk over them.
+
+1. Wesley$^\ast$, Tristan, Drake
+2. Ryley, Sam$^\ast$, Carolyn
+3. Sophia, James$^\ast$, Trevor
+    
+# Reduction Arguments using Computation Histories
+
+## Reducibility and Languages
+
+- Suppose $A$ and $B$ are languages.
+- We say "$A$ reduces to $B$" if a TM decider for $B$ can be used to build a TM decider for $A$.
+- If $A$ reduces to $B$ and $B$ is decidable, then $A$ is decidable.
+- **If $A$ reduces to $B$ and $A$ is undecidable, then $B$ is undecidable.**
+
+This last fact is our main tool for proving undecidability.
+
+## Acceptance, Emptiness, and Equivalence Problems
+
+For the following, $\mathcal{M}$ is a type of machine or language descriptor.
+
+- $A_\mathcal{M} = \{ \langle M, w \rangle \mid M \text{ is an } \mathcal{M} \text{ and } M \text{ accepts } w \}$
+- $E_\mathcal{M} = \{ \langle M \rangle \mid M \text{ is an } \mathcal{M} \text{ and } L(M) = \emptyset\}$
+- $\mathit{EQ}_\mathcal{M} = \{ \langle P, Q \rangle \mid P,Q \text{ are } \mathcal{M}\text{'s and } L(P) = L(Q) \}$
+
+Undecidable Languages so far (using reduction):
+
+- $A_\text{TM}$ (the original example)
+- $\mathit{HALT}_\text{TM}$, $E_\text{TM}$, $\mathit{REGULAR}_\text{TM}$, $\mathit{EQ}_\text{TM}$, $\mathit{CFL}_\text{TM}$, $\mathit{THUD}_\text{TM}$ 
+
+What about other machines?
+
+## Computation Histories
+
+An accepting (resp. rejecting) *computation history* for a machine $M$ on input $w$ is a sequence of machine configurations $C_1, C_2, \ldots C_l$ such that $C_l$ is an accepting (resp. rejecting) state, and each $C_i$ follows legally from each $C_{i-1}$, starting with the start state $C_1$.  
+
+- Each $C_i$ is a snapshot (e.g., tape, head position, state) of the machine after each transition.
+- An accepting/rejecting computation history can be represented as a finite string: $\mathtt{\#}C_1\mathtt{\#}C_2\mathtt{\#}C_3\cdots\mathtt{\#}C_l\mathtt{\#}$
+
+## Linear Bounded Automata
+
+A *Linear Bounded Automaton* (LBA) is a TM where the tape head cannot move off of the input.
+
+- Finite tape.
+- Can use lots of new symbols, but must be finite set.
+- Perhaps more realistic model of a computer? (Finite RAM, determined before runtime.)
+- Equivalently, the size of the tape is a constant multiple of the size of the input string.
+
+**Lemma 5.8.** An LBA with $q$ states and $g$ symbols has exactly $qng^n$ different configurations, for an input of length $n$.
+
+## $A_\text{LBA}$ is decidable
+
+**Lemma 5.8.** An LBA with $q$ states and $g$ symbols has exactly $qng^n$ different configurations, for an input of length $n$.
+
+Build a TM decider for $A_\text{LBA}$: On input $\langle M, w\rangle$, where $M$ is an LBA:
+
+- Simulate $M$ on $w$ for at most $qng^n$ steps.
+    - If it accepts, accept.
+    - If it rejects, reject.
+    - If it doesn't halt after the $qng^n$th step, reject.
+    
+This third possibility can only happen if a state is repeated (pigeonhole principle), in which case $M$ is looping.
+
+## $E_\text{LBA}$ is undecidable!
+
+Surprisingly, *$A_\text{TM}$ reduces to $E_\text{LBA}$.* The proof uses computation histories. 
+
+- Given a TM decider $R$ for $E_\text{LBA}$, we can build a TM decider for $A_\text{TM}$: 
+- On input $\langle M, w\rangle$, build an LBA $B$ that inputs a string $x$ and accepts if $x = \mathtt{\#}C_1\mathtt{\#}C_2\mathtt{\#}C_3\cdots\mathtt{\#}C_l\mathtt{\#}$, an accepting computation history for $M$ on input $w$.
+- Use $R$ on this $\langle B \rangle$ to accept or reject.
+
+The construction of $B$ is the tricky part (prework).
+
+## $\mathit{ALL}_\text{CFG}$ is undecidable
+
+Let $\mathit{ALL}_\text{CFG} = \{ \langle G \rangle \mid G \text { is a CFG and } L(G) = \Sigma^\ast \}$. We can show $A_\text{TM}$ reduces to $\mathit{ALL}_\text{CFG}$:
+
+- Given a TM decider $T$ for $\mathit{ALL}_\text{CFG}$, we can build a TM decider for $A_\text{TM}$: 
+- On input $\langle M, w\rangle$, build an *PDA* $D$ that inputs a string $x$ and accepts if $x = \mathtt{\#}C_1\mathtt{\#}C_2\mathtt{\#}C_3\cdots\mathtt{\#}C_l\mathtt{\#}$ **is not** an accepting computation history for $M$ on input $w$.
+- Use $T$ on this $\langle D \rangle$ to accept or reject.
+
+The tricky part is showing that a mere PDA can check to see if a computation history of a TM is accepting or not (prework).

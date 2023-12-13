@@ -1,0 +1,33 @@
+---
+geometry: left=0.75in, right=0.75in, top=0.8in, bottom=0.4in
+classoption: twoside
+output: 
+  pdf_document:
+    keep_tex: true
+    includes:
+      in_header: preworkheader.tex
+---
+
+```{r include=FALSE}
+set.seed(42020)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+## Prework 7.5a: Reductions from $\mathit{3SAT}$
+
+1. A *$\neq$-assignment* of a 3cnf-formula is an assignment where each clause has two literals with unequal truth values. So a $\neq$-assignment satisifies a formula without ever assigning three true literals in any clause. Explain why $x_1 = 0$ and $x_2 = 1$ is a $\neq$-assignment of the formula  $(x_1 \vee x_1 \vee x_2) \wedge (\overline{x_1} \vee \overline{x_2} \vee \overline {x_2})$ but not of the formula $(x_1 \vee x_1 \vee x_2) \wedge (\overline{x_1} \vee \overline{x_2} \vee \overline {x_2}) \wedge (\overline{x_1}\vee x_2 \vee x_2)$. In addition, explain why the negation of a $\neq$-assignment is also a $\neq$-assignment. 
+
+2. [`r paste(fnames[1:3], sep = ',')`] Let $\mathit{\neq\!\!SAT} = \{ \langle \phi \rangle \mid \phi \text{ has a } \neq\text{-assignment}\}$. Show that $\mathit{3SAT} \leq_\text{P} \mathit{\neq\!\!SAT}$. Hint: consider the function that replaces each clause $c_i$ of the form $(y_1 \vee y_2 \vee y_3)$ with two clauses $(y_1\vee y_2\vee z_i)\wedge(\overline{z_i} \vee y_3 \vee b)$, where $z_i$ is a new variable for each clause $c_i$, and $b$ is a single new variable. Conclude that $\mathit{\neq\!\!SAT}$ is $\text{NP}$-complete. 
+
+3. [`r paste(fnames[4:6], sep = ',')`] A *cut* in an undirected graph is a partition of the vertices into two disjoint subsets $S$ and $T$. The *size* of a cut is the number of edges with one vertex in $S$ and the other in $T$. Consider the language $\mathit{MAX\text{-}CUT} = \{ \langle G, k \rangle \mid G \text { has a cut of size } k \text{ or more}\}$. Show that $\mathit{\neq\!\!SAT} \leq_\text{P} \mathit{MAX\text{-}CUT}$ using the following reduction function. Let $c$ be the number of clauses in the input formula $\phi$ and let $v$ be the number of variables. For each variable $x_i$, make $3c$ vertices labeled $x_i$ and another $3c$ vertices labeled $\overline{x_i}$. Connect every $x_i$ to every $\overline{x_i}$ (using $9c^2$ edges for each variable). Then add edges to form triangles for each clause so that every vertex is contained in exactly one of these triangles, for a total of $9c^2v+3c$ edges. Conclude that $\mathit{MAX\text{-}CUT}$ is $\text{NP}$-complete by confirming the following.
+    a. Show that a $\neq$-assignment of $\phi$ can be used to find a cut of size $k = 9c^2v + 2c$ in this graph.
+    b. Show that a cut of size $k = 9c^2v + 2c$ can be used to find a $\neq$-assignment of $\phi$.
+
+4. [`r paste(fnames[7:9], sep = ',')`] Let $p(x_1, x_2, \ldots, x_n)$ denote a polynomial in the variables $x_1, x_2, \ldots, x_n$ then we way that *$p$ has an integer root* if there is an assignment of integers to the variables $x_1, x_2, \ldots, x_n$ such that $p(x_1, x_2, \ldots, x_n) = 0$. For example, $x=5$, $y=3$, and $z=0$ form an integer root for the polynomial $6x^3yz^2 + 3xy^2 - x^3 - 10$. Let $\mathit{ROOT} = \{ \langle p \rangle \mid p \text{ has an integer root}\}$. Show that $\mathit{ROOT}$ is $\text{NP}$-hard by showing that $\mathit{3SAT} \leq_\text{P} \mathit{ROOT}$. Hint #1: Represent the Boolean clause $(x_1\vee x_2 \vee x_3)$ by the polynomial $[1-(1-x_1)(1-x_2)(1-x_3)]$, and represent $\wedge$-ing with multiplying. Hint #2: The polynomial $x_1^2(1-x_1)^2+x_2^2(1-x_2)^2 + \cdots + x_n^2(1-x_n)^2$ only has roots when the $x_i$'s are in $\{0,1\}$.
+
+*Remark:* It turns out that $\mathit{ROOT} \not\in \text{NP}$, so it isn't $\text{NP}$-complete. (In fact, it's undecidable.)
+
+\medskip
+\mbox{}\xrfill[2pt]{1pt}\textsc{\small begin your solutions below this line}\xrfill[2pt]{1pt}\mbox{}
+
+    

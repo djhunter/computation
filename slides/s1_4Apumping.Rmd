@@ -1,0 +1,144 @@
+---
+title: "Section 1.4: Nonregular Languages"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    includes:
+      in_header: notesheader.tex
+date: "January 21, 2020"
+---
+
+```{r include=FALSE}
+set.seed(11720)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+# Prework Presentations
+
+## 1. [`r paste(fnames[1:3], sep = ',')`] 
+
+Use the method described in the proof of Lemma 1.60 to convert the following DFA into a regular expression. (First convert the DFA to a GNFA, then delete two states to obtain a GNFA with a single edge giving the regular expression.)
+
+```{r, echo=FALSE, fig.width=4, fig.height=4, message=FALSE, fig.align='center'}
+library(igraph)
+a3 <- graph_from_literal(" "-+q1-+q2-+q1-+q1, q2-+q2, simplify=FALSE)
+coords <- layout_on_grid(a3, width = 3)
+plot(a3, 
+     edge.curved = c(0, 0.5, 0.5, 0.5, 0.5), 
+     layout=coords,
+     vertex.size = 25,
+     vertex.shape = c("none", "circle", "circle"),
+     vertex.label = c(" ", expression(italic(q)[1]), expression(italic(q)[2])),
+     edge.loop.angle=3.14*1.5,
+     mark.groups = list(3), mark.shape = 0.7, mark.col = "pink", mark.border = "black",
+     vertex.label.cex = 1,
+     edge.label = c("","    b\n","  b\n"," a\n"," a\n"), 
+     edge.label.cex = 1,
+     edge.width = 2,
+     ylim = c(-0.9,-1), xlim=c(-0.5,1.3))
+```
+
+## 2. [`r paste(fnames[4:6], sep = ',')`] 
+
+Use the method described in the proof of Lemma 1.60 to convert the following DFA into a regular expression. 
+
+```{r, echo=FALSE, fig.width=5, fig.height=4, message=FALSE, fig.align='center', warning=FALSE}
+library(igraph)
+a3 <- graph_from_literal(" "-+q1-+q2-+q3-+q1, q3-+q2-+q2, simplify=FALSE)
+#coords <- matrix(c(-3,0, 0,0, 3,0, 1.5, -1), nrow = 4, byrow=TRUE)
+set.seed(3321)
+coords <- layout_nicely(a3)
+plot(a3, 
+     edge.curved = c(0, 0, 0.5, 0, 0.5, 0.5), 
+     layout=coords,
+     vertex.size = 25,
+     vertex.shape = c("none", "circle", "circle", "circle"),
+     vertex.label = c(" ", expression(italic(q)[1]), expression(italic(q)[2]), expression(italic(q)[3])),
+     edge.loop.angle=3.14*0,
+     mark.groups = list(2,4), mark.shape = .6,  mark.col = "pink", mark.border = "black",
+     vertex.label.cex = 1,
+     edge.label = c("", "        a,b", "b\n", "a      \n", "\nb", "    a"), 
+     edge.label.cex = 1,
+     edge.width = 2,
+     edge.arrow.size=0.7,
+     ylim = c(-1.02,0.2), xlim=c(-1,1.3))
+```
+
+## 4. [`r paste(fnames[7:9], sep = ',')`] 
+
+Suppose that $M$ is a DFA with 5 states that accepts the string $\mathtt{000000}$.
+
+- Explain why, when $M$ processes $\mathtt{000000}$, some state must occur twice.
+- Explain why $M$ must also accept infinitely many strings of the form
+    $\mathtt{0}^k$ for certain values of $k > 6$.
+    
+# Regular Languages
+
+## Facts about Regular Languages
+
+- Regular languages are (by definition) those that are recognized by DFA's.
+- Regular languages are also those that are recognized by NFA's (and also GNFA's).
+- The set of all regular languages is closed under the regular operations $\cup$, $\circ$, $*$, as well as other operations, such as complement, $\cap$, and XOR.
+- Regular languages are those that are described by regular expressions.
+
+These facts all provide ways to show that a given language *is* regular.
+
+# Nonregular languages
+
+## The Pumping Lemma {data-background="https://media.giphy.com/media/xTiTniUuclWObMLD32/giphy.gif"}
+
+## Proving a language is not regular
+
+- Given a language that you want to prove is nonregular, Assume, to the contrary, that it is regular, and find a contradiction.
+- i.e., show that the given language fails to have a property that all regular languages must have.
+- One such property is the **Pumping Lemma**.
+
+## Pumping Lemma {data-transition="slide-in fade-out"}
+
+*Theorem 1.70 (Pumping Lemma).* If $A$ is a regular language, then there is a number $p$ (the "pumping length") such that, if $s\in A$ has length at least $p$, then $s = xyz$, where:
+
+1. for each $i \geq 0$, $xy^iz \in A$,
+2. $|y| > 0$, and
+3. $|xy| \leq p$.
+
+(Discuss Proof)
+
+## Using the Pumping Lemma {data-transition="fade"}
+
+*Theorem 1.70 (Pumping Lemma).* If $A$ is a regular language, then there is a number $p$ (the "pumping length") such that, if $s\in A$ has length at least $p$, then $s = xyz$, where:
+
+1. for each $i \geq 0$, $xy^iz \in A$,
+2. $|y| > 0$, and
+3. $|xy| \leq p$.
+
+Example #1: Use the Pumping Lemma to prove that $A=\{0^n1^n \mid n \in \mathbb{N}\}$ is not a regular language.
+
+## Using the Pumping Lemma {data-transition="fade"}
+
+*Theorem 1.70 (Pumping Lemma).* If $A$ is a regular language, then there is a number $p$ (the "pumping length") such that, if $s\in A$ has length at least $p$, then $s = xyz$, where:
+
+1. for each $i \geq 0$, $xy^iz \in A$,
+2. $|y| > 0$, and
+3. $|xy| \leq p$.
+
+Example #2: Use the Pumping Lemma to prove that $A=\{1^{n^2} \mid n \in \mathbb{N}\}$ is not a regular language.
+

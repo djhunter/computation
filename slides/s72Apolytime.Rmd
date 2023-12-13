@@ -1,0 +1,170 @@
+---
+title: "Section 7.2: Polynomial Time Languages"
+output:
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    self_contained: yes
+    theme: black
+    transition: slide
+date: "April 6, 2020"
+---
+
+# Prework 
+
+## Which is bigger?
+
+1. Which is bigger (asymptotically), $n!$ or $n^n$? How about $\log(n!)$ or $\log(n^n)$?
+
+Answer the poll on Discord.
+
+## Prework Discussion
+
+- See the #macs-135 channel for a link to the shared Google Doc.
+- Go to the voice channel (Group 1, Group 2, Group 3) corresponding to your group. 
+- The starred person should be the presenter/writer on the board, but everyone can write and/or paste images.
+
+Groups: 
+
+1. (Question 2) Ryley*, Wesley, Tristan
+2. (Question 3) Sam, James*, Trevor
+3. (Question 4) Drake*, Sophia, Carolyn
+
+https://docs.google.com/document/d/1hzvH4Xbit523XfDldFOTDmbDeA6VU8PAmahMt0eKaPQ/edit?usp=sharing
+
+# Languages and Machines; Problems and Algorithms
+
+## Languages are Problems
+
+- We have seen many different examples of *machines*.
+    - DFA's, NFA's, PDA's, LBA's, TM's (several variants)
+- Every machine $M$ has a *language* $L(M)$.
+- When we analyze complexity, the machines will be TM deciders.
+    - A *machine* is an *algorithm*.
+    - A *language* is a *problem* we would like to analyze.
+
+We are not just figuring out how efficient certain algorithms are; we are determining how hard certain problems are.
+
+## Computational Models
+
+When we analyze how hard a problem is, we need to agree on a computational model.
+
+- Single-tape and multi-tape TM's are different.
+- Nondeterministic TM's are different (probably). 
+
+Last time we found that single-tape and multi-tape machines are *polynomially equivalent*.
+
+- **Assumption:** Any reasonable deterministic conputational model is polynomially equivalent to a single-tape TM.
+
+# The Class $\text{P}$
+
+## $\text{P}$ is a set of languages/problems
+
+Given that any reasonable deterministic conputational model is polynomially equivalent to a single-tape TM,
+
+- When we classify the difficulty of computational problems, we can only do so up to polynomial equivalence.
+- Instead of implementation-level descriptions, we can use high-level descriptions.
+- The simplest possible *class of problems* are those that are solvable in polynomial time. This is the class $\text{P}$.
+$$\scriptsize \text{P} = \{ A \mid \text{ there is a polynomial-time TM decider } M \text{ with } L(M) = A \} $$
+
+## Showing that a problem is in $\text{P}$
+
+Note that *$\text{P}$ is a set of problems* (i.e., languages), not a set of algorithms (i.e., machines).
+
+- To show that a *language* $A$ is in $\text{P}$, we need to show:
+    - There is a TM that decides $A$ in polynomial time.
+- Showing that a language is in $\text{P}$ doesn't mean we have to find the best algorithm for deciding it.
+    - Languages that can be decided in *constant* time (e.g., finite languages) are also in $\text{P}$.
+
+# Examples of problems in $\text{P}$
+
+## $\mathit{PATH}$
+
+The language $\mathit{PATH}$ describes the problem of finding a path in a *directed* graph.
+
+$$
+\mathit{PATH} = \{\langle G, s, t \rangle \mid \text{there is a directed path from } s \text{ to } t\}
+$$
+
+- If $n$ is the number of vertices, there are $n!$ "potential" paths. 
+- There are at most $2C(n,2) = O(n^2)$ edges, so the size of $\langle G,s,t\rangle$ is polynomially equivalent to $n$.
+
+## $\mathit{PATH} \in \text{P}$
+
+Here is a polynomial-time TM-decider for $\mathit{PATH}$. On input $\langle G, s, t\rangle$,
+
+1. Mark the vertex $s$.
+2. Repeat until no additional nodes are marked: Scan all edges of $G$. If an edge goes from marked vertex $a$ to unmarked $b$, mark $b$.
+3. If $t$ is marked, accept. Otherwise, reject.
+
+Running time: (# nodes)(# edges) $=n \cdot O(n^2) = O(n^3)$.
+
+## Euclidean Algorithm: Example
+
+To find $\gcd(1180,482)$, divide 1180 by 482 and keep track of the remainder. Then divide 482 by the remainder, and so on.
+
+\begin{align*}
+1180 &= 2 \cdot 482 + 216 \\
+482 &= 2\cdot 216 + 50 \\
+216 &= 4\cdot 50 +16 \\
+50 &= 3\cdot 16 + 2 \\
+16 &= 8\cdot 2 + 0
+\end{align*}
+
+Therefore, $\gcd(1180,482)=2$, the last nonzero remainder. 
+
+## $\mathit{RELPRIME}$
+
+The problem of determining whether two numbers are relatively prime is represented by the language
+
+$$\mathit{RELPRIME} = \{ \langle x, y \rangle \mid \text{gcd}(x,y) = 1 \}$$
+
+In the prework we found a very inefficient decider for $\mathit{RELPRIME}$. To show $\mathit{RELPRIME} \in \text{P}$, we need a polynomial-time decider.
+
+## Euclidean Algorithm as a TM
+
+Decider for $\mathit{RELPRIME}$: On input $\langle x, y\rangle$, repeat until $y=0$:
+
+1. Replace $x$ with $x \bmod y$.
+2. Swap $x$ and $y$.
+
+If $x = 1$, accept. Otherwise reject.
+
+$$
+\begin{array}{c|cccccc}
+x & 1180 & 482 & 216 & 50 & 16 & 2 \\ \hline
+y & 482  & 216 & 50  & 16 & 2  & 0
+\end{array}
+$$
+
+## $\mathit{RELPRIME} \in \text{P}$
+On input $\langle x, y\rangle$, repeat until $y=0$:
+
+1. Replace $x$ with $x \bmod y$.
+2. Swap $x$ and $y$.
+
+If $x = 1$, accept. Otherwise reject.
+
+- Input size $n =$ number of binary digits in $x$ and $y$.
+- *Notice:* Step 1 reduces $x$ by at least a factor of 1/2.
+- This reduces the number of binary digits by 1.
+
+So this TM has running time $O(n)$.

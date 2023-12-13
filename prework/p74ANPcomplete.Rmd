@@ -1,0 +1,36 @@
+---
+geometry: left=0.75in, right=0.75in, top=0.8in, bottom=0.4in
+classoption: twoside
+output: 
+  pdf_document:
+    keep_tex: true
+    includes:
+      in_header: preworkheader.tex
+---
+
+```{r include=FALSE}
+set.seed(41720)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+## Prework 7.4a: $\text{NP}$-complete Languages
+
+1. A *vertex cover* of an undirected graph $G$ is a subset of vertices of $G$ such that every edge in $G$ touches some vertex in the cover. What is the smallest vertex cover of the Petersen graph?
+
+```{r, echo=FALSE, fig.align='center', out.width="2cm"}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("../slides/images/petersen.png", auto_pdf = TRUE)
+```
+
+2. The *complement* $\overline{G}$ of a graph $G$ is the graph with the same vertex set, but with edges between pairs of vertices that do *not* have edges in $G$. How many edges are in the complement of the Petersen graph?
+
+3. [`r paste(fnames[1:3], sep = ',')`] Let $G$ be a graph with $n$ vertices. Prove that if $G$ has a clique with $k$ vertices, then $\overline{G}$ has a vertex cover with $n-k$ vertices. (Hint: First, try some examples with small values of $n$, e.g., $n=5$.)
+
+4. [`r paste(fnames[4:6], sep = ',')`]  Prove the converse of the statement in #3: If $\overline{G}$ has a vertex cover of size $n-k$, then $G$ has a clique of size $k$.
+
+5. [`r paste(fnames[7:9], sep = ',')`] Let $\mathit{VERTEX\text{-}COVER} = \{\langle G, k\rangle \mid G \text{ has a vertex cover of size } k\}$. Recall that $\mathit{CLIQUE} = \{\langle G, k \rangle \mid G \text{ has a clique with } k \text{ vertices} \}$. Prove that $\mathit{CLIQUE} \leq_\text{P} \mathit{VERTEX\text{-}COVER}$ by describing a polynomial-time reduction function, and also explain why $\mathit{VERTEX\text{-}COVER}$ is $\text{NP}$-complete.
+
+\medskip
+\mbox{}\xrfill[2pt]{1pt}\textsc{\small begin your solutions below this line}\xrfill[2pt]{1pt}\mbox{}
+
+    

@@ -1,0 +1,137 @@
+---
+title: "Section 5.3: Mapping Reducibilty"
+output:
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    self_contained: yes
+    theme: black
+    transition: slide
+date: "March 23, 2020"
+---
+
+# Prework Presentations
+
+## Online presentations
+
+- 1. Ryley, Sam, Tristan$^\ast$
+- 3. James$^\ast$, Trevor, Drake
+- 4. Wesley, Sophia$^\ast$, Carolyn
+    
+# Mapping Reducibility
+
+## Whiteboard to Share for Today
+
+[https://awwapp.com/b/uysacibe4/](https://awwapp.com/b/uysacibe4/)
+
+```{r echo=FALSE, fig.align='center', out.width="2in"}
+library(knitr)
+include_graphics("images/s53Aqrcode.png", auto_pdf = TRUE)
+```
+
+On a phone,
+
+- Use two-finger swipe to pan.
+- Use two-finger pinch to zoom.
+- One finger draws: be careful; everyone can draw
+
+## {data-background="images/s53Aqrcode.png" data-background-size="contain"}
+
+## Recall: Computable functions
+
+- A function $f:\Sigma^\ast \longrightarrow \Sigma^\ast$ is called *computable* if some TM decider $M$, on every input $w$, enters the accept state with just $f(w)$ on its tape.
+- By the Church-Turing thesis, a computable function is *any function we can describe with an algorithm.* Note that the algorithm must halt (and accept) on all inputs.
+- We can use computable functions in reduction arguments because they act like subroutines.
+
+## Mapping Reduciblity
+
+Let $A$ and $B$ be languages over an alphabet $\Sigma$. We say that $A$ is *mapping reducible* to $B$, written $A \leq_\text{m} B$, if there is a computable function (i.e., a *reduction*) $f:\Sigma^\ast \longrightarrow \Sigma^\ast$ such that, for every $w \in \Sigma^\ast$, 
+$$
+w \in A \Longleftrightarrow f(w) \in B
+$$
+
+- The function $f$ does not have to be a one-to-one correspondence.
+- $f$ just has to 
+    + identify all the elements of $A$ by mapping them to some element(s) of $B$,
+    + map everything else to some element(s) not in $B$
+    
+## Example reduction
+
+Let $A = \{(\mathtt{000})^n \mid n\geq 0\}$ and $B = \{(\mathtt{00})^n \mid n\geq 0\}$. (That is $A$ and $B$ are given by the regular expressions $(\mathtt{000})^\ast$ and $(\mathtt{00})^\ast$, respectively.) Show that $A \leq_\text{w} B$:
+
+- Need to define our reduction function $f$ as a TM decider.
+- $f$ inputs a string $w$ and outputs a string $f(w)$
+- On *input* $w$:
+    - Check to see if $w$ is of the form $(\mathtt{000})^n$, where $n\geq 0$. 
+        + If so, *output* $f(w) = \mathtt{00}$ (and accept).
+        + If not, *output* $f(w) = \mathtt{0}$ (and accept).
+
+Note that $f(w) \in B$ exactly when $w\in A$. (Note also that $f$ is nowhere near being onto or one-to-one.)
+
+## Mapping reductions and decidability
+
+**Theorem 5.22.** Suppose $A \leq_\text{m} B$. If $B$ is decidable, then $A$ is decidable. If $A$ is undecidable, then $B$ is undecidable.
+
+*Proof.* Since $A \leq_\text{m} B$ there is a computable reduction function $f$. Suppose $M$ is a TM decider for $B$. Then we can decide $A$:
+
+- On input $w$,
+    + Compute $f(w)$.
+    + Run $M$ on input $f(w)$ and accept if $M$ accepts and reject if $M$ rejects.
+    
+Since $w \in A \Longleftrightarrow f(w) \in B$, this TM decides $A$. (The contrapositive is immediate.)
+
+## $\mathit{HALT}_\text{TM}$ is undecidable (again)
+
+Here is a reduction function to show $A_\text{TM} \leq_\text{m} \mathit{HALT}_\text{TM}$.
+
+- On *input* $\langle M, w\rangle$, a description of a TM and an input string,
+    - Construct a new TM $M'$: On input $x$,
+        + Run $M$ on $x$.
+        + If $M$ accepts, accept.
+        + If $M$ rejects, enter an infinite loop.
+    - *Output* the string $\langle M', w\rangle$
+    
+Notice that $M$ accepts $w$ exactly when $M'$ halts on $w$. In other words, $\langle M, w\rangle \in A_\text{TM} \Longleftrightarrow \langle M', w \rangle \in \mathit{HALT}_\text{TM}$.    
+
+- Since $A_\text{TM}$ is undecidable, $\mathit{HALT}_\text{TM}$ is undecidable, by Theorem 5.22.
+
+## $E_\text{TM} \leq_m \mathit{EQ}_\text{TM}$
+
+Recall that $E_\text{TM} = \{ \langle M \rangle \mid L(M) = \emptyset\}$ and $\mathit{EQ}_\text{TM} = \{\langle P, Q \rangle \mid L(P) = L(Q)\}$. Here's a reduction function:
+
+- On *input* $\langle M \rangle$,
+    - Construct a TM $M_\emptyset$ that rejects everything.
+    - *Output* $\langle M, M_\emptyset \rangle$.
+
+Notice that $\langle M \rangle \in E_\text{TM} \Longleftrightarrow \langle M, M_\emptyset \rangle \in \mathit{EQ}_\text{TM}$. So $E_\text{TM}$ reduces to $\mathit{EQ}_\text{TM}$.
+
+## $A_\text{TM} \leq_\text{m} \overline{E_\text{TM}}$
+
+- On *input* $\langle M, w\rangle$,
+    - Construct a new TM $M_w$: On input $x$,
+        + If $x\neq w$, reject.
+        + If $x = w$, run $M$ on $w$ and accept if $M$ does.
+    - *Output* $\langle M_w \rangle$.
+
+Notice that $\langle M, w\rangle \in A_\text{TM} \Longleftrightarrow \langle M_w \rangle \not\in E_\text{TM}$. 
+
+- Since $A_\text{TM}$ reduces to $\overline{E_\text{TM}}$, we have shown that $\overline{E_\text{TM}}$ is undecidable.
+- But we already knew that, because we already proved that $E_\text{TM}$ is undecidable, and (un)decidability is not affected by taking complements.

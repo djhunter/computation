@@ -1,0 +1,155 @@
+---
+title: "Section 3.1: Turing Machines"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+date: "February 10, 2020"
+---
+
+```{r include=FALSE}
+set.seed(20720)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+# Prework Presentations
+
+## 1. [`r paste(fnames[1:3], sep = ',')`] 
+
+Prove that the language $A = \{\mathtt{0}^n\mathtt{1}^n\mathtt{0}^n\mathtt{1}^n \mid n\geq 0\}$ is not context free.
+
+## 2. [`r paste(fnames[4:6], sep = ',')`] 
+
+Let $B$ be the language of strings in  $\{\mathtt{0},\mathtt{1}\}^\ast$ consisting of all palindromes that have the same number of $\mathtt{0}$'s as $\mathtt{1}$'s. Prove that $B$ is not context free.
+
+## 4. [`r paste(fnames[7:9], sep = ',')`] 
+
+Let $\Sigma = \{\mathtt{a}, \mathtt{b}, \mathtt{c}, \mathtt{d}\}$, and let $C$ be the language of strings in $\Sigma^\ast$ having the same number of $\mathtt{a}$'s as $\mathtt{b}$'s and the same number of $\mathtt{c}$'s as $\mathtt{d}$'s. Prove that $C$ is not context free.
+
+# Turing Machines
+
+## Computational models so far
+
+- *Regular languages* are described by regular expressions and recognized by DFA's and NFA's.
+    + There are simple languages that are not regular.
+- *Context-free languages* are described by context-free grammars and recognized by *pushdown automata*.
+    + All regular languages are context free, including some nonregular languages.
+    + There are simple languages that are not context free.
+
+Today we'll introduce slightly more complicated model that is *much* more powerful.
+
+## Turing machine: informally
+
+- States and transitions
+- Deterministic
+- Instead of stack, uses a *tape*.
+    + The tape has a beginning but no end (unbounded).
+    + Initially, the input string is on the tape at the beginning.
+    + At each transition, can read and/or write from/to the tape.
+    + At each transition, can move the "tape head" left or right.
+- Accepting and rejecting happen as soon as $q_\mathrm{accept}$ or $q_\mathrm{reject}$ is reached.
+
+## Transition arrow notation
+
+$$
+\stackrel{a \rightarrow b, c}{\longrightarrow}
+$$
+
+- Follow this arrow if $a$ is the symbol on the tape at the location of the tape head ($a$ could be a list of symbols).
+- Write $b$ to the tape (this could be blank, in which case you don't write anything).
+- $c$ is the direction to move the tape head: L or R. 
+
+## Simple Turing Machine example
+
+```{r echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/simpletm.png", auto_pdf = TRUE)
+```
+
+## Can omit reject state
+
+```{r echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/simpletmnoreject.png", auto_pdf = TRUE)
+```
+
+## Formal Definition
+
+A *Turing Machine* is a 7-tuple $(Q, \Sigma, \Gamma, \delta, q_0, q_\mathrm{accept}, q_\mathrm{reject})$ where
+
+1. $Q$ is a finite set of states,
+2. $\Sigma$ is the alphabet (and does not contain $\sqcup$)
+3. $\Gamma$ is the tape alphabet ($\Sigma \subseteq \Gamma$ and $\sqcup\in \Gamma$),
+4. $\delta: Q\times \Gamma \longrightarrow Q\times \Gamma \times \{\mathrm{L,R}\}$ is the transition function,
+5. $q_0, q_\mathrm{accept}, q_\mathrm{reject}$ are the start, accept, and reject states.
+
+The tape starts with the input string, followed by an infinite sequence of blanks ($\sqcup$'s), and the tape head starts at the first symbol of the input string.
+
+## TM for $A = \{\mathtt{0}^{2^n}\}$
+
+```{r echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/tmM2.png", auto_pdf = TRUE)
+```
+
+## Ways to describe a TM
+
+- *Formal description of a TM:* State diagram
+- *Implementation description of a TM:* Describe in words how the tape head moves and how it stores data. Specific states and transitions are not required.
+- *High-level description of a TM:* Describe algorithm in words, without reference to implementation details (e.g., tape head management).
+
+## TM for $A = \{\mathtt{0}^{2^n}\}$
+
+**Implementation description:**
+
+1. Move from left to right across the tape, $\mathtt{x}$-ing off every other $\mathtt{0}$.
+2. If in 1 the tape contained only a single $\mathtt{0}$, accept.
+3. Otherwise, if in 1 the number of $\mathtt{0}$'s is odd, reject.
+4. Return the tape head to the left-hand end of the tape.
+5. Go to stage 1.
+
+## TM for $A = \{\mathtt{0}^{2^n}\}$
+
+**High-level description:**
+
+Repeatedly divide the number of zero's by two. If you get 1, you started with a power of 2. If you get an odd number greater than 1, you started with something that was not a power of 2.
+
+## TM for $B = \{w\mathtt{\#}w \mid w \in \{0,1\}^\ast\}$
+
+**Implementation description:**
+
+1. Check to see if the first symbol matches the first symbol after the $\mathtt{\#}$ symbol by scanning the tape head across the tape. If not, reject. If they match $\mathtt{x}$-them both out.
+
+2. Return the tape head to the first non-$\mathtt{x}$ symbol at the front of the tape. Repeat step 1 until only $\mathtt{x}$'s remain to the left of the $\mathtt{\#}$. If any symbols have not been $\mathtt{x}$'ed, reject. Otherwise, accept.
+
+## TM for $B = \{w\mathtt{\#}w \mid w \in \{0,1\}^\ast\}$
+
+```{r echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/tmM1.png", auto_pdf = TRUE)
+```
+
+
+

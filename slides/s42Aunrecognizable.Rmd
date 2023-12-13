@@ -1,0 +1,106 @@
+---
+title: "Section 4.2: Uncountablility and Recognizability"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+date: "March 2, 2020"
+---
+
+```{r include=FALSE}
+set.seed(22820)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+# Prework Presentations
+
+## 2. [`r paste(fnames[1:3], sep = ',')`] 
+
+Prove that the integers $\mathbb{Z}$ are countable.
+
+## 3. [`r paste(fnames[4:6], sep = ',')`] 
+
+Recall the argument that shows that $\mathbb{Q}$ is countable. Generalize the argument to show that $X \times Y$ is countable, for any countable $X$ and $Y$. Conclude that $X_1 \times X_2 \times \cdots \times X_n$ is countable for a finite collection of countable sets $X_i$. (Recall that $X \times Y$ is the set of all ordered pairs $(x,y)$ with $x \in X$ and $y\in Y$.)
+
+## 4. [`r paste(fnames[7:9], sep = ',')`] 
+
+Is the set of all polynomials $a_0 + a_1x + \cdots + a_nx^n$ with integer coefficients countable? Justify your answer.
+
+# Uncountable sets
+
+## Recall: Countable sets
+
+- A set is *countable* if there is an injection $X \hookrightarrow \mathbb{N}$.
+- Informally, "countable" means you can number the elements $s_1,s_2,s_3,\ldots$ in such a way that for any $x \in X$, there exists an $n\in \mathbb{N}$ such that $s_n = x$. (It is ok to have $s_i = s_j$ for some $i\neq j$.)
+
+## $\mathbb{R}$ is uncountable
+
+Cantor's diagonalization argument (on board).
+
+# Countability and Languages
+
+## "Shells" of languages?
+
+- Regular
+- Context free
+- Decicable
+- Recognizable
+
+We have yet to find any examples of languages that are nonrecognizable, or even undecidable. Are all languages decidable? recognizable?
+
+## Formal Description of TM
+
+A *Turing Machine* is a 7-tuple $(Q, \Sigma, \Gamma, \delta, q_0, q_\mathrm{accept}, q_\mathrm{reject})$ where
+
+1. $Q$ is a finite set of states,
+2. $\Sigma$ is the alphabet (and does not contain $\sqcup$)
+3. $\Gamma$ is the tape alphabet ($\Sigma \subseteq \Gamma$ and $\sqcup\in \Gamma$),
+4. $\delta: Q\times \Gamma \longrightarrow Q\times \Gamma \times \{\mathrm{L,R}\}$ is the transition function,
+5. $q_0, q_\mathrm{accept}, q_\mathrm{reject}$ are the start, accept, and reject states.
+
+How many TM's are there?
+
+## Languages
+
+- A *language* is a subset of $\Sigma^*$.
+- Recall that $\Sigma$ is finite.
+- WLOG can take $\Sigma = \{\mathtt{0}, \mathtt{1}\}$.
+
+How many languages are there?
+
+## TM's and Languages
+
+Observation. Every TM recognizes exactly one language.
+
+## Some languages are not recognizable
+
+Proof outline:
+
+- There are countably many Turing machines.
+- There are uncountably many languages.
+- Every TM recognizes exactly one language.
+
+Therefore, some language must not be recognizable by any TM!
+

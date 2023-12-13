@@ -1,0 +1,34 @@
+---
+geometry: left=0.75in, right=0.75in, top=0.8in, bottom=0.4in
+classoption: twoside
+output: 
+  pdf_document:
+    keep_tex: true
+    includes:
+      in_header: preworkheader.tex
+---
+
+```{r include=FALSE}
+set.seed(4620)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+## Prework 7.2a: Polynomial-time Languages
+
+1. Let $D$ be a TM decider for $E_\text{DFA}$. Classify each of the following objects as *languages*, *strings*, *machines*, or something else.
+$$ D, \quad E_\text{DFA}, \quad \langle D \rangle, \quad A_\text{TM}, \quad \mathit{RELPRIME}, \quad \langle 17,31\rangle, \quad \text{P}$$
+2. [`r paste(fnames[1:3], sep = ',')`] Step through the Euclidean algorithm (in Theorem 7.15) to decide if $\langle 10505, 1274 \rangle$ is an element of $\mathit{RELPRIME}$. Keep track of the values of $x$ and $y$ in each iteration of the algorithm.
+
+3. [`r paste(fnames[4:6], sep = ',')`] Suppose that $A$ and $B$ are languages, and $A \in \text{P}$ and $B \in \text{P}$.
+    a. Show that $A \cup B \in \text{P}$.
+    b. Show that $A \circ B \in \text{P}$. (Recall that $A \circ B = \{xy \mid x\in A \text{ and } y\in B \}$.)
+    c. Show that $\overline{A} \in \text{P}$.
+
+4. [`r paste(fnames[7:9], sep = ',')`] On pages 185--186 there is a high-level description of a TM that decides the following language.
+$$ A=\{\langle G \rangle \mid G \text{ is a connected undirected graph}\}$$
+Show that $A\in \text{P}$.
+
+\medskip
+\mbox{}\xrfill[2pt]{1pt}\textsc{\small begin your solutions below this line}\xrfill[2pt]{1pt}\mbox{}
+
+    

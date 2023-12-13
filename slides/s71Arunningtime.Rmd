@@ -1,0 +1,135 @@
+---
+title: "Section 7.1: Running Time"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    self_contained: yes
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+date: "April 1, 2020"
+---
+
+# Chapter 7
+
+## Computability vs. Complexity
+
+- Chapters 4 and 5 dealt with determining if a language could be decided or recognized.
+    - i.e., what problems are *computable*?
+- We never worried about how efficient our algorithms were, only that they finished in a finite amount of time.
+- Chapters 7 and 8 deal with efficiency/practicality of algorithms.
+    - Chapter 7 deals with *time complexity*: how many steps does a TM need?
+    - Chapter 8 deals with *space complexity*: how much tape does a TM use?
+
+
+# Asymptotic Notation
+
+## Big-O
+
+**Formal Definition:** A function $f(n)$ is $O(g(n))$ (i.e. $f$ is big-Oh of $g$) if there exists some $K > 0$ and some $N > 0$ such that $f(n) \leq Kg(n)$ for all $n \geq N$.
+
+*Informally*, a function $f(n)$ is big-Oh of its biggest term (without coefficient). For example,
+
+- $3n^4 + 7n^2 +2 = O(n^4)$
+- $23n^{100} + (10)2^n = O(2^n)$
+- $\log (n^{2n + 7}) = (2n+7)\log n  = O(n\log n)$
+
+We adopt the book's abuse of notation. Here "=" doesn't mean equals. It means, "is a member of a class of functions given by the formal definition."
+
+## Little-o
+
+**Formal Definition:** A function $f(n)$ is $o(g(n))$ if $\displaystyle{\lim_{n\rightarrow \infty}\frac{f(n)}{g(n)} = 0}$.
+
+*Informally*, a function $f(n)$ is little-oh of $g(n)$ if $g(n)$ dominates $f(n)$. For example,
+
+- $1000n^3 = o(n^4)$
+- $n^k = o(2^n)$ for any $k$
+
+ Again we are abusing the equals sign. Note:
+ 
+- A function $f(n)$ is never $o(f(n))$. 
+- *Analogy:* big-Oh is like $\leq$, little-oh is like $<$
+
+## Identities for asymptotic notation
+
+- If $f(n) = o(g(n))$, then $f(n) + g(n) = O(g(n))$.
+- If $f_1(n) = O(g_1(n))$ and $f_2(n) = O(g_2(n))$, then $f_1(n)f_2(n) = O(g_1(n)g_2(n))$
+- Exponential and log rules in Prework 7.1a.
+
+## Check your understanding
+
+See the #macs-135 channel for a link to a (non-graded) quiz.
+
+https://forms.gle/zHoN3LGK4pUfzte17
+
+## Usually big-Oh is a tight bound
+
+- If $f(n) = O(g(n))$, we call $g(n)$ an *asymptotic upper bound* for $f(n)$.
+- If $f(n) = o(g(n))$, then $f(n) = O(g(n))$. (Analogy $<$ implies $\leq$.)
+    - So we usually try to only use big-Oh if the bound is tight, i.e., we can't use little-oh.
+    - In other words, we usually write $f(n) = O(g(n))$ and implicitly we mean that $f(n) \neq o(g(n))$.
+    
+# Running Time
+
+## Running Time
+
+Let $M$ be a deterministic Turing machine that halts on all inputs. The **running time** of $M$ is the maximum number of steps (i.e., transitions) that $M$ makes when computing on an input string of length $n$. 
+
+- We usually express running time using big-Oh.
+- If the running time of $M$ is $O(f(n))$, we say *$M$ runs in time $O(f(n))$.*
+
+## Example
+
+Consider the following TM: On input $w$
+
+1. Check the first symbol in $w$. If it is a $\mathtt{1}$, go to step 2. If not, reject.
+2. Check the remaining symbols in $w$. If all are $\mathtt{0}$'s, accept. If not, reject.
+
+- This TM runs in time $O(n)$, i.e., *linear time*. 
+- It decides the language $\mathtt{10^\ast}$
+    
+## Activity
+
+- See the #macs-135 channel for a link to the shared Google Doc.
+- Go to the voice channel (Group 1, Group 2, Group 3) corresponding to your group. 
+- The first person listed should be the primary writer on the board, but everyone can write.
+
+https://docs.google.com/document/d/1AMCvQfaynxl5Cnb8teRBrjR4yQFADnRtzJXwAE5KBnI/edit?usp=sharing
+
+Groups: 
+
+1. Tristan, Sophia, James
+2. Ryley, Carolyn, Sam
+3. Trevor, Drake, Wesley
+
+For each machine, determine how many operations are performed on each step, on an input string of length n, and give a big-Oh upper bound on the total number of operations performed.
+
+
+## Moral
+
+The running time depends on the model of computation:
+
+- Single-tape TM
+- Multiple-tape TM
+- Nondeterministic TM
+
+
+

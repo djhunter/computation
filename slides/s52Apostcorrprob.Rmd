@@ -1,0 +1,201 @@
+---
+title: "Section 5.2: The Post Correspondence Problem"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    self_contained: yes
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+date: "March 20, 2020"
+---
+
+# Prework Presentations
+
+## Online presentations
+
+2. Sophia, Drake, Trevor$^\ast$
+3. (Wesley, Sam, James)
+4. Carolyn$^\ast$, Tristan, Ryley
+    
+# How do I explain to my parents what this course is about?
+
+## The theoretical limits of computing
+
+- Some problems are *undecidable*.
+- Undecidable problems are *problems that computers can't solve*.
+
+Like what?
+
+- $A_\text{TM}$, $\mathit{EQ}_\text{CFG}$, etc.
+- These problems might hard to explain (e.g., to parents), but you could try. 
+
+The *Post Correspondence Problem* is a simple puzzle problem that is both *easy to describe* and *undecidable*. ($A_\text{TM}$ reduces to it.)
+
+## The Post Correspondence Problem
+
+Given a finite collection of domino types labeled with strings
+$$
+\left\lbrace \left[\frac{t_1}{b_1}\right], \left[\frac{t_2}{b_2}\right], \ldots, \left[\frac{t_k}{b_k}\right] \right\rbrace
+$$
+is there some way to form a sequence of dominos of some finite length (repeating types allowed) so that the string formed on the top equals the string formed on the bottom? That is,
+$$
+\left[\frac{t_{i_1}}{b_{i_1}}\right]\left[\frac{t_{i_2}}{b_{i_2}}\right]\left[\frac{t_{i_3}}{b_{i_3}}\right]\left[\frac{t_{i_4}}{b_{i_4}}\right]\cdots\left[\frac{t_{i_n}}{b_{i_n}}\right]
+$$
+such that $t_{i_1}t_{i_2}\cdots t_{i_n} = b_{i_1}b_{i_2}\cdots b_{i_n}$.
+
+## Example instance of PCP {data-transition="slide-in fade-out"}
+
+Domino Collection:
+
+$$
+\left\lbrace \left[\frac{\mathtt{b}}{\mathtt{ca}}\right], \left[\frac{\mathtt{a}}{\mathtt{ab}}\right], \left[\frac{\mathtt{ca}}{\mathtt{a}}\right], \left[\frac{\mathtt{abc}}{\mathtt{c}}\right] \right\rbrace
+$$
+
+## Example instance of PCP {data-transition="fade"}
+
+Domino Collection:
+
+$$
+\left\lbrace \left[\frac{\mathtt{b}}{\mathtt{ca}}\right], \left[\frac{\mathtt{a}}{\mathtt{ab}}\right], \left[\frac{\mathtt{ca}}{\mathtt{a}}\right], \left[\frac{\mathtt{abc}}{\mathtt{c}}\right] \right\rbrace
+$$
+
+Match:
+
+$$
+\left[\frac{\mathtt{a}}{\mathtt{ab}}\right] \quad ? \,  \cdots \, ?
+$$
+
+This was the only possible starting tile. The next is forced.
+
+## Example instance of PCP {data-transition="fade"}
+
+Domino Collection:
+
+$$
+\left\lbrace \left[\frac{\mathtt{b}}{\mathtt{ca}}\right], \left[\frac{\mathtt{a}}{\mathtt{ab}}\right], \left[\frac{\mathtt{ca}}{\mathtt{a}}\right], \left[\frac{\mathtt{abc}}{\mathtt{c}}\right] \right\rbrace
+$$
+
+Match:
+
+$$
+\left[\frac{\mathtt{a}}{\mathtt{ab}}\right]
+\left[\frac{\mathtt{b}}{\mathtt{ca}}\right]  \quad ? \,  \cdots \, ?
+$$
+
+Next tile is forced.
+
+## Example instance of PCP {data-transition="fade"}
+
+Domino Collection:
+
+$$
+\left\lbrace \left[\frac{\mathtt{b}}{\mathtt{ca}}\right], \left[\frac{\mathtt{a}}{\mathtt{ab}}\right], \left[\frac{\mathtt{ca}}{\mathtt{a}}\right], \left[\frac{\mathtt{abc}}{\mathtt{c}}\right] \right\rbrace
+$$
+
+Match:
+
+$$
+\left[\frac{\mathtt{a}}{\mathtt{ab}}\right]
+\left[\frac{\mathtt{b}}{\mathtt{ca}}\right]  \left[\frac{\mathtt{ca}}{\mathtt{a}}\right] \quad ? \,  \cdots \, ?
+$$
+
+Next tile is *not* forced.
+
+## Example instance of PCP {data-transition="fade"}
+
+Domino Collection:
+
+$$
+\left\lbrace \left[\frac{\mathtt{b}}{\mathtt{ca}}\right], \left[\frac{\mathtt{a}}{\mathtt{ab}}\right], \left[\frac{\mathtt{ca}}{\mathtt{a}}\right], \left[\frac{\mathtt{abc}}{\mathtt{c}}\right] \right\rbrace
+$$
+
+Match:
+
+$$
+\left[\frac{\mathtt{a}}{\mathtt{ab}}\right]
+\left[\frac{\mathtt{b}}{\mathtt{ca}}\right]  \left[\frac{\mathtt{ca}}{\mathtt{a}}\right] \left[\frac{\mathtt{a}}{\mathtt{ab}}\right]\quad ? \,  \cdots \, ?
+$$
+
+
+
+## Example instance of PCP {data-transition="fade-in slide-out"}
+
+Domino Collection:
+
+$$
+\left\lbrace \left[\frac{\mathtt{b}}{\mathtt{ca}}\right], \left[\frac{\mathtt{a}}{\mathtt{ab}}\right], \left[\frac{\mathtt{ca}}{\mathtt{a}}\right], \left[\frac{\mathtt{abc}}{\mathtt{c}}\right] \right\rbrace
+$$
+
+Match:
+
+$$
+\left[\frac{\mathtt{a}}{\mathtt{ab}}\right]
+\left[\frac{\mathtt{b}}{\mathtt{ca}}\right]  \left[\frac{\mathtt{ca}}{\mathtt{a}}\right] \left[\frac{\mathtt{a}}{\mathtt{ab}}\right]\left[\frac{\mathtt{abc}}{\mathtt{c}}\right]
+$$
+
+## Decider for PCP?
+
+- If you were going to make this puzzle game for someone, you would want to make sure your set of dominos had a match.
+- Writing a program that would *input a set of dominos* and *determine if a match is possible* would be finding a TM decider for the following language:
+
+$$
+\mathit{PCP} = \{\langle P \rangle \mid P \text{ is a PCP instance with a match} \}
+$$
+
+**Theorem.** $\mathit{PCP}$ is undecidable.
+
+# Proof that $\mathit{PCP}$ is undecidable
+
+## $A_\text{TM}$ reduces to $\mathit{PCP}$
+
+Suppose to the contrary that $R$ is a TM decider for PCP. 
+
+- On input $\langle M, w\rangle$, where $M$ is a TM and $w$ is a string,
+    - *Convert $M$ into a set of dominos,* such that a match in the PCP forms an accepting computation history.
+    - Run $R$ on this set of dominos. If $R$ accepts, accept. If $R$ rejects, reject.
+    
+This TM decides $\mathit{A}_\text{TM}$, which is impossible. Therefore no such $R$ can exist, i.e., $\mathit{PCP}$ is undecidable.
+
+## Building the set of dominos
+
+Given a TM $M$ and an input $w = s_1s_2\cdots s_l$,
+
+- $M$ has states $q_0,q_1,\ldots,q_s$.
+- A *snapshot* of $M$ looks like a string $\mathtt{0110}q_i\mathtt{11000}$, where $\mathtt{011011000}$ is the tape, and the head position is right after the location of $q_i$ in the string.
+- Computation history looks like $C_1 \# C_2 \# \cdots \# C_n \#\#$.
+- Represent legal transitions as dominos. (tricky)
+- Matches look like $\left[\frac{\#\phantom{q_0 s_1s_2\cdots s_l\#}}{\# q_0 s_1s_2\cdots s_l\#} \right] \left[\frac{q_0s_1}{s_?q_?} \right] \left[\frac{s_2}{s_2} \right] \cdots \left[ \frac{q_\text{accept}\#\#}{\phantom{q_\text{accept}\#}\#}\right]$
+
+## Study the details in the book.
+
+Study pp. 228--232 in the book.
+
+- Don't get to bogged down in the technicalities.
+- Try to understand how the dominos fit together to *check* whether a computation history is accepting.
+- Exercises on Prework for this.
+
+
+
+
+
+
+

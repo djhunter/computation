@@ -1,0 +1,120 @@
+---
+title: "Section 2.3: Pumping Lemma for CFL's"
+output:
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+date: "February 7, 2020"
+---
+
+```{r include=FALSE}
+set.seed(20520)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+# Prework Presentations
+
+## 1. [`r paste(fnames[1:3], sep = ',')`] 
+
+Use the procedure in the proof of Lemma 2.21 to build a state diagram for a PDA that recognizes the language described by the following CFG. The start variable is $E$ and the terminals are $\Sigma = \{\mathtt{a}, +, \ast, \mathtt{)}, \mathtt{(}\}$.
+\begin{align*}
+E & \rightarrow E + T \mid T \\
+T & \rightarrow T \ast F \mid F \\
+F & \rightarrow \mathtt{(} E \mathtt{)} \mid \mathtt{a}
+\end{align*}
+
+## 2. [`r paste(fnames[4:6], sep = ',')`] 
+
+Use the procedure in the proof of Lemma 2.21 to build state diagram for a PDA that recognizes the language described by the following CFG. The start variable is $R$.
+\begin{align*}
+R & \rightarrow XRX \mid S \\
+S & \rightarrow \mathtt{a}T\mathtt{b} \mid \mathtt{b}T\mathtt{a} \\
+T & \rightarrow XTX \mid X \mid \varepsilon \\
+X & \rightarrow \mathtt{a} \mid \mathtt{b}
+\end{align*}
+
+## 3. [`r paste(fnames[7:9], sep = ',')`] 
+
+In this problem you will show that the set of context-free languages is closed under the regular operations. Let $G_1 = (V_1, \Sigma, R_1, S_1)$ and $G_2 = (V_2, \Sigma, R_2, S_2)$ be CFG's that describe the languages $A_1$ and $A_2$, respectively, where $V_1 \cap V_2 = \emptyset$. (Hint: For each part (a)-(c), add a new start state $S$ and a new first rule.)
+    a. Give a CFG that describes $A_1 \cup A_2$. 
+    b. Give a CFG that describes $A_1 \circ A_2$. 
+    c. Give a CFG that describes $A_1^*$. 
+
+# A Pumping Lemma for Context-Free Languages
+
+## Recall
+
+- *Context-free languages* are those languages described by *context-free grammars*.
+- These are the same as those languages recognized by *pushdown automata*.
+- These include the regular languages as a proper subset.
+    - The pumping lemma for regular languages shows this.
+
+Today: Context-free languages suffer from a similar limitation.
+
+## Pumping Lemma for CFL's
+
+Let $A$ be a context-free language. Then there is a pumping length $p$ such that any string $s$ with $|s|\geq p$ can be divided as $s = uvxyz$ such that
+
+1. For each $i\geq 0$, $uv^ixy^iz \in A$,
+2. $|vy| > 0$, and
+3. $|vxy| \leq p$.
+
+## Proof Outline
+
+Suppose you are given a CFG that describes the language.
+
+1. Choose the pumping length so that any parse tree has a "long enough" path.
+2. Pigeonhole principle: on this long path, some variable must repeat.
+3. Graft a subtree to make a bigger legal tree (pump).
+4. Prune a subtree to make a smaller legal tree (pump down).
+
+## Tree height vs string length
+
+4. Consider the following grammar. The start state is $S$.
+\begin{align*}
+S & \rightarrow \varepsilon \mid \mathtt{0}S\mathtt{1} \mid SAS \mid \mathtt{111} \\
+A & \rightarrow \mathtt{1}A{0} \mid \mathtt{0} \mid \mathtt{010} \mid ASA
+\end{align*}
+Recall that the *height* of a tree is the length of the longest path from the root to a leaf. What is the length of the largest string that a parse tree of height 5 can derive?
+  
+>- *Observe:* If $b$ is the length of the longest formula in a rule, then a string of length $h^b$ requires a tree of height at least $h$.  
+
+## Pumping Lemma Proof
+
+1. Choose the pumping length so that any parse tree has a "long enough" path: Take $p = b^{|V|+1}$, where $b$ is the length of the longest formula in any rule. (Choose a parse tree that has the fewest possible number of nodes.) Let $s \in A$ be given with $|s|\geq p$.
+2. Pigeonhole principle: on this long path, some variable must repeat. Call the repeating variable $R$. (Consider two occurences of $R$ that occur in the bottom $|V|+1$ nodes of the longest path.)
+3. Graft/pump (on board). 
+4. Prune/pump down (on board). 
+
+# Using the Pumping Lemma
+
+## A language that is not context-free
+
+Prove that the language $A = \{\mathtt{a}^n\mathtt{b}^n\mathtt{c}^n \mid n \geq 0\}$ is not context free.
+
+## Another language that is not context free
+
+Prove that the language $A = \{ww \mid w \in \{\mathtt{0}, \mathtt{1}\}^\ast \}$ is not context free.
+

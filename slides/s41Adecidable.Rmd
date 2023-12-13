@@ -1,0 +1,130 @@
+---
+title: "Section 4.1: Decidable Languages"
+output:
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+date: "February 26, 2020"
+---
+
+# Emulation on TM's
+
+## {data-background="https://www.dreamarcades.com/images/fullsized/cabaret.jpg" data-background-size="contain"}
+
+## Recall: DFA definition
+
+Recall the formal definition of a deterministic finite automaton (DFA) as a 5-tuple $(Q, \Sigma, \delta, q_0, F)$, where
+
+1. $Q$ is a finite set called the **states**,
+2. $\Sigma$ is a finite set called the **alphabet**,
+3. $\delta: Q \times \Sigma \longrightarrow Q$ is the **transition function**,
+4. $q_0 \in Q$ is the **start state**, and
+5. $F \subseteq Q$ is the set of **accept states**.
+
+All of these objects can be *encoded* as strings.
+
+## A TM that will run any DFA
+
+We want to build a TM that has:
+
+- Input: A description of a DFA $B$ and a string $w$, encoded as a string $\langle B, w\rangle$.
+- Output: Accept if $B$ accepts $w$. Reject if $B$ rejects $w$.
+
+Alphabets? Tapes?
+
+## Some implementation details
+
+- Use binary digits for $B$'s alphabet.
+- Separate tapes for parts of $B$:
+    - $Q, \Sigma, \delta, q_0, F$
+- Encode $w$ in binary.
+
+(on board)
+
+## High-level description
+
+1. Find current state in $Q$ and next input symbol in $w$.
+2. Go through $\delta$ and find state and symbol.
+3. Update $Q$.
+4. Repeat 1-3 until no more input symbols remain.
+5. If final state is in $F$, accept. Otherwise, reject.
+
+Recognizer? Decider?
+
+## The language $A_\text{DFA}$
+
+The language decided by our "DFA emulator" is
+
+$$
+A_\text{DFA} = \{\langle B,w \rangle \mid B\text{ is a DFA accepting } w \}
+$$
+
+Our construction proves:
+
+**Theorem.** $A_\text{DFA}$ is decidable.
+
+## Corollaries
+
+- **Theorem.** $A_\text{DFA}$ is decidable.
+- **Corollary.** $A_\text{NFA} = \{\langle B,w \rangle \mid B\text{ is a NFA accepting } w \}$ is decidable.
+- **Corollary.** $A_\text{REX} = \{\langle R,w \rangle \mid R\text{ is a regular expression generating } w \}$ is decidable.
+
+## How about $A_\text{PDA}$?
+
+- We could build a TM that emulates any PDA on any input.
+- However, would it be a decider? Or just a recognizer?
+
+(It turns out that $A_\text{PDA} = \{\langle B,w \rangle \mid B\text{ is a PDA accepting } w \}$ is decidable, but we have to use grammars to prove it (next time).)
+
+# Equivalence of DFA's
+
+## Can we tell if two DFA's are the same?
+
+Given descriptions of two DFA's, can we tell if they recognize the same language?
+
+In other words, is the following language decidable?
+$$
+EQ_\text{DFA} = \{\langle A, B\rangle \mid A,B \text{ are DFA's and } L(A) = L(B)\}
+$$
+
+## Related Question: Emptiness
+
+Can we test whether a DFA recognizes nothing? That is, is 
+
+$$
+E_\text{DFA} = \{\langle A\rangle \mid A \text{ is a DFA and } L(A) = \emptyset\}
+$$
+decidable?
+
+(Proof/nonproof on board.)
+
+## $EQ_\text{DFA}$ is decidable
+
+- Regular languages are closed under XOR. (old exercise)
+- Given two DFA's $A$, $B$, build a DFA $C$ recognizing their XOR.
+- Note that $L(C) = \emptyset$ iff $L(A) = L(B)$.
+- Use the emptiness testing machine on $C$.
+
+# Return Exams

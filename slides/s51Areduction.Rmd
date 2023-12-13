@@ -1,0 +1,190 @@
+---
+title: "Section 5.1: Reduction Arguments"
+output:
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    self_contained: yes
+    theme: black
+    transition: slide
+date: "March 16, 2020"
+---
+
+# Remote Learning Adjustments
+
+## Class Routine
+
+- Meet Online at the usual time.
+    + Google Meet today.
+    + Maybe Discord in future?
+    + Use earbuds!
+- Submit Prework the night before on Canvas.
+    + Use a scanner app to scan your work to PDF (multipage if necessary).
+    + We can present solutions online. You can share screens.
+
+## Slides
+
+- Slides will have more detail.
+- PDF versions will be posted on Canvas, as usual.
+    + Look for "s_nn_foo.pdf" in the Files section.
+    + Print these out for taking notes?
+
+## Office Hours
+
+- Discord text chats remain there for everyone to see.
+- Can post images.
+- Can share screens.
+- Can talk on voice channel.
+
+## Exams
+
+- The remaining exams will be open-book exams.
+- More-or-less the same.
+- Download a PDF, write on it, scan it, upload it to Canvas.
+- Don't collaborate (honor system).
+
+# Limits of Computation, so far
+
+## Machines and languages
+
+- DFA's, NFA's, REX's recognize/describe *regular languages*.
+- CFG's, PDA's describe/recognize *context-free languages*.
+- TM's can compute anything algorithms can (Church-Turing thesis).
+    + TM's recognize *recognizable languages*.
+    + TM's decide *decidable languages*.
+    
+## Acceptance, Emptiness, and Equivalence Problems
+
+For the following, $\mathcal{M}$ can be a DFA, NFA, PDA, CFG, REX, or TM.
+
+- $A_\mathcal{M} = \{ \langle M, w \rangle \mid M \text{ is an } \mathcal{M} \text{ and } M \text{ accepts } w \}$
+- $E_\mathcal{M} = \{ \langle M \rangle \mid M \text{ is an } \mathcal{M} \text{ and } L(M) = \emptyset\}$
+- $\mathit{EQ}_\mathcal{M} = \{ \langle P, Q \rangle \mid P,Q \text{ are } \mathcal{M}\text{'s and } L(P) = L(Q) \}$
+
+## Results So Far
+
+We used properties of TM's to prove the following.
+
+- $A_\text{DFA}$, $A_\text{NFA}$, $A_\text{REX}$, $A_\text{CFG}$, $A_\text{PDA}$ are all decidable.
+- $E_\text{DFA}$, $E_\text{NFA}$, $E_\text{REX}$, $E_\text{CFG}$, $E_\text{PDA}$ are all decidable.
+- $\mathit{EQ}_\text{DFA}$, $\mathit{EQ}_\text{NFA}$, $\mathit{EQ}_\text{REX}$ are decidable.
+- $A_\text{TM}$ is **not** decidable!
+
+We also observed that $\overline{A_\text{TM}}$ is not recognizable.
+
+## {data-background="https://i.pinimg.com/originals/88/0e/1f/880e1f7c71ecf950de5dde824a900270.jpg" data-background-size="contain"}
+
+## Undecidability
+
+An undecidable language represents a problem that can't be solved computationally.
+
+- The proof that $A_\text{TM}$ is undecidable used self-reference in an interesting (perhaps profound) way.
+- This result is one of the fundamental "limitative" theorems of computer science.
+- We will use the undecidability of $A_\text{TM}$ to prove that other problems are undecidable.
+
+## {data-background="https://imgs.xkcd.com/comics/hofstadter.png" data-background-size="contain"}
+
+# Reduction Arguments
+
+## "reduces to" Jargon
+
+We say that *Problem $A$ reduces to Problem $B$* if a solution to $B$ gives us a way to solve $A$. For example,
+
+- Finding the area of a circle *reduces to* finding its radius.
+- Factoring a quadradic *reduces to* finding a rational root.
+    + Factor $3x^2 + 30x - 1008$
+    + If we know that $14$ is a root, factoring is easy.
+
+## Reducibility and Languages
+
+Remember that languages can be thought of as decision problems.
+
+- Suppose $A$ and $B$ are languages.
+- We say "$A$ reduces to $B$" if a TM decider for $B$ can be used to build a TM decider for $A$.
+- If $A$ reduces to $B$ and $B$ is decidable, then $A$ is decidable.
+- If $A$ reduces to $B$ and $A$ is undecidable, then $B$ is undecidable.
+
+## $A_\text{TM}$ reduces to $\mathit{HALT}_\text{TM}$
+
+Let $\mathit{HALT}_\text{TM} = \{ \langle M, w\rangle \mid M \text{ halts when run on } w\}$.
+
+Given $\langle M, w\rangle$ a description of a TM $M$ and a string $w$, is there a TM decider $T$ that will accept if $M$ halts on $w$ and reject if it doesn't?
+
+- Suppose $T$ were a TM decider for $\mathit{HALT}_\text{TM}$. 
+- Then we could build a decider for $A_\text{TM}$: 
+    + Given $\langle M, w\rangle$, run $T$ on $\langle M, w\rangle$.
+    + If $T$ indicates that $M$ will not halt on $w$, reject.
+    + Otherwise, run $M$ on $w$, and accept/reject accordingly.
+
+Since $A_\text{TM}$ is undecidable, $\mathit{HALT}_\text{TM}$ must be also.
+
+## Example: $E_\text{TM}$ is undecidable
+
+We show that $A_\text{TM}$ reduces to $E\text{TM}$.
+
+- Suppose $R$ is a decider for $E_\text{TM}$.
+- Given a string $w$ and a TM $M$, we can build a machine $M_w$:
+    + On input $x$, if $x\neq w$, reject.
+    + If $x = w$, run $M$ on $w$ and accept if $M$ does.
+- $L(M_w)$ will either be empty, or just $\{w\}$.
+    + $M$ accepts $w$ iff $L(M_w) = \{w\}$
+
+## Build a decider for $A_\text{TM}$
+
+On input $\langle M, w \rangle$,
+
+- Build $M_w$.
+- Run $R$ (the decider for $E_\text{TM}$) on $M_w$.
+- If $R$ accepts, reject. If $R$ rejects, accept.
+
+Given a decider for $E_\text{TM}$, we have built a decider for $A_\text{TM}$. But we know $A_\text{TM}$ is undecidable. Therefore there can be no such decider for $E_\text{TM}$.
+
+## Example: $\mathit{REGULAR}_\text{TM}$ is undecidable
+
+Let $\mathit{REGULAR}_\text{TM} = \{ \langle M \rangle \mid M \text{ is a TM and } L(M) \text{ is regular} \}$. We show that $A_\text{TM}$ reduces to $\mathit{REGULAR}_\text{TM}$.
+
+- Given a string $w$ and a TM $M$, we can build a machine $M_w$:
+    + On input $x$, if $x = \mathtt{0}^n\mathtt{1}^n$ for some $n$, accept.
+    + If $x \neq \mathtt{0}^n\mathtt{1}^n$, run $M$ on $w$ and accept if $M$ does.
+- $L(M_w)$ will either be $\{\mathtt{0}^n\mathtt{1}^n \mid n\geq 0\}$, or $\Sigma^\ast$.
+    + $M$ accepts $w$ iff $L(M_w) = \Sigma^\ast$ (regular)
+    + $M$ does not accept $w$ iff $L(M_w) = \{\mathtt{0}^n\mathtt{1}^n \mid n\geq 0\}$ (nonregular)
+
+## Build a decider for $A_\text{TM}$
+
+On input $\langle M, w \rangle$,
+
+- Build $M_w$.
+- Run $S$ (a decider for $\mathit{REGULAR}_\text{TM}$) on $M_w$.
+- If $S$ accepts, accept. If $S$ rejects, reject.
+
+Given a decider for $\mathit{REGULAR}_\text{TM}$, we have built a decider for $A_\text{TM}$. But we know $A_\text{TM}$ is undecidable. Therefore there can be no such decider for $\mathit{REGULAR}_\text{TM}$.
+
+## Example: $\mathit{EQ}_\text{TM}$ is undecidable
+
+Suppose $T$ is a decider for $\mathit{EQ}_\text{TM}$. Let $M_\emptyset$ be a TM that rejects everything. Now we build a decider for $E_\text{TM}$:
+
+On input $\langle M \rangle$,
+
+- Run $T$ on $\langle M, M_\emptyset \rangle$.
+- If $T$ accepts, accept. If $T$ rejects, reject.
+
+So $E_\text{TM}$ reduces to $\mathit{EQ}_\text{TM}$. But we already know that $E_\text{TM}$ is undecidable. So $\mathit{EQ}_\text{TM}$ is undecidable also.

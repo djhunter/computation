@@ -1,0 +1,104 @@
+---
+title: "1.1 Finite Automata"
+date: "January 6, 2020"
+output:
+  xaringan::moon_reader:
+    css: [metropolis, metropolis-fonts]
+    self_contained: false
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+# 1.1: Finite Automata
+
+## Formal Definition
+
+Line break. More words. Use two dashes for building, three for hard break
+
+--
+
+## Examples
+ 
+How to make a new slide? Self contained still works with moon viewer.
+
+## Plot
+
+---
+
+```{r, echo=FALSE, fig.width=12, fig.height=6, message=FALSE, fig.align='center'}
+library(igraph)
+door <- graph(c("OPEN", "OPEN", 
+                "OPEN", "CLOSED", 
+                "CLOSED", "OPEN", 
+                "CLOSED", "CLOSED"))
+elabs <- c("FRONT\nREAR\nBOTH", "NEITHER", "FRONT", "REAR\nBOTH\nNEITHER")
+coords <- layout_on_grid(door)
+plot(door, 
+     layout=coords, 
+     edge.curved = TRUE, 
+     edge.loop.angle=3.14*1.5, 
+     vertex.size=50, 
+     vertex.label.cex = 2,
+     edge.label = elabs, 
+     edge.label.cex = 2,
+     edge.width = 4,
+     ylim = c(-1.1,-0.5))
+```
+
+---
+
+## DiagrammeR
+
+```{r, echo=FALSE, fig.width=16, fig.height=9}
+library(DiagrammeR)
+
+grViz("
+digraph {
+  graph [overlap=false]
+  edge [arrowhead = vee]
+  OPEN->OPEN[label='FRONT\nREAR\nBOTH']
+  OPEN:sw->CLOSED:nw[xlabel=' NEITHER ']
+  CLOSED:ne->OPEN:se[label=' FRONT ']
+  CLOSED->CLOSED[label='REAR\nBOTH\nNEITHER']
+}
+")
+```
+
+---
+
+## ggraph
+
+```{r, echo=FALSE, fig.width=8, fig.height=4, message=FALSE}
+library(igraph)
+library(ggraph)
+library(tidygraph)
+door <- as_tbl_graph(
+         graph(c("OPEN","CLOSED",
+                 "CLOSED","OPEN", 
+                 "OPEN", "OPEN", 
+                 "CLOSED", "CLOSED"))) %>%
+  activate(edges) %>%
+  mutate(name = c("NEITHER", "FRONT", "FRONT\nREAR\nBOTH", "REAR\nBOTH\nNEITHER"))
+ggraph(door, layout = "linear") + 
+  geom_node_label(aes(label = name)) + 
+  geom_edge_fan(aes(start_cap = label_rect(node1.name), 
+                    end_cap = label_rect(node2.name),
+                    label = name), 
+                label_dodge = unit(3, "mm"),
+                angle_calc = "along",
+                arrow = arrow(angle = 15, length = unit(3, "mm"), type="closed")) + 
+  geom_edge_loop(aes(start_cap = label_rect(node1.name), 
+                    end_cap = label_rect(node2.name),
+                    label = name,
+                    direction = c(0,0,135,45)),
+                 label_dodge=unit(10, "mm"),
+                 angle_calc = "along",
+                arrow = arrow(angle = 15, length = unit(3, "mm"), type="closed")) + 
+  theme_void() + coord_fixed()
+```
+
+
+

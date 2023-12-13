@@ -1,0 +1,170 @@
+---
+title: "Section 1.2: Building an NFA-simulator with a DFA"
+output:
+  pdf_document:
+    keep_tex: true
+    includes:
+      in_header: notesheader.tex
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+date: "January 13, 2020"
+---
+
+```{r include=FALSE}
+set.seed(11020)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+# Prework Presentations
+
+## 1. [`r paste(fnames[1:3], sep = ',')`] 
+
+Refer to questions 1--3 of the last prework assignment. Use your DFA's from questions 1 and 2 and the construction in Figure 1.46 (page 59) to construct a state diagram for an NFA that recognizes the language 
+$$
+A = \{w \mid w \text{ ends in } \mathtt{01}\} \cup \{w \mid w \text{ has an odd number of symbols}\}.
+$$
+Does this NFA have the same number of states as the DFA for $A$ that you constructed in question 3 of the last prework? Will this always happen? Explain.
+
+## 2. [`r paste(fnames[4:6], sep = ',')`] 
+
+Construct a state diagram for a DFA that recognizes the language $A = \{\mathtt{01}, \mathtt{001}, \mathtt{010} \}$, then use the construction in Figure 1.50 (page 62) to convert it to an **NFA** that recognizes $A^*$. Check that your **NFA** works on a non-trivial element of $A^*$.
+
+## 3. [`r paste(fnames[7:9], sep = ',')`] 
+
+The power set $\mathcal{P}(A)$ is the set of all subsets of $A$. Fact: If $A$ has $n$ elements, then $\mathcal{P}(A)$ has $2^n$ elements. Write down all of the elements of $\mathcal{P}(\{c, u, b, s\})$ in an organized way that illustrates this fact.
+
+# Regular Languages, Operations, DFA's, NFA's
+
+## So far...
+
+- A language is called **regular** if some DFA recogizes it.
+- The set of all languages recognized by NFA's is closed under $\cup$, $\circ$, and $*$, the **regular operations**.
+- A DFA is obviously an NFA.
+
+Today we'll show that an NFA can be *simulated* on a DFA. This will finish the proof that **the regular languages are closed under the regular operations**.
+
+# Simulating an NFA on a DFA
+
+## Formal Definition of a DFA
+
+A **deterministic finite automaton** (DFA) is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$, where
+
+1. $Q$ is a finite set called the **states**,
+2. $\Sigma$ is a finite set called the **alphabet**,
+3. $\delta: Q \times \Sigma \longrightarrow Q$ is the **transition function**,
+4. $q_0 \in Q$ is the **start state**, and
+5. $F \subseteq Q$ is the set of **accept states**.
+
+An NFA has different arrow rules, i.e., a different transition function.
+
+## Formal Definition of an NFA
+
+A **nondeterministic finite automaton** (NFA) is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$, where
+
+1. $Q$ is a finite set called the **states**,
+2. $\Sigma$ is a finite set called the **alphabet**,
+3. $\delta: Q \times (\Sigma \cup \{\varepsilon\}) \longrightarrow \mathcal{P}(Q)$ is the **transition function**,
+4. $q_0 \in Q$ is the **start state**, and
+5. $F \subseteq Q$ is the set of **accept states**.
+
+Difference: The transition function outputs a *subset* of states, not just a single state, as in a DFA, and we allow $\varepsilon$ as a label.
+
+## NFA Simulator
+
+- Main idea: The states of our DFA will be the **power set** of the states of the NFA that it simulates.
+- Each subset of NFA states (i.e., each state of the DFA) represents the states of the active threads in the NFA.
+- The transition function, start, and accept states will be natural.
+
+## Example: NFA to simulate
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr)
+include_graphics("images/nfa3.png")
+```
+
+We are going to construct a DFA that recognizes the same language.
+
+<div class="notes">
+Copy to board <br>
+</div>
+
+## DFA States
+
+If $Q$ are the states of the given NFA, $\mathcal{P}(Q)$ are the states of the DFA.
+
+<div class="notes">
+Draw DFA states on board
+</div>
+
+## DFA Transition Function (Arrows), sort of
+
+Let $X \subseteq Q$ be a state of the DFA. Then $\delta_\text{DFA}(X,\sigma) = \displaystyle{\bigcup_{x \in X} \delta_\text{NFA}(x,\sigma)}$. 
+
+- That is, it is the subset of $Q$ containing all the possible next states for our NFA, starting at all the states of our subset $X$.
+
+- (We'll deal with the $\varepsilon$ arrows next.)
+
+<div class="notes">
+Draw DFA arrows on board, just for emptyset and q1, q2
+</div>
+
+## What about the $\varepsilon$ arrows?
+
+Actually, we need to define $\delta_\text{DFA}$ a little differently.
+
+- If $X \subset Q$, let $E(X)$ be the set of states reachable from states in $X$ by following 0 or more $\varepsilon$ arrows.
+- Redefine  $\delta_\text{DFA}(X, \sigma) = \displaystyle{\bigcup_{x \in X} E(\delta_\text{NFA}(x, \sigma))}$. 
+- i.e., treat $\varepsilon$ arrows as "cooties" (?) If an NFA arrow points to a state with outgoing $\varepsilon$ arrows, you have to follow them too.
+
+## Start State
+
+- If $q_0$ is the start state of the NFA, $E(\{q_0\})$ is the start state of the DFA.
+- i.e., the set of the NFA start state, along with any states that it gives cooties to (?).
+
+## Accepting States
+
+- Any subset of $Q$ that contains an accept state of the NFA is an accept state of the DFA.
+
+$$
+F_\text{DFA} = \{ X \in \mathcal{P}(Q) \mid X \cap F_\text{NFA} \neq \emptyset \}
+$$
+
+## Why does it work?
+
+- The simulator keeps track of active states using the subsets.
+- Multiple arrows and $\varepsilon$ arrows are dealt with properly.
+- Any one accepting state on any thread in the NFA will be reached in the DFA.
+- If the NFA reaches no active accepting state by the end of the input, the DFA will be in a non-accepting state.
+
+<div class="notes">
+Argue why the proof is complete. <br>
+Check that it accepts e, a, baba, baa. Not b, bb, babba.
+</div>
+
+## Simplification is often possible
+
+Unreachable states in the DFA can be deleted.
+
+<div class="notes">
+q1 and q1q2 can be deleted
+</div>
+
+
+

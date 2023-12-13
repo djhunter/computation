@@ -1,0 +1,155 @@
+---
+title: "Section 7.4: NP-Complete Languages"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    self_contained: yes
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+date: "April 17, 2020"
+---
+
+# Prework 
+
+## Prework Discussion
+
+- See the #macs-135 channel for a link to the shared Google Doc.
+- Go to the voice channel (Group 1, Group 2, Group 3) corresponding to your group. 
+- The starred person should be the presenter/writer on the board, but everyone can write and/or paste images.
+
+Groups: 
+
+1. (Question 2) Sam*, Tristan, Ryley
+2. (Question 4) Carolyn*, Drake, James
+3. (Question 5) Wesley*, Sophia, Trevor
+
+https://docs.google.com/document/d/1OLw9yZuqmPOh-wDqh9CRwRKTCE43j-gbbD9K1s_ZsCk/edit?usp=sharing
+
+# Polynomial-time Reductions
+
+## Recall: Mapping reducibility
+
+Let $A$ and $B$ be languages over an alphabet $\Sigma$. We say that $A$ is *mapping reducible* to $B$, written $A \leq_\text{m} B$, if there is a computable function (i.e., a *reduction*) $f:\Sigma^\ast \longrightarrow \Sigma^\ast$ such that, for every $w \in \Sigma^\ast$, 
+$$
+w \in A \Longleftrightarrow f(w) \in B
+$$
+
+## Polynomial-time Reduction
+
+If $f$ is a mapping reduction $A \leq_\text{m} B$ and $f$ runs in polynomial time, then we say that $A$ is *polynomial time reducible* to $B$, written $A \leq_\text{P} B$.
+
+- If $A \leq_\text{P} B$ and $B \in \text{P}$, then $A \in \text{P}$.
+- Informally $A \leq_\text{P} B$ means that $B$ is "harder" than $A$ (or at least as hard).
+
+## $\mathit{3SAT}$
+
+A *3cnf-formula* is a Boolean formula of the form
+$$
+(a_1 \vee b_1 \vee c_1) \wedge (a_2 \vee b_2 \vee c_2) \wedge \cdots \wedge (a_k \vee b_k \vee c_k) 
+$$
+
+- Notice: such a formula is true exactly when each triple has at least one true variable.
+- $\mathit{3SAT} = \{\langle \phi \rangle \mid \phi \text{ is a satisfiable 3cnf-formula} \}$.
+
+## $\mathit{3SAT} \leq_\text{P} \mathit{CLIQUE}$
+
+A reduction function $f$ from $\mathit{3SAT}$ to $\mathit{CLIQUE}$ has to *input* a formula
+$$
+\phi = (a_1 \vee b_1 \vee c_1) \wedge (a_2 \vee b_2 \vee c_2) \wedge \cdots \wedge (a_k \vee b_k \vee c_k) 
+$$
+and *output* a graph $f(\phi)$, such that $\langle \phi \rangle \in \mathit{3SAT}$ iff $\langle f(\phi), k \rangle \in \textit{CLIQUE}$. 
+
+- If we had such a function, we could decide $\textit{3SAT}$ by deciding $\textit{CLIQUE}$.
+- As long as this function runs in polynomial time, then if $\textit{CLIQUE} \in \text{P}$, then $\textit{3SAT} \in \text{P}$.
+
+## Reduction function
+
+Given a formula $\phi = (a_1 \vee b_1 \vee c_1) \wedge (a_2 \vee b_2 \vee c_2) \wedge \cdots \wedge (a_k \vee b_k \vee c_k)$, the vertices of the graph $f(\phi)$ are the variables, and the edges connect any two variables (in different triples) that do not contradict each other.
+
+- A $k$-clique in this graph would be a set of $k$ variables that do not contradict each other.
+- Set all of these to 1, and you have satisfied $\phi$.
+- If so such $k$-clique exists, there is no way to make all the triples true.
+
+## Example
+
+The formula $(x_1 \vee x_1 \vee x_2) \wedge (\overline{x_1} \vee \overline{x_2} \vee \overline {x_2}) \wedge (\overline{x_1}\vee x_2 \vee x_2)$ maps to the following graph.
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/clique3sat.png", auto_pdf = TRUE)
+```
+
+# The hardest problem in $\text{NP}$
+
+## Any $\text{NP}$ problem reduces to $\mathit{SAT}$
+
+**Theorem.** Let $A \in \text{NP}$. Then $A \leq_\text{P} \mathit{SAT}$.
+
+- $\mathit{SAT}$ is the "hardest" problem in $\text{NP}$.
+- A solver for $\mathit{SAT}$ can be used to solve any problem in $\text{NP}$.
+- If $\mathit{SAT} \in \text{P}$, then $\text{P} = \text{NP}$.
+
+*Proof idea:*
+
+- If $A \in \text{NP}$, then there is a NTM $M$ that decides $A$.
+- Convert $M$ to a formula such that satisfying the formula would reveal an accepting branch in the computation tree of $M$.
+    - Check that this conversion  is polynomial time.
+    
+## computation branch $\rightarrow$ tableau
+
+```{r, echo=FALSE, fig.align='center'}
+include_graphics("images/tableau.png", auto_pdf = TRUE)
+```
+
+Need to construct a formula such that satisfying it would reveal a *legal* and *accepting* branch of the NTM (i.e., tableau).
+
+## Constructing the formula
+
+Variables: $x_{i,j,s}$, where $(i,j)$ are tableau coordinates and $s$ is a symbol or state. Then $\phi = \phi_\text{cell} \wedge \phi_\text{start} \wedge \phi_\text{move} \wedge \phi_\text{accept}$, where
+
+- $\phi_\text{cell}$ is satisfied if only one $x_{i,j,s}$ is true for each cell.
+- $\phi_\text{start}$ is satisfied if the first row if a legal start.
+- $\phi_\text{move}$ is satisfied if all the windows are legal.
+- $\phi_\text{accept}$ is satisfied if the last row is an accept state.
+
+Can build $\phi$ in polynomial time.
+
+# $\text{NP}$-complete languages
+
+## The class of $\text{NP}$-complete languages
+
+A language $A \in \text{NP}$ is called *$\text{NP}$-complete* if solving $A$ in polynomial time would solve any problem in $\text{NP}$ in polynomial time. 
+
+- $\mathit{SAT}$ is $\text{NP}$-complete.
+- $\mathit{3SAT}$ is $\text{NP}$-complete. (can modify tableau proof)
+- $\mathit{CLIQUE}$ is $\text{NP}$-complete (because $\mathit{3SAT} \leq_\text{P} \mathit{CLIQUE}$)
+
+Informally, the $\text{NP}$-complete languages represent the hardest problems in $\text{NP}$. It is unknown whether any is in $\text{P}$, but if any is ever found, then $\text{P} = \text{NP}$. ([Lots of problems](https://en.wikipedia.org/wiki/List_of_NP-complete_problems) are known to be $\text{NP}$-complete.)
+
+## Showing that a language is $\text{NP}$-complete
+
+To show that a language $A$ is $\text{NP}$-complete, you must:
+
+- Show that $A \in \text{NP}$. (it's not too hard)
+- Show that $L \leq_\text{P} A$ for some $\text{NP}$-complete language $L$. (it's "harder" than some other $\text{NP}$-complete language)
+
+If you only know the second thing, then $A$ is called *$\text{NP}$-hard*. 

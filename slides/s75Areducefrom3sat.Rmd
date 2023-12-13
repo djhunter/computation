@@ -1,0 +1,187 @@
+---
+title: "Section 7.5: Reductions from 3SAT"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    self_contained: yes
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+date: "April 20, 2020"
+---
+
+# Prework 
+
+## Prework Discussion
+
+- See the #macs-135 channel for a link to the shared Google Doc.
+- Go to the voice channel (Group 1, Group 2, Group 3) corresponding to your group. 
+- The starred person should be the presenter/writer on the board, but everyone can write and/or paste images.
+
+Groups: 
+
+1. (Question 3) Drake, Tristan, Carolyn*
+2. (Question 4) James*, Ryley, Wesley
+3. (Question 5) Trevor, Sam, Sophia*
+
+https://docs.google.com/document/d/1H3FnPFMRHCheRBqBc0g7YR1vqh7JLUUgZQJTYKKkqVo/edit?usp=sharing
+
+# Last time: Polynomial-time Reductions
+
+## Polynomial time reducibility
+
+Let $A$ and $B$ be languages over an alphabet $\Sigma$. We say that $A$ is *polynomial time reducible* to $B$, written $A \leq_\text{P} B$, if there is a polynomial-time function (i.e., a *reduction*) $f:\Sigma^\ast \longrightarrow \Sigma^\ast$ such that, for every $w \in \Sigma^\ast$, 
+$$
+w \in A \Longleftrightarrow f(w) \in B
+$$
+
+- If $A \leq_\text{P} B$ and $B \in \text{P}$, then $A \in \text{P}$.
+- If $A$ is $\text{NP}$-complete and $B \in \text{NP}$, then $B$ is $\text{NP}$-complete.
+
+## $\mathit{3SAT}$
+
+A *3cnf-formula* is a Boolean formula of the form
+$$
+(a_1 \vee b_1 \vee c_1) \wedge (a_2 \vee b_2 \vee c_2) \wedge \cdots \wedge (a_k \vee b_k \vee c_k) 
+$$
+
+- The $a_i$'s, $b_i$'s, $c_i$'s are called *literals*. Each has the form $x_j$ or $\overline{x_j}$ for some *variable* $x_j$. The triples $(a_i \vee b_i \vee c_i)$ are called *clauses*.
+- Such a formula is *satisfied* exactly when an assignment of 1's and 0's to the variables gives each clause at least one true literal.
+- $\mathit{3SAT} = \{\langle \phi \rangle \mid \phi \text{ is a satisfiable 3cnf-formula} \}$.
+- $\mathit{3SAT}$ is $\text{NP}$-complete.
+
+# $\mathit{VERTEX\text{-}COVER}$ is $\text{NP}$-complete, again
+
+## $\mathit{3SAT} \leq_\text{P} \mathit{VERTEX\text{-}COVER}$
+
+- It is easy to check that $\mathit{VERTEX\text{-}COVER} \in \text{NP}$.
+- We need a *polynomial time* reduction function that *inputs* a 3cnf-formula $\phi$, and outputs a graph $G$ and a number $k$.
+- The graph needs to have a $k$-vertex cover exactly when the formula is satisfiable.
+
+## Variable and clause "gadgets"
+
+- For each *variable* $x_i$, make vertices labeled $x_i$ and $\overline{x_i}$ and connect them with an edge.
+- For each *clause* $(a_i \wedge b_i \wedge c_i)$, make a triangle with vertices $a_i$, $b_i$, $c_i$.
+- Add edges to connect each literal in the variable gadgets with the matching literals in all of the clause gadgets.
+
+## Example
+
+- Each variable is an edge $x_i -\!\!\!-\, \overline{x_i}$.
+- Each clause is a triangle. Connect correponding literals.
+- $(x_1 \vee x_1 \vee x_2) \wedge (\overline{x_1} \vee \overline{x_2} \vee \overline {x_2}) \wedge (\overline{x_1}\vee x_2 \vee x_2)$ maps to:
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/3satvcover.png", auto_pdf = TRUE)
+```
+
+## Assignment $\Rightarrow$ Cover
+
+Suppose you have $m$ variables and $l$ clauses. Given a satisfying assignment, make a vertex cover in the graph:
+
+- Use the *true literals* from the variable gadgets. ($m$)
+- Pick one true literal from each clause gadget, and use *the other two*. ($2l$)
+
+Every edge in the variable gadgets and clause gadgets will be covered. So will the connecting edges, because one side is guaranteed to be 1. Set $k = m + 2l$.
+
+## Example
+
+- $(x_1 \vee x_1 \vee x_2) \wedge (\overline{x_1} \vee \overline{x_2} \vee \overline {x_2}) \wedge (\overline{x_1}\vee x_2 \vee x_2)$
+- Satisfying assignment: $x_1 = 0$, $x_2 = 1$.
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/3satvcoverDONE.png", auto_pdf = TRUE)
+```
+
+## Cover $\Rightarrow$ Assignment
+
+Given a vertex cover with $k = m + 2l$ vertices,
+
+- At least one vertex in each variable gadget must be included, because the connecting edge needs to be covered. ($m$)
+- At least two vertices in each clause gadget must be included, because the connecting triangle must be covered. ($2l$)
+- No other vertices can be included. Set *the included literals* from the variable gadgets to 1, and you get a satisfying assignment.
+
+## Parts of the reduction argument
+
+- *Describe a function* that inputs a $\langle \phi \rangle$ and outputs a $\langle G, k \rangle$.
+- Show that $\langle \phi \rangle \in \mathit{3SAT}$ *iff* $\langle G, k \rangle \in \mathit{VERTEX\text{-}COVER}$
+- Check that the function is computable in *polynomial time*.
+- To show $\text{NP}$-completeness, you also need to check that $\mathit{VERTEX\text{-}COVER} \in \text{NP}$.
+
+# $\mathit{3COLOR}$ is $\text{NP}$-complete
+
+## $\mathit{3SAT} \leq_\text{P} \mathit{3COLOR}$
+
+- We already showed that $\mathit{3COLOR} \in \text{NP}$.
+- We need a *polynomial time* reduction function that *inputs* a 3cnf-formula $\phi$, and outputs a graph.
+- The graph needs to be 3-colorable exactly when the formula is satisfiable.
+
+## Palette, variable, and "OR" gadgets
+
+Given a 3cnf-formula $\phi$, 
+
+- Each variable makes a $x_i -\!\!\!-\, \overline{x_i}$ edge.
+- Each clause makes a combo of OR gadgets.
+    - The OR gadget only gets colored F at the top if both its feet are colored F.
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/3sat3color.png", auto_pdf = TRUE)
+```
+
+## Example
+
+- $(x_1 \vee x_1 \vee x_2) \wedge (\overline{x_1} \vee \overline{x_2} \vee \overline {x_2}) \wedge (\overline{x_1}\vee x_2 \vee x_2)$
+
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/3colorgadgets.png", auto_pdf = TRUE)
+```
+
+## Satisfiable $\Rightarrow$ 3-colorable
+
+- Each clause has one true literal, so each OR-OR gadget has at least one non-red foot.
+    - So the top of each OR-OR gadget doesn't have to be red.
+    
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/3colorgadgets.png", auto_pdf = TRUE)
+```
+
+## 3-Colorable $\Rightarrow$ satisfiable
+
+- Set the green nodes in the variable gadgets equal to 1.
+    - Note: variable gadgets can't be colored Navy.
+- 3-colorability implies that none of the OR-OR gadgets has all red feet.
+    - So all the the clauses have at least one true literal.
+    
+```{r, echo=FALSE, fig.align='center'}
+library(knitr) # add out.width="4cm" for pdf output
+include_graphics("images/3colorgadgets.png", auto_pdf = TRUE)
+```
+
+## Parts of the reduction argument
+
+- *Describe a function* that inputs a $\langle \phi \rangle$ and outputs a $\langle G \rangle$.
+- Show that $\langle \phi \rangle \in \mathit{3SAT}$ *iff* $\langle G \rangle \in \mathit{3COLOR}$.
+- Check that the function is computable in *polynomial time*.
+- To show $\text{NP}$-completeness, you also need to check that $\mathit{3COLOR} \in \text{NP}$.

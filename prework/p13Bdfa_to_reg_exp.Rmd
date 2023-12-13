@@ -1,0 +1,80 @@
+---
+geometry: left=0.75in, right=0.75in, top=0.8in, bottom=0.4in
+classoption: twoside
+output: 
+  pdf_document:
+    keep_tex: true
+    includes:
+      in_header: preworkheader.tex
+---
+
+```{r include=FALSE}
+set.seed(11720)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+## Prework 1.3b: Converting DFA's to Regular Expressions
+
+Write your preliminary solutions to each problem on this sheet of paper (front and back). Use additional sheets if necessary. The names in brackets indicate the subset responsible for presenting the problem.
+
+1. [`r paste(fnames[1:3], sep = ',')`] Use the method described in the proof of Lemma 1.60 to convert the following DFA into a regular expression. (First convert the DFA to a GNFA, then delete two states to obtain a GNFA with a single edge giving the regular expression.)
+
+```{r, echo=FALSE, fig.width=5, fig.height=6, message=FALSE, fig.align='center'}
+library(igraph)
+a3 <- graph_from_literal(" "-+q1-+q2-+q1-+q1, q2-+q2, simplify=FALSE)
+coords <- layout_on_grid(a3, width = 3)
+plot(a3, 
+     edge.curved = c(0, 0.5, 0.5, 0.5, 0.5), 
+     layout=coords,
+     vertex.size = 25,
+     vertex.shape = c("none", "circle", "circle"),
+     vertex.label = c(" ", expression(italic(q)[1]), expression(italic(q)[2])),
+     edge.loop.angle=3.14*1.5,
+     mark.groups = list(3), mark.shape = 0.7, mark.col = "pink", mark.border = "black",
+     vertex.label.cex = 1,
+     edge.label = c("","    b\n","  b\n"," a\n"," a\n"), 
+     edge.label.cex = 1,
+     edge.width = 2)
+```
+
+2. [`r paste(fnames[4:6], sep = ',')`] Use the method described in the proof of Lemma 1.60 to convert the following DFA into a regular expression. 
+
+```{r, echo=FALSE, fig.width=5, fig.height=4, message=FALSE, fig.align='center', warning=FALSE}
+library(igraph)
+a3 <- graph_from_literal(" "-+q1-+q2-+q3-+q1, q3-+q2-+q2, simplify=FALSE)
+#coords <- matrix(c(-3,0, 0,0, 3,0, 1.5, -1), nrow = 4, byrow=TRUE)
+set.seed(3321)
+coords <- layout_nicely(a3)
+plot(a3, 
+     edge.curved = c(0, 0, 0.5, 0, 0.5, 0.5), 
+     layout=coords,
+     vertex.size = 25,
+     vertex.shape = c("none", "circle", "circle", "circle"),
+     vertex.label = c(" ", expression(italic(q)[1]), expression(italic(q)[2]), expression(italic(q)[3])),
+     edge.loop.angle=3.14*0,
+     mark.groups = list(2,4), mark.shape = .6,  mark.col = "pink", mark.border = "black",
+     vertex.label.cex = 1,
+     edge.label = c("", "        a,b", "b\n", "a      \n", "\nb", "    a"), 
+     edge.label.cex = 1,
+     edge.width = 2,
+     edge.arrow.size=0.7,
+     ylim = c(-1.02,0.2), xlim=c(-1,1.3))
+```
+
+\medskip 
+\textsl{For problems 3 and 4 we are using the notation $a^k$ to represent the string $\underbrace{aaa \cdots a}_k$.}
+
+3. Let $A = \{0^n1^n \mid  n \in \mathbb{N}\}$. Which of the following regular expressions describe the language $A$?
+$$
+0^*1^*, \quad 0^+1^+, \quad 0^*011^*, \quad (01)^*, \quad (01)^+ 
+$$
+
+4. [`r paste(fnames[7:9], sep = ',')`] Suppose that $M$ is a DFA with 5 states that accepts the string \texttt{000000}.
+    a. Explain why, when $M$ processes \texttt{000000}, some state must occur twice.
+    b. Explain why $M$ must also accept infinitely many strings of the form
+    $\mathtt{0}^k$ for certain values of $k > 6$.
+    
+\medskip
+\mbox{}\xrfill[2pt]{1pt}\textsc{\small begin your solutions below this line}\xrfill[2pt]{1pt}\mbox{}
+
+    

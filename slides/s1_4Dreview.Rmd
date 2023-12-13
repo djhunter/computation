@@ -1,0 +1,74 @@
+---
+title: "Chapter 1 Review"
+output:
+  pdf_document:
+    keep_tex: true
+    includes:
+      in_header: notesheader.tex
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+date: "January 27, 2020"
+---
+
+```{r include=FALSE}
+set.seed(12420)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+# Prework Presentations
+
+## 1. [`r paste(fnames[1:3], sep = ',')`] 
+
+Let $A = \{\mathtt{0}^ku\mathtt{0}^k \mid k \geq 1 \text{ and } u \in \{\mathtt{0,1}\}^*\}$. Prove that $A$ is regular.
+
+## 2. [`r paste(fnames[4:6], sep = ',')`] 
+
+Let $B = \{\mathtt{0}^k\mathtt{1}u\mathtt{0}^k \mid k \geq 1 \text{ and } u \in \{\mathtt{0,1}\}^*\}$. Prove that $B$ is nonregular.
+
+## 3. [`r paste(fnames[7:9], sep = ',')`] 
+
+Let $\Sigma = \{\mathtt{0,1}\}$. For each $k \geq 1$, let $C_k$ be the language consisting of all strings that contain a \texttt{0} exactly $k$ places from the right-hand end. Build a DFA that recognizes $C_k$. What is the fewest number of states required?
+
+## Start at other end
+
+4. How could the solution to Problem 3 be different if $C_k$ were the language consisting of all strings that contain a \texttt{0} exactly $k$ places from the \textit{left}-hand end?
+
+## Multiplying by 3
+
+5.  Consider $\Sigma = \left\lbrace \frac{0}{0}, \frac{0}{1}, \frac{1}{0}, \frac{1}{1}  \right\rbrace$. A string in $\Sigma^\ast$ consists of a top binary string $t$ and a bottom binary string $b$ of equal lengths. For this problem, we regard $t$ and $b$ as numbers expressed in binary notation. Prove that the following language $F$ is regular.
+$$
+F = \left\{ w = \frac{t}{b} \in \Sigma^\ast \mid b = 3t \right\} 
+$$
+Hint: It might be easier to prove that $F^R$ is regular, and use closure.
+
+## Regular or nonregular?
+
+Consider $\Sigma = \left\lbrace \frac{0}{0}, \frac{0}{1}, \frac{1}{0}, \frac{1}{1}  \right\rbrace$. A string in $\Sigma^\ast$ consists of a top binary string $t$ and a bottom binary string $b$ of equal lengths. Is the following language regular or nonregular?
+
+$$
+D =  \left\lbrace w = \frac{t}{b} \in \Sigma^\ast \mid t \text{ is the reverse of } b \right\rbrace 
+$$
+
+# Study Guide
+
+## Other Questions?
+
+Try a "do it yourself" problem.
+

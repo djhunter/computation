@@ -1,0 +1,137 @@
+---
+title: "Section 4.1: Decidable Languages involving Grammars"
+output:
+  revealjs::revealjs_presentation:
+    center: no
+    css: slidesdjh.css
+    fig_height: 7
+    fig_width: 14
+    highlight: zenburn
+    reveal_options:
+      controls: yes
+      height: 600
+      progress: no
+      width: 1080
+    reveal_plugins: notes
+    self_contained: no
+    theme: black
+    transition: slide
+  html_document:
+    self_contained: true
+    theme: spacelab
+    code_download: true
+  pdf_document:
+    keep_tex: true
+    fig_width: 3
+    fig_height: 3
+    includes:
+      in_header: notesheader.tex
+date: "February 28, 2020"
+---
+
+```{r include=FALSE}
+set.seed(22620)
+fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+```
+
+# Prework Presentations
+
+## 1. [`r paste(fnames[1:3], sep = ',')`]  
+
+Let $X_1 = \{\langle A \rangle \mid A \text{ is a DFA and } L(A) = \{\texttt{0}, \texttt{1}\}^\ast \}$. Show that $X_1$ is decidable.
+
+## 2. [`r paste(fnames[4:6], sep = ',')`] 
+
+Let $X_2 = \{\langle A, B\rangle \mid A,B \text{ are DFA's and } L(A) \subseteq L(B)\}$. Show that $X_2$ is decidable.
+
+## 3. [`r paste(fnames[7:9], sep = ',')`] 
+
+Consider the following grammar.
+\begin{align*}
+S & \rightarrow UV \\
+V & \rightarrow VV \\
+U & \rightarrow WU \\
+U & \rightarrow \mathtt{a} \\
+V & \rightarrow \mathtt{b} \\
+W & \rightarrow \mathtt{c}
+\end{align*}
+    a. Explain why the derivation of any string of length $n$ derived by this grammar requires exactly $2n-1$ steps.
+    b. Simplify the grammar into an equivalent grammar with as few rules as possible.
+
+# Decidable Languages involving Grammars
+
+## Recall: Context-Free Grammars
+
+A **context-free grammar** is a 4-tuple $(V, \Sigma, R, S)$, where
+
+1. $V$ is a finite set, called the *variables*,
+2. $\Sigma$ is a finite set, disjoint from $V$, called the *terminals*,
+3. $R$ is a finite set of *rules*, with each rule of the form $X \rightarrow \mathcal{Q}$, where $X$ is a variable and $\mathcal{Q}$ is a string of variables and terminals.
+4. $S \in V$ is the start variable.
+
+The set of all strings of terminals that can be derived from the start symbol $S$ is called the **language of the grammar**. The language of a context-free grammar (CFG) is a **context-free language** (CFL).
+
+## Context-Free Grammar: example
+
+1. $V$ is a finite set, called the *variables*,
+2. $\Sigma$ is a finite set, disjoint from $V$, called the *terminals*,
+3. $R$ is a finite set of *rules*, with each rule of the form $X \rightarrow \mathcal{Q}$, where $X$ is a variable and $\mathcal{Q}$ is a string of variables and terminals.
+4. $S \in V$ is the start variable.
+
+Example: $V = \{S\}$, $\Sigma = \{\mathtt{0}, \mathtt{1}\}$, and the rules $R$ are:
+
+\begin{align*}
+S & \rightarrow \varepsilon \\
+S & \rightarrow \mathtt{0}S\mathtt{1}
+\end{align*}
+
+## Chomsky Normal Form
+
+**Theorem.** Any context-free grammar can be rewritten so the rules all have the form $A \rightarrow BC$ or $A \rightarrow x$, where $x$ is a terminal and $A,B,C$ are variables, where $B\neq S$ and $C \neq S$. (We also allow $S \rightarrow \varepsilon$.)
+
+Proof: Add variables as needed, and add rules to maintain the grammar.
+
+## Chomsky Normal Form
+
+**Theorem.** Any context-free grammar can be rewritten so the rules all have the form $A \rightarrow BC$ or $A \rightarrow x$, where $x$ is a terminal and $A,B,C$ are variables, where $B\neq S$ and $C \neq S$. (We also allow $S \rightarrow \varepsilon$.)
+
+Example: Convert the following to Chomsky Normal Form.
+
+\begin{align*}
+S & \rightarrow \varepsilon \\
+S & \rightarrow \mathtt{0}S\mathtt{1}
+\end{align*}
+
+## Chomsky Normal Form
+
+**Theorem.** Any context-free grammar can be rewritten so the rules all have the form $A \rightarrow BC$ or $A \rightarrow x$, where $x$ is a terminal and $A,B,C$ are variables, where $B\neq S$ and $C \neq S$. (We also allow $S \rightarrow \varepsilon$.)
+
+**Lemma.** If a grammar is expressed in Chomsky normal form, than any derivation of $|w|$ takes $2|w|-1$ steps.
+
+## $A_\text{CFG}$ is decidable
+
+$A_\text{CFG} =  \{ \langle G, w\rangle \mid G \text{ is a CFG generating } w\}$
+
+## $E_\text{CFG}$ is decidable
+
+$E_\text{CFG} = \{ \langle G \rangle \mid G \text{ is a CFG and } L(G) = \emptyset \}$
+
+# Countability
+
+## Injectivity (one to one)
+
+- A function $f : X \longrightarrow Y$ is *one-to-one* (or *injective*) if no output is ever repeated.
+- In other words, $f(a) = f(b)$ implies that $a = b$.
+
+(example)
+
+## Cardinality and countability
+
+If $X$ is a set, $|X|$ is its *cardinality*.
+
+- For finite sets, $|X|$ is the number of elements in $X$.
+- For infinite sets, $|X| \leq |Y|$ if there is an injective function $f: X \longrightarrow Y$.
+- Sets whose cardinality does not exceed the cardinality of the natural numbers are called *countable*. So a set is countable if there is an injection $X \hookrightarrow \mathbb{N}$.
+- Informally, "countable" means you can number the elements.
+
+Examples: $\Sigma^*$ and $\mathbb{Q}$ are countable.
