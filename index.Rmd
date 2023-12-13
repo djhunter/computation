@@ -1,0 +1,55 @@
+---
+title: "Formal Languages and Automata"
+author: "David J. Hunter"
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    df_print: paged
+    theme: spacelab
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE}
+library(metathis)
+meta() %>%
+  meta_description(
+    "Slides, assignments, and code for my class on the theory of computation: CS/MA-135: Formal Languages and Automata."
+  ) %>%
+  meta_name("github-repo" = "djhunter/cryptography") %>%
+  meta_viewport() %>%
+  meta_social(
+    title = "Cryptography and Coding Theory",
+    url = "https://djhunter.github.io/cryptography/index.html",
+    image = "https://upload.wikimedia.org/wikipedia/en/5/5b/Codes_And_Keys_Death_Cab_For_Cutie.jpg",
+    image_alt = "Codes and Keys album art",
+    og_author = c("David J. Hunter")
+  )
+```
+
+This site provides slides, assignments, and other resources that I use in my class on the theory of computation (CS/MA-135: Formal Languages and Automata, Westmont College).
+
+# Slides 
+
+1. []() 
+
+---
+# 22. [Reed Solomon Codes](slides/22codes6.html)
+# 23. [Codes and Encryption](slides/23codes7.html)
+---
+
+# Prework
+
+1. []()
+
+# Other Resources
+
+- [Syllabus](syllabus/csma135S24.pdf) (PDF)
+
+All of the pages and slides on this site were authored in RMarkdown. The source code is available on GitHub: https://github.com/djhunter/computation
+
