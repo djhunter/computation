@@ -21,13 +21,13 @@ meta() %>%
   meta_description(
     "Slides, assignments, and code for my class on the theory of computation: CS/MA-135: Formal Languages and Automata."
   ) %>%
-  meta_name("github-repo" = "djhunter/cryptography") %>%
+  meta_name("github-repo" = "djhunter/computation") %>%
   meta_viewport() %>%
   meta_social(
-    title = "Cryptography and Coding Theory",
-    url = "https://djhunter.github.io/cryptography/index.html",
-    image = "https://upload.wikimedia.org/wikipedia/en/5/5b/Codes_And_Keys_Death_Cab_For_Cutie.jpg",
-    image_alt = "Codes and Keys album art",
+    title = "Formal Languages and Automata",
+    url = "https://djhunter.github.io/computation/index.html",
+    image = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Turing_Machine_Model_Davey_2012.jpg/1280px-Turing_Machine_Model_Davey_2012.jpg",
+    image_alt = "Physical Turing Machine",
     og_author = c("David J. Hunter")
   )
 ```
@@ -36,16 +36,15 @@ This site provides slides, assignments, and other resources that I use in my cla
 
 # Slides 
 
-1. []() 
+1. [Introduction to Automata](slides/s1_1finite_automata.html) 
 
 ---
-# 22. [Reed Solomon Codes](slides/22codes6.html)
-# 23. [Codes and Encryption](slides/23codes7.html)
+# 2. [Automata and Regular Operations](slides/s1_1Breg_ops.html)
 ---
 
 # Prework
 
-1. []()
+1. [Finite Automata](prework/p11Aautomata.pdf)
 
 # Other Resources
 

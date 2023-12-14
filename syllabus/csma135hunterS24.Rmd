@@ -1,5 +1,5 @@
 ---
-geometry: left=1.0in, right=1.0in, top=0.8in, bottom=0.4in
+geometry: left=0.9in, right=0.9in, top=0.8in, bottom=0.4in
 classoption: twoside
 output: 
   pdf_document:
@@ -14,7 +14,7 @@ library(knitr)
 library(kableExtra)
 ```
 
-# Formal Languages and Automata (CS/MA-135) Westmont College, Spring 2024
+# Formal Languages and Automata (CS/MA-135) 
 
 ## What is this course about?
 
@@ -26,7 +26,7 @@ OK, here's the catalog description: "(Four credit hours) Prerequisite: CS/MA-015
 
 ## How is the course structured?
 
-Interactive
+The goal of our time together in class is to interactively process and discuss the important ideas and concepts of the theory of computation. You will get frequent opportunities to work together at the board, present solutions to your classmates, and ask questions.
 
 You should expect a written \textbf{prework} assignment after every class meeting. These assignments will be due before the beginning of the next class meeting.  Each problem on the prework will include a list of students who are responsible for \textbf{presenting} the problem; one of the students on this list will be chosen to explain the problem to the class. I expect you to have mostly complete solutions to all the questions on the prework, but your solutions do not have to be perfect to receive full credit. However, you should be very confident that you understand and have a correct solution to the problems you are assigned to present, because you may be required to explain your reasoning and answer questions. Please come to Student Hours if you need help with the prework.
 
@@ -43,15 +43,13 @@ kbl(data.frame(x = c("Written Prework Assignments",  "Presentations and Particip
 
 ## What other policies should students be aware of?
 
-If you miss a significant number of classes, you will almost definitely do poorly in this class.  If you miss more than six classes without a valid excuse, I reserve the right to terminate you from the course with a failing grade.  Work missed (including tests) without a valid excuse will receive a zero.
+If you miss a significant number of classes, you will almost definitely do poorly in this class.  If you miss more than six classes without a valid excuse, I reserve the right to terminate you from the course with a failing grade.  Work missed (including tests) without a valid excuse will receive a zero. Late work is worth 75% for the first 48 hours past the due date, and then 0% thereafter.
 
 I expect you to check your email on a regular basis.  If you use a non-Westmont email account, please forward your Westmont email to your preferred account. I'll send out notices on Canvas, so make sure you receive Canvas notifications in your email.
 
 Learning communities function best when students have academic integrity.  Cheating is primarily an offense against your classmates because it undermines our learning community.  Therefore, dishonesty of any kind may result in loss of credit for the work involved and the filing of a report with the Provost's Office. Major or repeated infractions may result in dismissal from the course with a failing grade. Be familiar with the College's plagiarism policy, found at https://www.westmont.edu/office-provost/academic-program/academic-integrity-policy.
 
-In particular, providing someone with an electronic copy of your work is a breach of the academic integrity policy. Do not email, post online, or otherwise disseminate any of the work that you do in this class. If you keep your work on a repository, make sure it is private. You may work with others on the assignments, but make sure that you write or type up your own answers yourself. You are on your honor that the work you hand in represents your own understanding.
-
-\clearpage
+In particular, providing someone with an electronic copy of your work is a breach of the academic integrity policy. Do not email, post online, or otherwise disseminate any of the work that you do in this class. If you keep your work on a repository, make sure it is private. You may work with others on the assignments, but make sure that you write up your own answers yourself. You are on your honor that the work you hand in represents your own understanding.
 
 ## Other Information
 
@@ -61,7 +59,7 @@ In particular, providing someone with an electronic copy of your work is a breac
   (\verb!dhunter@westmont.edu!). Student hours are on Tuesdays from 1:00--3:20pm and Thursdays from 2:00--4:40pm in Winter Hall 303.
 
  \item[Tentative Schedule:] The following schedule is a rough first approximation of the topics in \textit{Sipser} that we plan to cover; it is subject to revision at the instructor's discretion. Chapter 0 (Mathematical Notions and Terminology) should be familiar to you from Discrete Mathematics, but these topics will be reviewed as necessary when they arise.
-  \begin{itemize}
+  \begin{itemize}[noitemsep]
       \item Chapter 1: Regular Languages
          \begin{quote}
           \textit{Hour Exam \#1}     (through Chapter 1)
@@ -81,8 +79,6 @@ In particular, providing someone with an electronic copy of your work is a breac
     \textit{Final Exam}     (cumulative)
    \end{quote}
   \end{itemize}
-
-\clearpage
 
 \item[Accommodations for Students with Disabilities:] Students who choose to disclose a disability, diagnosis, or injury are encouraged to contact the Office of Disability Services (ODS) as early as possible in the semester to discuss potential accommodations for this course. Formal accommodations will only be granted for students whose diagnoses have been verified by the ODS. Accommodations are designed to minimize the impact of a diagnosis and to ensure equal access to programs for all students who have a diagnosed condition that impacts their participation in college activities. Please contact \href{mailto:ods@westmont.edu}{\tt ods@westmont.edu} or visit the website for more information: \url{https://www.westmont.edu/disability-services-welcome}. Seth Miller, Director of ODS and the ODS team are located upstairs in Voskuyl Library 310, 311A. 
 
@@ -113,7 +109,7 @@ In particular, providing someone with an electronic copy of your work is a breac
 (6) Oral Communication, and
 (7) Information Literacy.
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item Demonstrate understanding of the theoretical basis for languages and computation.
              (PLO 1, ILOs 3,4)
     \item Write and evaluate mathematical arguments according to the
