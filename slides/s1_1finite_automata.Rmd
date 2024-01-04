@@ -154,6 +154,24 @@ The set of all strings that are accepted by an automaton is called the language 
 
 ## Example: What language does this recognize?
 
+```{r, echo=FALSE, fig.width=12, fig.height=6, message=FALSE, fig.align='center'}
+a3 <- graph_from_literal(" "-+q1-+q2-+q3-+q2-+q2, q1-+q1, q2-+q2, simplify=FALSE)
+coords <- layout_on_grid(a3, width = 4)
+plot(a3, 
+     edge.curved = c(0, 0, 0.5, 0.5, 0.5, 0.5), 
+     layout=coords,
+     vertex.size = 25,
+     vertex.shape = c("none", "circle", "circle", "circle"),
+     vertex.label = c(" ", expression(italic(q)[1]), expression(italic(q)[2]), expression(italic(q)[3])),
+     edge.loop.angle=3.14*1.5,
+     mark.groups = list(3), mark.shape = 0.75, mark.col = "pink", mark.border = "black",
+     vertex.label.cex = 2,
+     edge.label = c("","     1\n","0\n","  0,1\n","1\n","0\n"), 
+     edge.label.cex = 2,
+     edge.width = 4,
+     ylim = c(-1.1,-0.6), xlim=c(-0.5,1))
+```
+
 ## Activity: Constructing automata
 
 For each language in the symbols $\{\mathtt{0}, \mathtt{1}\}$, draw a state diagram for an automaton that recognizes it.
@@ -182,7 +200,7 @@ Illustrate these for the examples on the board.
 
 ## Regular Languages
 
-A language is called **regular** if some finite automaton recogizes it.
+A language is called **regular** if some finite automaton recognizes it.
 
 <div class="notes">
 Hand out prework assignment.
