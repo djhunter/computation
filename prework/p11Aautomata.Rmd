@@ -52,7 +52,7 @@ b & $q_2$ & $q_3$ & $q_4$ & $q_5$ & $q_5$ \\
 \end{center}
 
 
-4. [`r paste(fnames[7:9], sep = ',')`] Let $\Sigma = \{0,1\}$, and let $A$ be the set of all strings that end in 1 or have an even number of symbols (or both). Draw a state diagram for a finite automaton that recognizes $A$.
+4. [`r paste(c(fnames[7:9], "Joshua"), sep = ',')`] Let $\Sigma = \{0,1\}$, and let $A$ be the set of all strings that end in 1 or have an even number of symbols (or both). Draw a state diagram for a finite automaton that recognizes $A$.
 
 \medskip
 \mbox{}\xrfill[2pt]{1pt}\textsc{\small begin your solutions below this line}\xrfill[2pt]{1pt}\mbox{}
