@@ -1,92 +1,23 @@
 ---
 title: "Section 1.1: Automata and Regular Operations"
-output:
-  pdf_document:
-    keep_tex: true
-    includes:
-      in_header: notesheader.tex
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    reveal_plugins: notes
-    self_contained: no
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-date: "January 8, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
 
-```{r include=FALSE}
-set.seed(1620)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
-```
-
 # Prework Presentations
-
-## 2. [`r paste(fnames[1:3], sep = ',')`] 
-
-Refer to Definition 1.5. For the finite automaton with the following state diagram, identify $Q$, $\Sigma$, $\delta$, $q_0$, and $F$, and describe the language it recognizes.
-
-```{r, echo=FALSE, fig.width=8, fig.height=3.5, message=FALSE, fig.align='center'}
-library(igraph)
-a3 <- graph_from_literal(" "-+q1-+q2-+q3-+q2-+q2, q1-+q1, q3-+q1, simplify=FALSE)
-coords <- layout_on_grid(a3, width = 4)
-plot(a3, 
-     edge.curved = c(0, 0, 0.5, 0.5, 0.5, 0.5, 0.5), 
-     layout=coords,
-     vertex.size = 15,
-     vertex.shape = c("none", "circle", "circle", "circle"),
-     vertex.label = c(" ", expression(italic(q)[1]), expression(italic(q)[2]), expression(italic(q)[3])),
-     edge.loop.angle=3.14*1.5,
-     mark.groups = list(4), mark.shape = 0.75, mark.col = "pink", mark.border = "black",
-     vertex.label.cex = 1,
-     edge.label = c("","     0\n","1\n","  0\n","0\n","1\n","1\n"), 
-     edge.label.cex = 1,
-     edge.width = 2,
-     ylim = c(-1.1,-0.6), xlim=c(-0.5,1))
-```
-
-
-## 3. [`r paste(fnames[4:6], sep = ',')`] 
-
-Consider the finite automaton with $Q = \{q_1, q_2, q_3, q_4, q_5\}$, $\Sigma = \{\text{a},\text{b}\}$, transition function $\delta$ given by the table below, initial state $q_3$, and $F = \{q_3\}$. Draw its state diagram, and describe the language it recognizes.
-
-\begin{center}
-\begin{tabular}{c|ccccc}
-  & $q_1$ & $q_2$ & $q_3$ & $q_4$ & $q_5$ \\ \hline
-a & $q_1$ & $q_1$ & $q_2$ & $q_3$ & $q_4$ \\
-b & $q_2$ & $q_3$ & $q_4$ & $q_5$ & $q_5$ \\
-\end{tabular}
-\end{center}
-
-## 4. [`r paste(fnames[7:9], sep = ',')`] 
-
-Let $\Sigma = \{0,1\}$, and let $A$ be the set of all strings that end in 1 or have an even number of symbols (or both). Draw a state diagram for a finite automaton that recognizes $A$.
-
-# Languages and Computation
-
-## Last time
-
-A **language** over a set of symbols $\Sigma$ is a set of strings in those symbols.
-
-The set of all strings that are accepted by an automaton is called the language **recognized** by the automaton.
-
-A language is called **regular** if some finite automaton recogizes it.
-
-<div class="notes">
-Discuss analogy: languages <--> machines
-</div>
 
 # Regular Operations
 
@@ -183,6 +114,8 @@ In an NFA, we can have multiple arrows for the same symbol, or label an arrow wi
 - Each arrow spawns a new machine in the new state.
 - $\varepsilon$ spawns a new machine in the new state without consuming an input character.
 - Similar to Multithreading
+   - If a machine ends in a reject state, the machine dies.
+   - If there are no arrows out of a state for the next input symbol, the machine dies.
 - If any machine ends in an accept state, the NFA accepts.
 
 ## Example NFA

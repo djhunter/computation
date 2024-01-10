@@ -37,6 +37,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 # Slides 
 
 1. [Introduction to Automata](slides/s1_1finite_automata.html) 
+2. [Regular Operations; Nondeterminism](slides/s1_1Breg_ops.html)
 
 ---
 # 2. [Automata and Regular Operations](slides/s1_1Breg_ops.html)
@@ -45,6 +46,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 # Prework
 
 1. [Finite Automata](prework/p11Aautomata.pdf)
+2. [Regular Operations; NFAs](prework/p11Bregops.pdf)
 
 # Other Resources
 
