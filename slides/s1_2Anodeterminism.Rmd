@@ -1,66 +1,22 @@
 ---
 title: "Section 1.2: Nondeterminism"
-output:
-  pdf_document:
-    keep_tex: true
-    includes:
-      in_header: notesheader.tex
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    reveal_plugins: notes
-    self_contained: no
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-date: "January 10, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
 
-```{r include=FALSE}
-set.seed(1820)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
-```
-
-# Prework Presentations
-
-## 3. [`r paste(fnames[1:3], sep = ',')`] 
-
-Apply the construction in the proof of Theorem 1.25 (page 45ff) to give a state diagram for a DFA with 6 states that recognizes $\{w \mid w \text{ ends in } \mathtt{01}\} \cup \{w \mid w \text{ has an odd number of symbols}\}$. Use your DFA's from questions 1 and 2.
-
-## 4. [`r paste(fnames[4:6], sep = ',')`] 
-
-Suppose that $A_1$ and $A_2$ are regular languages. Explain how to modify the proof of Theorem 1.25 to prove that (a) $A_1 \cap A_2$ is a regular language , and (b) $(A_1 \setminus A_2) \cup (A_2 \setminus A_1)$ is a regular language. (Note: $(A_1 \setminus A_2) \cup (A_2 \setminus A_1)$ is the set of all strings that are either in $A_1$ or in $A_2$, but not both.)
-
-## 5. [`r paste(fnames[7:9], sep = ',')`] 
-
-Give a state diagram for an NFA that recognizes $A$, where
-$$A = \{ xy \mid x \text{ has an even number of 0's and } \\ y \text{ has an odd number of 1's} \}. $$
-
-# Regular Languages and Regular Operations
-
-## Languages and Operations so far
-
-- A language is called **regular** if some finite automaton recogizes it.
-- Regular operations are union $\cup$, concatenation $\circ$, and star $*$.
-- We proved that the union of two regular languages is regular.
-    + We did this by proving that we could make an automaton $M$ that recognizes $A_1 \cup A_2$, given automata $M_1$ and $M_2$ that recognize $A_1$ and $A_2$, respectively.
-    + Dealing with $\circ$ and $*$ is more tricky.
-    
-
-<div class="notes">
-Discuss analogy: languages <--> machines
-</div>
 
 # Nondeterminism
 
@@ -137,7 +93,7 @@ Copy to board <br>
 
 $A = \{w \mid w \text{ has a 1 in the third position from end}\}$
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.width="70%"}
 library(knitr)
 include_graphics("images/dfa1xx.png")
 ```
@@ -148,7 +104,7 @@ Note that it needs 8 states to store all the possible final three digits.
 
 ## Another NFA example
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.width="40%"}
 library(knitr)
 include_graphics("images/nfa3.png")
 ```
@@ -168,7 +124,7 @@ If we have NFA's $N_1$ and $N_2$ that recognize languages $A_1$ and $A_2$, can w
 
 ## Closure under concatenation
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.width="70%"}
 library(knitr)
 include_graphics("images/nfaconcat.png")
 ```
@@ -181,9 +137,9 @@ include_graphics("images/nfastar.png")
 ```
 
 
-## Closure under union (using NFA's)
+## Closure under union (using NFA's this time)
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.width="55%"}
 library(knitr)
 include_graphics("images/nfaunion.png")
 ```
