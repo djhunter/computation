@@ -23,7 +23,7 @@ A = \{w \mid w \text{ ends in } \mathtt{01}\} \cup \{w \mid w \text{ has an odd 
 $$
 Does this NFA have the same number of states as the DFA for $A$ that you constructed in question 3 of the last prework? Will this always happen? Explain.
 
-2. [`r paste(fnames[5:8], sep = ',')`] Construct a state diagram for a DFA that recognizes the language $A = \{\mathtt{01}, \mathtt{001}, \mathtt{010} \}$, then use the construction in Figure 1.50 (page 62) to convert it to a DFA that recognizes $A^*$. Check that your DFA works on a non-trivial element of $A^*$.
+2. [`r paste(fnames[5:8], sep = ',')`] Construct a state diagram for an NFA that recognizes the language $A = \{\mathtt{01}, \mathtt{001}, \mathtt{010} \}$, then use the construction in Figure 1.50 (page 62) to build an NFA that recognizes $A^*$. Check that your NFA works on a non-trivial element of $A^*$.
 
 3. [`r paste(fnames[9:13], sep = ',')`] The power set $\mathcal{P}(A)$ is the set of all subsets of $A$. Fact: If $A$ has $n$ elements, then $\mathcal{P}(A)$ has $2^n$ elements. Write down all of the elements of $\mathcal{P}(\{c, u, b, s\})$ in an organized way that illustrates this fact.
 
