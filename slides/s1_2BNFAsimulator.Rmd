@@ -98,12 +98,12 @@ Actually, we need to define $\delta_\text{DFA}$ a little differently.
 
 - If $X \subset Q$, let $E(X)$ be the set of states reachable from states in $X$ by following 0 or more $\varepsilon$ arrows.
 - Redefine  $\delta_\text{DFA}(X, \sigma) = \displaystyle{\bigcup_{x \in X} E(\delta_\text{NFA}(x, \sigma))}$. 
-- i.e., treat $\varepsilon$ arrows as "cooties" (?) If an NFA arrow points to a state with outgoing $\varepsilon$ arrows, you have to follow them too.
+- i.e., treat $\varepsilon$ arrows as "bonuses" (?) If an NFA arrow points to a state with outgoing $\varepsilon$ arrows, you have to follow them too.
 
 ## Start State
 
 - If $q_0$ is the start state of the NFA, $E(\{q_0\})$ is the start state of the DFA.
-- i.e., the set of the NFA start state, along with any states that it gives cooties to (?).
+- i.e., the set of the NFA start state, along with any bonus states" (?).
 
 ## Accepting States
 

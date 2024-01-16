@@ -39,12 +39,14 @@ This site provides slides, assignments, and other resources that I use in my cla
 1. [Introduction to Automata](slides/s1_1finite_automata.html) 
 2. [Regular Operations; Nondeterminism](slides/s1_1Breg_ops.html)
 3. [Nondeterminism and Closure](slides/s1_2Anodeterminism.html)
+4. [NFA Simulation](slides/s1_2BNFAsimulator.html)
 
 # Prework
 
 1. [Finite Automata](prework/p11Aautomata.pdf)
 2. [Regular Operations; NFAs](prework/p11Bregops.pdf)
 3. [Nondeterminism](prework/p12Anondeterminism.pdf)
+4. [Simulating an NFA on a DFA](prework/p12Bnfasimulation.pdf)
 
 # Other Resources
 
