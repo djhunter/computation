@@ -9,23 +9,23 @@ output:
 ---
 
 ```{r include=FALSE}
-set.seed(11520)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+set.seed(11724)
+fnames <- sample(c("Ky", "Curtis", "Micah", "Todd", "Andrew", "Meghan", "Allie", "David", "Connor", "Levi", "Ben", "Grace", "Joshua"))
 ```
 
 ## Prework 1.3a: Regular Expressions
 
 Write your preliminary solutions to each problem on this sheet of paper (front and back). The names in brackets indicate the subset responsible for presenting the problem.
 
-1. Give a regular expression that describes the language consisting of all strings in $\Sigma = \{a,b\}$ that have an even number of a's and an odd number of b's but do not contain the substring ab.
+1. [`r paste(fnames[1:2], sep = ',')`] Give a regular expression that describes the language consisting of all strings in $\Sigma = \{a,b\}$ that have an even number of a's and an odd number of b's but do not contain the substring ab.
 
-2. [`r paste(fnames[1:3], sep = ',')`] Consider the language described by the regular expression $a(abb)^*\cup b$. Use the construction of the proof of Lemma 1.55 to build an NFA that recognizes this language.
+2. [`r paste(fnames[3:4], sep = ',')`] Consider the language described by the regular expression $a(abb)^*\cup b$. Use the construction of the proof of Lemma 1.55 to build an NFA that recognizes this language.
 
-3. [`r paste(fnames[4:6], sep = ',')`] Consider the language described by the regular expression $(0\cup 1)^*000(0\cup 1)^*$. Use the construction of the proof of Lemma 1.55 to build an NFA that recognizes this language.
+3. [`r paste(fnames[5:7], sep = ',')`] Consider the language described by the regular expression $(0\cup 1)^*000(0\cup 1)^*$. Use the construction of the proof of Lemma 1.55 to build an NFA that recognizes this language.
 
-4. A *generalized nondeterministic finite automaton* (GNFA) is a version of an NFA where the edges can be labeled with regular expressions, not just symbols. A GNFA accepts a string if the parts of the string match the regular expressions as you move along the arrows. Consider the GNFA below, and the strings \texttt{aa}, \texttt{aababaabbb}, \texttt{aaabab}. Which of these strings does it accept?
+4. [`r paste(fnames[8:10], sep = ',')`] A *generalized nondeterministic finite automaton* (GNFA) is a version of an NFA where the edges can be labeled with regular expressions, not just symbols. A GNFA accepts a string if the parts of the string match the regular expressions as you move along the arrows. Consider the GNFA below, and the strings \texttt{aa}, \texttt{aababaabbb}, \texttt{aaabab}. Which of these strings does it accept?
 
-```{r, echo=FALSE, fig.width=5, fig.height=4, message=FALSE, fig.align='center', warning=FALSE}
+```{r, echo=FALSE, fig.width=5, fig.height=5, message=FALSE, fig.align='center', warning=FALSE}
 library(igraph)
 a3 <- graph_from_literal(" "-+q1-+q2-+q3-+q4, q2-+q5-+q3, simplify=FALSE)
 set.seed(123)
@@ -39,8 +39,8 @@ plot(a3,
      edge.loop.angle=3.14*0,
      mark.groups = list(5), mark.shape = -1,  mark.col = "pink", mark.border = "black",
      vertex.label.cex = 1,
-     edge.label = c("", expression(atop("   a"^"+",  " ")),
-                    expression(paste("           b", union(epsilon))),expression("        ab"^"*"),expression(atop(" ", "bab      ")),"a\n"), 
+     edge.label = c("", expression(atop("a"^"+",  " ")),
+                    expression(paste(" b", union(epsilon))),expression("        ab"^"*"),expression(atop("    ", "        bab")),"\n    a"), 
      edge.label.cex = 1,
      edge.width = 2,
      edge.arrow.size=0.7) 
@@ -48,7 +48,7 @@ plot(a3,
 ```
 
 
-5. [`r paste(fnames[7:9], sep = ',')`] Modify the GNFA in Problem 4 to create a new GNFA with only four states that recognizes the same language. Do this by deleting state $q_5$ and modifying the label on the arrow from states $q_2$ to $q_3$. 
+5. [`r paste(fnames[11:13], sep = ',')`] Modify the GNFA in Problem 4 to create a new GNFA with only four states that recognizes the same language. Do this by deleting state $q_5$ and modifying the label on the arrow from states $q_2$ to $q_3$. 
 
 \medskip
 \mbox{}\xrfill[2pt]{1pt}\textsc{\small begin your solutions below this line}\xrfill[2pt]{1pt}\mbox{}
