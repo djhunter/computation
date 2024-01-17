@@ -40,6 +40,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 2. [Regular Operations; Nondeterminism](slides/s1_1Breg_ops.html)
 3. [Nondeterminism and Closure](slides/s1_2Anodeterminism.html)
 4. [NFA Simulation](slides/s1_2BNFAsimulator.html)
+5. [Regular Expressions](slides/s1_3Areg_exp.html)
 
 # Prework
 
@@ -47,6 +48,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 2. [Regular Operations; NFAs](prework/p11Bregops.pdf)
 3. [Nondeterminism](prework/p12Anondeterminism.pdf)
 4. [Simulating an NFA on a DFA](prework/p12Bnfasimulation.pdf)
+5. [Regular Expressions](prework/p13Areg_exp.pdf)
 
 # Other Resources
 

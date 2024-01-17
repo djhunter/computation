@@ -3,7 +3,7 @@ geometry: left=0.75in, right=0.75in, top=0.8in, bottom=0.4in
 classoption: twoside
 output: 
   pdf_document:
-    keep_tex: true
+    keep_tex: false
     includes:
       in_header: preworkheader.tex
 ---
@@ -15,7 +15,7 @@ fnames <- sample(c("Ky", "Curtis", "Micah", "Todd", "Andrew", "Meghan", "Allie",
 
 ## Prework 1.3a: Regular Expressions
 
-Write your preliminary solutions to each problem on this sheet of paper (front and back). The names in brackets indicate the subset responsible for presenting the problem.
+Write your preliminary solutions to each problem and submit a PDF on Canvas. The names in brackets indicate the subset responsible for presenting the problem.
 
 1. [`r paste(fnames[1:2], sep = ',')`] Give a regular expression that describes the language consisting of all strings in $\Sigma = \{a,b\}$ that have an even number of a's and an odd number of b's but do not contain the substring ab.
 
