@@ -43,6 +43,14 @@ This site provides slides, assignments, and other resources that I use in my cla
 5. [Regular Expressions](slides/s1_3Areg_exp.html)
 6. [Converting DFA's to Regular Expressions](slides/s1_3Bdfa_to_reg_exp.html)
 
+---
+# 7. [Nonregular Languages](slides/s1_4Apumping.html)
+# s14b wednesday
+# s14c friday
+# s14d (review monday)
+# exam 1 (chapter 1) wednesday, 1/31
+---
+
 # Prework
 
 1. [Finite Automata](prework/p11Aautomata.pdf)
@@ -51,6 +59,10 @@ This site provides slides, assignments, and other resources that I use in my cla
 4. [Simulating an NFA on a DFA](prework/p12Bnfasimulation.pdf)
 5. [Regular Expressions](prework/p13Areg_exp.pdf)
 6. [Converting DFA's to Regular Expressions](prework/p13Bdfa_to_reg_exp.pdf)
+
+---
+# 7. [The Pumping Lemma](prework/p14Apumping.html)
+---
 
 # Other Resources
 
