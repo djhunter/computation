@@ -3,19 +3,19 @@ geometry: left=0.75in, right=0.75in, top=0.8in, bottom=0.4in
 classoption: twoside
 output: 
   pdf_document:
-    keep_tex: true
+    keep_tex: false
     includes:
       in_header: preworkheader.tex
 ---
 
 ```{r include=FALSE}
-set.seed(11720)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+set.seed(11924)
+fnames <- sample(c("Ky", "Curtis", "Micah", "Todd", "Andrew", "Meghan", "Allie", "David", "Connor", "Levi", "Ben", "Grace", "Joshua"))
 ```
 
 ## Prework 1.3b: Converting DFA's to Regular Expressions
 
-Write your preliminary solutions to each problem on this sheet of paper (front and back). Use additional sheets if necessary. The names in brackets indicate the subset responsible for presenting the problem.
+Write your preliminary solutions to each problem and submit a PDF on Canvas. The names in brackets indicate the subset responsible for presenting the problem.
 
 1. [`r paste(fnames[1:3], sep = ',')`] Use the method described in the proof of Lemma 1.60 to convert the following DFA into a regular expression. (First convert the DFA to a GNFA, then delete two states to obtain a GNFA with a single edge giving the regular expression.)
 
@@ -39,7 +39,7 @@ plot(a3,
 
 2. [`r paste(fnames[4:6], sep = ',')`] Use the method described in the proof of Lemma 1.60 to convert the following DFA into a regular expression. 
 
-```{r, echo=FALSE, fig.width=5, fig.height=4, message=FALSE, fig.align='center', warning=FALSE}
+```{r, echo=FALSE, fig.width=5, fig.height=7, message=FALSE, fig.align='center', warning=FALSE}
 library(igraph)
 a3 <- graph_from_literal(" "-+q1-+q2-+q3-+q1, q3-+q2-+q2, simplify=FALSE)
 #coords <- matrix(c(-3,0, 0,0, 3,0, 1.5, -1), nrow = 4, byrow=TRUE)
@@ -64,12 +64,12 @@ plot(a3,
 \medskip 
 \textsl{For problems 3 and 4 we are using the notation $a^k$ to represent the string $\underbrace{aaa \cdots a}_k$.}
 
-3. Let $A = \{0^n1^n \mid  n \in \mathbb{N}\}$. Which of the following regular expressions describe the language $A$?
+3. [`r paste(fnames[7:9], sep = ',')`] Let $A = \{0^n1^n \mid  n \in \mathbb{N}\}$. Which of the following regular expressions describe the language $A$? For each expression, explain why the expression describes $A$, or why it doesn't.
 $$
 0^*1^*, \quad 0^+1^+, \quad 0^*011^*, \quad (01)^*, \quad (01)^+ 
 $$
 
-4. [`r paste(fnames[7:9], sep = ',')`] Suppose that $M$ is a DFA with 5 states that accepts the string \texttt{000000}.
+4. [`r paste(fnames[10:13], sep = ',')`] Suppose that $M$ is a DFA with 5 states that accepts the string \texttt{000000}.
     a. Explain why, when $M$ processes \texttt{000000}, some state must occur twice.
     b. Explain why $M$ must also accept infinitely many strings of the form
     $\mathtt{0}^k$ for certain values of $k > 6$.

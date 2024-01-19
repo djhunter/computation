@@ -1,72 +1,21 @@
 ---
 title: "Section 1.3: Converting DFA's to Regular Expressions"
-output:
-  pdf_document:
-    keep_tex: true
-    includes:
-      in_header: notesheader.tex
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    reveal_plugins: notes
-    self_contained: no
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-date: "January 17, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-```{r include=FALSE}
-set.seed(11520)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
-```
-
-# Prework Presentations
-
-## 2. [`r paste(fnames[1:3], sep = ',')`] 
-
-Consider the language described by the regular expression $a(abb)^*\cup b$. Use the construction of the proof of Lemma 1.55 to build an NFA that recognizes this language.
-
-## 3. [`r paste(fnames[4:6], sep = ',')`] 
-
-Consider the language described by the regular expression $(0\cup 1)^*000(0\cup 1)^*$. Use the construction of the proof of Lemma 1.55 to build an NFA that recognizes this language.
-
-## 5. [`r paste(fnames[7:9], sep = ',')`] 
-
-Modify the GNFA in Problem 4 to create a new GNFA with only four states that recognizes the same language. Do this by deleting state $q_5$ and modifying the label on the arrow from states $q_2$ to $q_3$. 
-
-```{r, echo=FALSE, fig.width=5, fig.height=4, message=FALSE, fig.align='center', warning=FALSE}
-library(igraph)
-a3 <- graph_from_literal(" "-+q1-+q2-+q3-+q4, q2-+q5-+q3, simplify=FALSE)
-set.seed(123)
-coords <- layout_nicely(a3)
-plot(a3, 
-     edge.curved = 0, 
-     layout=coords,
-     vertex.size = 25,
-     vertex.shape = c("none", "circle", "circle", "circle", "circle", "circle"),
-     vertex.label = c(" ", expression(italic(q)[1]), expression(italic(q)[2]), expression(italic(q)[3]), expression(italic(q)[4]), expression(italic(q)[5])),
-     edge.loop.angle=3.14*0,
-     mark.groups = list(5), mark.shape = -1,  mark.col = "pink", mark.border = "black",
-     vertex.label.cex = 1,
-     edge.label = c("", expression(atop("   a"^"+",  " ")),
-                    expression(paste("           b", union(epsilon))),expression("        ab"^"*"),expression(atop(" ", "bab      ")),"a\n"), 
-     edge.label.cex = 1,
-     edge.width = 2,
-     edge.arrow.size=0.7) 
-#     ylim = c(-1.02,0.2), xlim=c(-1,1.3))
-```
 
 # Are Regular Expressions the same as regular languages?
 
@@ -109,43 +58,43 @@ Add a start state, and consolidate the accept states.
 
 Idea: Choose a state to delete, then modify the affected arrows.
 
-(on board)
+(e.g., Prework #5)
 
 ## Reduce until only two states are left
 
 # Using the proof to construct regular expressions from DFA's
 
-## Convert DFA into a GNFA
+## First: Convert the given DFA into a GNFA
 
-```{r, fig.align="center", fig.height=4, echo=FALSE}
+```{r, fig.align="center", out.width="50%", echo=FALSE}
 library(knitr)
 include_graphics("images/ex168a.png")
 ```
 
-## Delete State 1 and repair
+## Next: Delete State 1 and repair
 
-```{r, fig.align="center", fig.height=4, echo=FALSE}
+```{r, fig.align="center", out.width="80%", echo=FALSE}
 library(knitr)
 include_graphics("images/ex168b.png")
 ```
 
-## Delete State 2 and repair
+## Next: Delete State 2 and repair
 
-```{r, fig.align="center", fig.height=4, echo=FALSE}
+```{r, fig.align="center", out.width="50%",  echo=FALSE}
 library(knitr)
 include_graphics("images/ex168c.png")
 ```
 
-## Delete State 3 and repair
+## Finally: Delete State 3 and repair
 
-```{r, fig.align="center", fig.height=4, echo=FALSE}
+```{r, fig.align="center", out.width="80%", echo=FALSE}
 library(knitr)
 include_graphics("images/ex168d.png")
 ```
 
 ## Final result: regular expression
 
-```{r, fig.align="center", fig.width=7, echo=FALSE}
+```{r, fig.align="center", out.width="100%", echo=FALSE}
 library(knitr)
 include_graphics("images/ex168e.png")
 ```
