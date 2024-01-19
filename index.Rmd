@@ -41,6 +41,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 3. [Nondeterminism and Closure](slides/s1_2Anodeterminism.html)
 4. [NFA Simulation](slides/s1_2BNFAsimulator.html)
 5. [Regular Expressions](slides/s1_3Areg_exp.html)
+6. [Converting DFA's to Regular Expressions](slides/s1_3Bdfa_to_reg_exp.html)
 
 # Prework
 
@@ -49,6 +50,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 3. [Nondeterminism](prework/p12Anondeterminism.pdf)
 4. [Simulating an NFA on a DFA](prework/p12Bnfasimulation.pdf)
 5. [Regular Expressions](prework/p13Areg_exp.pdf)
+6. [Converting DFA's to Regular Expressions](prework/p13Bdfa_to_reg_exp.pdf)
 
 # Other Resources
 
