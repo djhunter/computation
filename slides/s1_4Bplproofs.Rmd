@@ -1,50 +1,21 @@
 ---
 title: "Section 1.4: More Pumping Lemma Proofs"
-output:
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    reveal_plugins: notes
-    self_contained: no
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-  pdf_document:
-    keep_tex: true
-    includes:
-      in_header: notesheader.tex
-date: "January 22, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-```{r include=FALSE}
-set.seed(12120)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
-```
-
-# Prework Presentations
-
-## 1. [`r paste(fnames[1:3], sep = ',')`] 
-
-Read Example 1.75 on page 81. The last line of the third paragraph states, "With condition 3 the proof follows because $y$ must consist of only \texttt{0}s, so $xyyz\not\in F$." Explain, in more detail than is given in the book, why $xyyz\not\in F$.
-
-## 2. [`r paste(fnames[4:6], sep = ',')`] 
-
-In the last sentence of Example 1.75, it says that the string $\mathtt{0}^p\mathtt{0}^p$ "can be pumped." Explain, what this means, and, specifically, how it can be pumped.
-
-## 3. [`r paste(fnames[7:9], sep = ',')`] 
-
-Use the Pumping Lemma to show that the language $A = \{www \mid w \in \{\mathtt{a},\mathtt{b}\}^*\}$ is not regular.
 
 # Pumping Lemma Proof Techniques
 
@@ -65,7 +36,7 @@ Use the Pumping Lemma to show that the language $A = \{www \mid w \in \{\mathtt{
 2. $|y| > 0$, and
 3. $|xy| \leq p$.
 
-**Pumping down** is the process of reaching a contradiction using $i=0$ in step 1.
+**Pumping down** is when we reach a contradiction using $i=0$ in step 1.
 
 Example: Use the Pumping Lemma to prove that $A=\{0^i1^j \mid i > j \}$ is not a regular language.
 
