@@ -43,9 +43,9 @@ This site provides slides, assignments, and other resources that I use in my cla
 5. [Regular Expressions](slides/s1_3Areg_exp.html)
 6. [Converting DFA's to Regular Expressions](slides/s1_3Bdfa_to_reg_exp.html)
 7. [Nonregular Languages](slides/s1_4Apumping.html)
+8. [Pumping Lemma Proofs](slides/s1_4Bplproofs.html)
 
 ---
-# 8. [Pumping Lemma Proofs](slides/s1_4Bplproofs.html)
 # s14b wednesday
 # s14c friday
 # s14d (review monday)
@@ -61,9 +61,10 @@ This site provides slides, assignments, and other resources that I use in my cla
 5. [Regular Expressions](prework/p13Areg_exp.pdf)
 6. [Converting DFA's to Regular Expressions](prework/p13Bdfa_to_reg_exp.pdf)
 7. [The Pumping Lemma](prework/p14Apumping.pdf)
+8. [More Pumping Lemma Proofs](prework/p14Bmorepump.pdf)
 
 ---
-# 8. [More Pumping Lemma Proofs](prework/p14Bmorepump.pdf)
+# 9. 
 ---
 
 # Other Resources
