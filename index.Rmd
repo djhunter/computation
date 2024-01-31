@@ -47,6 +47,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 9. [Regular Languages Review](slides/s1_4Cproblems.html)
 
 ---
+# 10. [Grammars and Context-Free Languages](slides/s2_1Agrammars.html)
 # s14b wednesday
 # s14c friday
 # s14d (review monday)
@@ -66,7 +67,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 9. [Regular vs. Nonregular](prework/p14Cregprobs.pdf)
 
 ---
-# 9. 
+# 10. [Context-Free Grammars](prework/p21Acfg.pdf)
 ---
 
 # Other Resources

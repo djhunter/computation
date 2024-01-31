@@ -1,32 +1,20 @@
 ---
 title: "Chapter 2: Context Free Languages"
-output:
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-  html_document:
-    self_contained: true
-    theme: spacelab
-    code_download: true
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
+    self_contained: true
+    theme: night
     highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    reveal_plugins: notes
-    self_contained: no
-    theme: black
+    css: slidesdjh.css
+    center: false
     transition: slide
-date: "January 31, 2020"
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
 
 # Grammars and Context-Free Languages
