@@ -45,6 +45,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 7. [Nonregular Languages](slides/s1_4Apumping.html)
 8. [Pumping Lemma Proofs](slides/s1_4Bplproofs.html)
 9. [Regular Languages Review](slides/s1_4Cproblems.html)
+10. [Grammars and Context-Free Languages](slides/s2_1Agrammars.html)
 
 ---
 # 10. [Grammars and Context-Free Languages](slides/s2_1Agrammars.html)
@@ -65,6 +66,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 7. [The Pumping Lemma](prework/p14Apumping.pdf)
 8. [More Pumping Lemma Proofs](prework/p14Bmorepump.pdf)
 9. [Regular vs. Nonregular](prework/p14Cregprobs.pdf)
+10. [Context-Free Grammars](prework/p21Acfg.pdf)
 
 ---
 # 10. [Context-Free Grammars](prework/p21Acfg.pdf)

@@ -15,9 +15,9 @@ fnames <- sample(c("Ky", "Curtis", "Micah", "Todd", "Andrew", "Meghan", "Allie",
 
 ## Prework 2.1a: Context-Free Grammars
 
-Write your preliminary solutions to each problem on this sheet of paper (front and back). Use additional sheets if necessary. The names in brackets indicate the subset responsible for presenting the problem.
+Write your preliminary solutions to each problem and submit a PDF on Canvas. The names in brackets indicate the subset responsible for presenting the problem.
 
-1. [`r paste(fnames[1:3], sep = ',')`] Consider the grammar over $\Sigma = \{\text{Moe}, \text{Larry}, \text{Curly}, \text{hit}, \text{poked}, \text{kicked}\}$ with the following three rules.
+1. [`r paste(fnames[1:3], sep = ',')`] Consider the grammar with start variable $S$, terminals $\Sigma = \{\text{Moe}, \text{Larry}, \text{Curly}, \text{hit}, \text{poked}, \text{kicked}\}$ and the following three rules.
 \begin{align*}
 S & \rightarrow N \; V \; N \\
 N & \rightarrow \text{Moe} \mid \text{Larry} \mid \text{Curly} \\
@@ -25,7 +25,7 @@ V & \rightarrow \text{hit} \mid \text{poked} \mid \text{kicked}
 \end{align*}
 Give a derivation for the string "Moe kicked Larry".
 
-Problems 2 and 3 refer to the following grammar with terminals $\Sigma = \{\mathtt{a}, +, \ast, \mathtt{(}, \mathtt{)}\}$.
+Problems 2 and 3 refer to the following grammar with terminals $\Sigma = \{\mathtt{a}, +, \ast, \mathtt{(}, \mathtt{)}\}$. By convention, the start variable is the leftmost variable in the first rule (in this case, $E$).
 \begin{align*}
 E & \rightarrow E + T \mid T \\
 T & \rightarrow T \ast F \mid F \\
