@@ -91,7 +91,7 @@ include_graphics("images/fig217.png", auto_pdf = TRUE)
 
 ## Example: Building PDA's
 
-Construct a PDA over $\Sigma = \{\mathtt{0}, \mathtt{1}\}$ that recognizes the set of strings of length at least 4 that start and end with the same two symbols.
+Construct a PDA over $\Sigma = \{\mathtt{0}, \mathtt{1}\}$ that recognizes the set of strings of length at least 4 that start and end with the same two symbols (i.e., start with $xy$, whatever in middle, end with $yx$).
 
 - First give an informal description,
 - Then draw the state diagram.
