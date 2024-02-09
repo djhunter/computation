@@ -47,6 +47,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 9. [Regular Languages Review](slides/s1_4Cproblems.html)
 10. [Grammars and Context-Free Languages](slides/s2_1Agrammars.html)
 11. [Pushdown Automata](slides/s2_2Apushdown.html)
+12. [Building a PDA for a CFG](slides/s2_2Bcfgtopda.html)
 
 ---
 # s14b wednesday
@@ -68,6 +69,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 9. [Regular vs. Nonregular](prework/p14Cregprobs.pdf)
 10. [Context-Free Grammars](prework/p21Acfg.pdf)
 11. [Pushdown Automata](prework/p22Apushdown.pdf)
+12. [PDA's from CFG's](prework/p22Bcfgtopda.pdf)
 
 ---
 ---
