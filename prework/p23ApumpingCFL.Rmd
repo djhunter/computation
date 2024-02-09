@@ -3,27 +3,27 @@ geometry: left=0.75in, right=0.75in, top=0.8in, bottom=0.4in
 classoption: twoside
 output: 
   pdf_document:
-    keep_tex: true
+    keep_tex: false
     includes:
       in_header: preworkheader.tex
 ---
 
 ```{r include=FALSE}
-set.seed(20720)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+set.seed(21124)
+fnames <- sample(c("Ky", "Curtis", "Micah", "Todd", "Andrew", "Meghan", "Allie", "David", "Connor", "Levi", "Ben", "Grace", "Joshua"))
 ```
 
 ## Prework 2.3a: Pumping Lemma for Context-Free Languages
 
-Write your preliminary solutions to each problem on this sheet of paper (front and back). Use additional sheets if necessary. The names in brackets indicate the subset responsible for presenting the problem.
+Write your preliminary solutions to each problem and submit a PDF on Canvas. The names in brackets indicate the subset responsible for presenting the problem.
 
 1. [`r paste(fnames[1:3], sep = ',')`] Prove that the language $A = \{\mathtt{0}^n\mathtt{1}^n\mathtt{0}^n\mathtt{1}^n \mid n\geq 0\}$ is not context free.
 
 2. [`r paste(fnames[4:6], sep = ',')`] Let $B$ be the language of strings in  $\{\mathtt{0},\mathtt{1}\}^\ast$ consisting of all palindromes that have the same number of $\mathtt{0}$'s as $\mathtt{1}$'s. Prove that $B$ is not context free.
 
-3. Explain how the result of Problem 2 can be used to prove that the set of context-free languages is *not* closed under intersection.
+3. [`r paste(fnames[7:9], sep = ',')`] Explain how the result of Problem 2 can be used to prove that the set of context-free languages is *not* closed under intersection.
 
-4. [`r paste(fnames[7:9], sep = ',')`] Let $\Sigma = \{\mathtt{a}, \mathtt{b}, \mathtt{c}, \mathtt{d}\}$, and let $C$ be the language of strings in $\Sigma^\ast$ having the same number of $\mathtt{a}$'s as $\mathtt{b}$'s and the same number of $\mathtt{c}$'s as $\mathtt{d}$'s. Prove that $C$ is not context free.
+4. [`r paste(fnames[10:13], sep = ',')`] Let $\Sigma = \{\mathtt{a}, \mathtt{b}, \mathtt{c}, \mathtt{d}\}$, and let $C$ be the language of strings in $\Sigma^\ast$ having the same number of $\mathtt{a}$'s as $\mathtt{b}$'s and the same number of $\mathtt{c}$'s as $\mathtt{d}$'s. Prove that $C$ is not context free.
 
 \medskip
 \mbox{}\xrfill[2pt]{1pt}\textsc{\small begin your solutions below this line}\xrfill[2pt]{1pt}\mbox{}

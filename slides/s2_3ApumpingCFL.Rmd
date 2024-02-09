@@ -1,66 +1,21 @@
 ---
 title: "Section 2.3: Pumping Lemma for CFL's"
-output:
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-  html_document:
-    self_contained: true
-    theme: spacelab
-    code_download: true
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
+    self_contained: true
+    theme: night
     highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    reveal_plugins: notes
-    self_contained: no
-    theme: black
+    css: slidesdjh.css
+    center: false
     transition: slide
-date: "February 7, 2020"
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-```{r include=FALSE}
-set.seed(20520)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
-```
-
-# Prework Presentations
-
-## 1. [`r paste(fnames[1:3], sep = ',')`] 
-
-Use the procedure in the proof of Lemma 2.21 to build a state diagram for a PDA that recognizes the language described by the following CFG. The start variable is $E$ and the terminals are $\Sigma = \{\mathtt{a}, +, \ast, \mathtt{)}, \mathtt{(}\}$.
-\begin{align*}
-E & \rightarrow E + T \mid T \\
-T & \rightarrow T \ast F \mid F \\
-F & \rightarrow \mathtt{(} E \mathtt{)} \mid \mathtt{a}
-\end{align*}
-
-## 2. [`r paste(fnames[4:6], sep = ',')`] 
-
-Use the procedure in the proof of Lemma 2.21 to build state diagram for a PDA that recognizes the language described by the following CFG. The start variable is $R$.
-\begin{align*}
-R & \rightarrow XRX \mid S \\
-S & \rightarrow \mathtt{a}T\mathtt{b} \mid \mathtt{b}T\mathtt{a} \\
-T & \rightarrow XTX \mid X \mid \varepsilon \\
-X & \rightarrow \mathtt{a} \mid \mathtt{b}
-\end{align*}
-
-## 3. [`r paste(fnames[7:9], sep = ',')`] 
-
-In this problem you will show that the set of context-free languages is closed under the regular operations. Let $G_1 = (V_1, \Sigma, R_1, S_1)$ and $G_2 = (V_2, \Sigma, R_2, S_2)$ be CFG's that describe the languages $A_1$ and $A_2$, respectively, where $V_1 \cap V_2 = \emptyset$. (Hint: For each part (a)-(c), add a new start state $S$ and a new first rule.)
-    a. Give a CFG that describes $A_1 \cup A_2$. 
-    b. Give a CFG that describes $A_1 \circ A_2$. 
-    c. Give a CFG that describes $A_1^*$. 
 
 # A Pumping Lemma for Context-Free Languages
 
