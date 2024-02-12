@@ -1,53 +1,21 @@
 ---
 title: "Section 3.1: Turing Machines"
-output:
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    reveal_plugins: notes
-    self_contained: no
-    theme: black
-    transition: slide
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-date: "February 10, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-```{r include=FALSE}
-set.seed(20720)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
-```
-
-# Prework Presentations
-
-## 1. [`r paste(fnames[1:3], sep = ',')`] 
-
-Prove that the language $A = \{\mathtt{0}^n\mathtt{1}^n\mathtt{0}^n\mathtt{1}^n \mid n\geq 0\}$ is not context free.
-
-## 2. [`r paste(fnames[4:6], sep = ',')`] 
-
-Let $B$ be the language of strings in  $\{\mathtt{0},\mathtt{1}\}^\ast$ consisting of all palindromes that have the same number of $\mathtt{0}$'s as $\mathtt{1}$'s. Prove that $B$ is not context free.
-
-## 4. [`r paste(fnames[7:9], sep = ',')`] 
-
-Let $\Sigma = \{\mathtt{a}, \mathtt{b}, \mathtt{c}, \mathtt{d}\}$, and let $C$ be the language of strings in $\Sigma^\ast$ having the same number of $\mathtt{a}$'s as $\mathtt{b}$'s and the same number of $\mathtt{c}$'s as $\mathtt{d}$'s. Prove that $C$ is not context free.
-
 # Turing Machines
 
 ## Computational models so far
