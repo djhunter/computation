@@ -51,10 +51,13 @@ This site provides slides, assignments, and other resources that I use in my cla
 13. [Pumping Lemma for CFL's](slides/s2_3ApumpingCFL.html)
 
 ---
-# s14b wednesday
-# s14c friday
-# s14d (review monday)
-# exam 1 (chapter 1) wednesday, 1/31
+# s31a wednesday
+# s31b friday
+# monday is pres day?
+# s32a wed
+# s33a Fri
+# s33b (review) monday
+# exam 2 (chapter 2) wednesday, 2/28
 ---
 
 # Prework
