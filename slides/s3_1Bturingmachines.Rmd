@@ -1,57 +1,21 @@
 ---
 title: "Section 3.1: Turing Machines, continued"
-output:
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    reveal_plugins: notes
-    self_contained: no
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-date: "February 12, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-```{r include=FALSE}
-set.seed(21020)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
-```
-
-# Prework Presentations
-
-## 1. [`r paste(fnames[1:3], sep = ',')`]  
-
-Describe the sequence of configurations (states and tape) that the following TM takes while processing (a) the input string $\mathtt{10\#11}$, (b) the input string $\mathtt{10\#10}$, and (c) the input string $\mathtt{1\#1\#1}$.
-
-```{r echo=FALSE, fig.align='center'}
-library(knitr)
-include_graphics("images/tmM1.png", auto_pdf = TRUE)
-```
-
-## 3. [`r paste(fnames[4:6], sep = ',')`] 
-
-Give a formal description (i.e., state diagram) of a TM for the language $A = \{\mathtt{a}^n\mathtt{b}^n\mathtt{c}^n \mid n\geq 1\}$.
-
-## 4. [`r paste(fnames[7:9], sep = ',')`] 
-
-Let $\Sigma = \{\mathtt{0}, \mathtt{1}\}$. Give an implementation description of a TM for the language $B$ consisting of all strings in $\Sigma^*$ that contain twice as many $\mathtt{0}$'s as $\mathtt{1}$'s.
 
 # Recognizing vs. Deciding
 

@@ -16,6 +16,7 @@ output:
       width: 1080
       height: 540
 ---
+
 # Turing Machines
 
 ## Computational models so far
