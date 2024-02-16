@@ -42,7 +42,7 @@ If a language has a decider, it is called **decidable**.
 
 ## Decider for $A = \{\mathtt{0}^{2^n}\}$
 
-```{r echo=FALSE, fig.align='center'}
+```{r echo=FALSE, fig.align='center', out.width=800}
 library(knitr)
 include_graphics("images/tmM2.png", auto_pdf = TRUE)
 ```
@@ -80,6 +80,5 @@ Decider for $E = \{\mathtt{\#}x_1\mathtt{\#}x_2\mathtt{\#}\cdots\mathtt{\#}x_l \
 5. Unmark the first marked $\mathtt{\#}$ and mark the next $\mathtt{\#}$. Then unmark the second marked $\mathtt{\#}$ and mark the first $\mathtt{\#}$ after the first marked $\mathtt{\#}$. Go to 3. 
 6. If you run out of room in step 5, accept. 
 
-## Multiplier?
 
 

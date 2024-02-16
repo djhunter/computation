@@ -50,6 +50,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 12. [Building a PDA for a CFG](slides/s2_2Bcfgtopda.html)
 13. [Pumping Lemma for CFL's](slides/s2_3ApumpingCFL.html)
 14. [Turing Machines](slides/s3_1Aturingmachines.html)
+15. [Turing Machines, continued](slides/s3_1Bturingmachines.html)
 
 ---
 # s31a wednesday
@@ -77,6 +78,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 12. [PDA's from CFG's](prework/p22Bcfgtopda.pdf)
 13. [Pumping Lemma for CFL's](prework/p23ApumpingCFL.pdf)
 14. [Turing Machines](prework/p31Aturingmachines.pdf)
+15. [More Turing Machines](prework/p31Bturingmachines.pdf)
 
 ---
 ---
