@@ -1,52 +1,21 @@
 ---
 title: "Section 3.3: The Church-Turing Thesis"
-output:
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    reveal_plugins: notes
-    self_contained: no
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-date: "February 19, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-```{r include=FALSE}
-set.seed(21420)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
-```
-
-# Prework Presentations
-
-## 1. [`r paste(fnames[1:3], sep = ',')`]  
-
-How many different ways can you divide the string $\mathtt{abcd}$ into nonempty substrings $w_1, w_2, \ldots, w_k$, for $k \geq 1$, such that $w_1w_2\cdots w_k = w$? How about $\mathtt{abcde}$? Can you describe an organized method for running through each possible division?
-
-## 3. [`r paste(fnames[4:6], sep = ',')`] 
-
-Let $M_3$ be a TM that recognizes a language $B$. Explain how to build a TM that recognizes $B^\ast$. 
-
-## 4. [`r paste(fnames[7:9], sep = ',')`] 
-
-Suppose that $M_4$ is a TM that decides a language $C$. Describe a simple way to contstruct a TM that decides $\overline{C}$, the complement of $C$. Explain why this construction would not be so simple if $M$ were just a recognizer, and not a decider.
 
 # Models of computation
 
@@ -91,7 +60,7 @@ $$
 - The TM model of computation is *robust*: Adding features to it does not change the set of languages it can recognize or decide.
     - Key features: RAM, finite number of states, finite amount of work done at each step.
 - Any machine that can emulate a TM is as computationally powerful as any other machine (questions of efficiency aside).
-- Any *limitations* of TM's are limitations of computers in general!
+- Any computational *limitations* of TM's are limitations of computers in general! ([even quantum computers](https://doi.org/10.1098/rspa.1985.0070))
 
 ## Computable functions
 
