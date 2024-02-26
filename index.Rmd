@@ -44,7 +44,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 6. [Converting DFA's to Regular Expressions](slides/s1_3Bdfa_to_reg_exp.html)
 7. [Nonregular Languages](slides/s1_4Apumping.html)
 8. [Pumping Lemma Proofs](slides/s1_4Bplproofs.html)
-9. [Regular Languages Review](slides/s1_4Cproblems.html)
+9. [Regular Languages Review](slides/s1_4Cproblems.html) <br> Exam #1
 10. [Grammars and Context-Free Languages](slides/s2_1Agrammars.html)
 11. [Pushdown Automata](slides/s2_2Apushdown.html)
 12. [Building a PDA for a CFG](slides/s2_2Bcfgtopda.html)
@@ -52,8 +52,10 @@ This site provides slides, assignments, and other resources that I use in my cla
 14. [Turing Machines](slides/s3_1Aturingmachines.html)
 15. [Turing Machines, continued](slides/s3_1Bturingmachines.html)
 16. [Turing Machine Variants](slides/s32AvariantTMs.html)
-17. [The Church-Turing Thesis](slides/s33ACTthesis.html)
-18. [Chapters 2-3 Review](slides/s33Breview.html)
+17. [The Church-Turing Thesis](slides/s33ACTthesis.html) <br>
+17b. [A couple more review problems](slides/s33Breview.html) <br> Exam #2
+18. Decidable Languages
+
 
 ---
 # s31a wednesday
