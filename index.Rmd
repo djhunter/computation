@@ -53,6 +53,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 15. [Turing Machines, continued](slides/s3_1Bturingmachines.html)
 16. [Turing Machine Variants](slides/s32AvariantTMs.html)
 17. [The Church-Turing Thesis](slides/s33ACTthesis.html)
+18. [Chapters 2-3 Review](slides/s33Breview.html)
 
 ---
 # s31a wednesday
