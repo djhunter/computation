@@ -1845,7 +1845,9 @@ and a string <span class="math inline">\(w\)</span>, encoded as a string
 <li>Output: Accept if <span class="math inline">\(B\)</span> accepts
 <span class="math inline">\(w\)</span>. Reject if <span class="math inline">\(B\)</span> rejects <span class="math inline">\(w\)</span>.</li>
 </ul>
+<div class="fragment">
 <p>Alphabets? Tapes?</p>
+</div>
 </section>
 <section id="some-implementation-details" class="slide level2">
 <h2>Some implementation details</h2>
@@ -1872,7 +1874,9 @@ state and symbol.</li>
 <li>If final state is in <span class="math inline">\(F\)</span>, accept.
 Otherwise, reject.</li>
 </ol>
+<div class="fragment">
 <p>Recognizer? Decider?</p>
+</div>
 </section>
 <section id="the-language-a_textdfa" class="slide level2">
 <h2>The language <span class="math inline">\(A_\text{DFA}\)</span></h2>
@@ -1894,6 +1898,18 @@ is decidable.</li>
 <li><strong>Corollary.</strong> <span class="math inline">\(A_\text{REX}
 = \{\langle R,w \rangle \mid R\text{ is a regular expression generating
 } w \}\)</span> is decidable.</li>
+</ul>
+</section>
+<section id="emulation-and-the-church-turing-principle" class="slide level2">
+<h2>Emulation and the Church-Turing Principle</h2>
+<ul>
+<li class="fragment">By the CTP, we can emulate a machine on a TM if we
+can write a computer program in any reasonable programming language to
+emulate the machine.</li>
+<li class="fragment">So we can emulate DFAs, NFAs, PDAs, and even TMs on
+Turing Machines.</li>
+<li class="fragment">The key question is whether our emulators always
+halt (i.e., are they deciders, or just recognizers?)</li>
 </ul>
 </section>
 <section id="how-about-a_textpda" class="slide level2">

@@ -40,6 +40,8 @@ We want to build a TM that has:
 - Input: A description of a DFA $B$ and a string $w$, encoded as a string $\langle B, w\rangle$.
 - Output: Accept if $B$ accepts $w$. Reject if $B$ rejects $w$.
 
+. . .
+
 Alphabets? Tapes?
 
 ## Some implementation details
@@ -58,6 +60,8 @@ Alphabets? Tapes?
 3. Update $Q$.
 4. Repeat 1-3 until no more input symbols remain.
 5. If final state is in $F$, accept. Otherwise, reject.
+
+. . .
 
 Recognizer? Decider?
 
@@ -78,6 +82,12 @@ Our construction proves:
 - **Theorem.** $A_\text{DFA}$ is decidable.
 - **Corollary.** $A_\text{NFA} = \{\langle B,w \rangle \mid B\text{ is a NFA accepting } w \}$ is decidable.
 - **Corollary.** $A_\text{REX} = \{\langle R,w \rangle \mid R\text{ is a regular expression generating } w \}$ is decidable.
+
+## Emulation and the Church-Turing Principle
+
+>- By the CTP, we can emulate a machine on a TM if we can write a computer program in any reasonable programming language to emulate the machine.
+>- So we can emulate DFAs, NFAs, PDAs, and even TMs on Turing Machines.
+>- The key question is whether our emulators always halt (i.e., are they deciders, or just recognizers?)
 
 ## How about $A_\text{PDA}$?
 
