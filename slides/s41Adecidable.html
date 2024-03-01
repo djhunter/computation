@@ -1880,13 +1880,26 @@ Otherwise, reject.</li>
 </section>
 <section id="the-language-a_textdfa" class="slide level2">
 <h2>The language <span class="math inline">\(A_\text{DFA}\)</span></h2>
-<p>The language decided by our “DFA emulator” is</p>
 <p><span class="math display">\[
 A_\text{DFA} = \{\langle B,w \rangle \mid B\text{ is a DFA accepting } w
 \}
 \]</span></p>
-<p>Our construction proves:</p>
 <p><strong>Theorem.</strong> <span class="math inline">\(A_\text{DFA}\)</span> is decidable.</p>
+<p><em>Proof.</em> We have described how to simulate any DFA <span class="math inline">\(B\)</span> using a Turing machine that always
+halts. Consider the following TM:</p>
+<blockquote>
+<p>On input <span class="math inline">\(\langle B, w \rangle\)</span>,
+where <span class="math inline">\(B\)</span> is an encoding of a DFA and
+<span class="math inline">\(w\)</span> is an encoding of the input
+string:</p>
+<ol type="1">
+<li>Simulate <span class="math inline">\(B\)</span> on input <span class="math inline">\(w\)</span>.</li>
+<li>If <span class="math inline">\(B\)</span> ends in an accept state,
+accept. If <span class="math inline">\(B\)</span> ends in a nonaccepting
+state, reject.</li>
+</ol>
+</blockquote>
+<p>This TM always halts, and accepts exactly when <span class="math inline">\(B\)</span> accepts <span class="math inline">\(w\)</span>.</p>
 </section>
 <section id="corollaries" class="slide level2">
 <h2>Corollaries</h2>
@@ -1918,14 +1931,45 @@ halt (i.e., are they deciders, or just recognizers?)</li>
 <li>We could build a TM that emulates any PDA on any input.</li>
 <li>However, would it be a decider? Or just a recognizer?</li>
 </ul>
+<div class="fragment">
 <p>(It turns out that <span class="math inline">\(A_\text{PDA} =
 \{\langle B,w \rangle \mid B\text{ is a PDA accepting } w \}\)</span> is
 decidable, but we have to use grammars to prove it (next time).)</p>
+</div>
 </section></section>
-<section>
-<section id="equivalence-of-dfas" class="title-slide slide level1">
-<h1>Equivalence of DFA’s</h1>
+<section id="group-exercise" class="title-slide slide level1">
+<h1>Group Exercise</h1>
+<p>Consider the following Turing Machine, where <span class="math inline">\(\langle B \rangle\)</span> represents an encoding
+of a DFA:</p>
+<blockquote>
+<p>On input <span class="math inline">\(\langle B \rangle\)</span>,</p>
+<ol type="1">
+<li>For each string <span class="math inline">\(w \in \Sigma^*\)</span>,
+simulate <span class="math inline">\(B\)</span> on <span class="math inline">\(w\)</span>.</li>
+<li>If <span class="math inline">\(B\)</span> accepts for any <span class="math inline">\(w\)</span>, accept.</li>
+</ol>
+</blockquote>
+<ol type="1">
+<li><p>What language does this TM recognize?</p></li>
+<li><p>Is this TM a decider? Why or why not?</p></li>
+<li><p>Can this TM be modified to recognize the <em>complement</em> of
+the language in your answer to question (1)?</p></li>
+</ol>
+</section>
 
+<section>
+<section id="other-decidable-languages" class="title-slide slide level1">
+<h1>Other decidable languages</h1>
+
+</section>
+<section id="emptiness" class="slide level2">
+<h2>Emptiness</h2>
+<p>Can we test whether a DFA recognizes nothing? That is, is</p>
+<p><span class="math display">\[
+E_\text{DFA} = \{\langle A\rangle \mid A \text{ is a DFA and } L(A) =
+\emptyset\}
+\]</span> decidable?</p>
+<p>(proof on board)</p>
 </section>
 <section id="can-we-tell-if-two-dfas-are-the-same" class="slide level2">
 <h2>Can we tell if two DFA’s are the same?</h2>
@@ -1936,29 +1980,19 @@ EQ_\text{DFA} = \{\langle A, B\rangle \mid A,B \text{ are DFA&#39;s and
 } L(A) = L(B)\}
 \]</span></p>
 </section>
-<section id="related-question-emptiness" class="slide level2">
-<h2>Related Question: Emptiness</h2>
-<p>Can we test whether a DFA recognizes nothing? That is, is</p>
-<p><span class="math display">\[
-E_\text{DFA} = \{\langle A\rangle \mid A \text{ is a DFA and } L(A) =
-\emptyset\}
-\]</span> decidable?</p>
-<p>(Proof/nonproof on board.)</p>
-</section>
 <section id="eq_textdfa-is-decidable" class="slide level2">
 <h2><span class="math inline">\(EQ_\text{DFA}\)</span> is decidable</h2>
+<p><em>Proof.</em></p>
 <ul>
-<li>Regular languages are closed under XOR. (old exercise)</li>
-<li>Given two DFA’s <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, build a DFA <span class="math inline">\(C\)</span> recognizing their XOR.</li>
-<li>Note that <span class="math inline">\(L(C) = \emptyset\)</span> iff
-<span class="math inline">\(L(A) = L(B)\)</span>.</li>
-<li>Use the emptiness testing machine on <span class="math inline">\(C\)</span>.</li>
+<li class="fragment">Regular languages are closed under XOR. (old
+exercise)</li>
+<li class="fragment">Given two DFA’s <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, build a DFA <span class="math inline">\(C\)</span> recognizing their XOR.</li>
+<li class="fragment">Note that <span class="math inline">\(L(C) =
+\emptyset\)</span> iff <span class="math inline">\(L(A) =
+L(B)\)</span>.</li>
+<li class="fragment">Use the emptiness testing machine on <span class="math inline">\(C\)</span>.</li>
 </ul>
 </section></section>
-<section id="return-exams" class="title-slide slide level1">
-<h1>Return Exams</h1>
-
-</section>
     </div>
   </div>
 

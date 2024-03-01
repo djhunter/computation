@@ -67,15 +67,20 @@ Recognizer? Decider?
 
 ## The language $A_\text{DFA}$
 
-The language decided by our "DFA emulator" is
-
 $$
 A_\text{DFA} = \{\langle B,w \rangle \mid B\text{ is a DFA accepting } w \}
 $$
 
-Our construction proves:
-
 **Theorem.** $A_\text{DFA}$ is decidable.
+
+*Proof.* We have described how to simulate any DFA $B$ using a Turing machine that always halts. Consider the following TM:
+
+>On input $\langle B, w \rangle$, where $B$ is an encoding of a DFA and $w$ is an encoding of the input string:
+>
+>1. Simulate $B$ on input $w$.
+>2. If $B$ ends in an accept state, accept. If $B$ ends in a nonaccepting state, reject.
+
+This TM always halts, and accepts exactly when $B$ accepts $w$.
 
 ## Corollaries
 
@@ -94,9 +99,38 @@ Our construction proves:
 - We could build a TM that emulates any PDA on any input.
 - However, would it be a decider? Or just a recognizer?
 
+. . .
+
 (It turns out that $A_\text{PDA} = \{\langle B,w \rangle \mid B\text{ is a PDA accepting } w \}$ is decidable, but we have to use grammars to prove it (next time).)
 
-# Equivalence of DFA's
+# Group Exercise
+
+Consider the following Turing Machine, where $\langle B \rangle$ represents an encoding of a DFA:
+
+> On input $\langle B \rangle$, 
+> 
+> 1. For each string $w \in \Sigma^*$, simulate $B$ on $w$.
+> 2. If $B$ accepts for any $w$, accept.
+
+1. What language does this TM recognize?
+
+2. Is this TM a decider? Why or why not?
+
+3. Can this TM be modified to recognize the *complement* of the language in your answer to question (1)?
+
+
+# Other decidable languages
+
+## Emptiness
+
+Can we test whether a DFA recognizes nothing? That is, is 
+
+$$
+E_\text{DFA} = \{\langle A\rangle \mid A \text{ is a DFA and } L(A) = \emptyset\}
+$$
+decidable?
+
+(proof on board)
 
 ## Can we tell if two DFA's are the same?
 
@@ -107,22 +141,12 @@ $$
 EQ_\text{DFA} = \{\langle A, B\rangle \mid A,B \text{ are DFA's and } L(A) = L(B)\}
 $$
 
-## Related Question: Emptiness
-
-Can we test whether a DFA recognizes nothing? That is, is 
-
-$$
-E_\text{DFA} = \{\langle A\rangle \mid A \text{ is a DFA and } L(A) = \emptyset\}
-$$
-decidable?
-
-(Proof/nonproof on board.)
-
 ## $EQ_\text{DFA}$ is decidable
 
-- Regular languages are closed under XOR. (old exercise)
-- Given two DFA's $A$, $B$, build a DFA $C$ recognizing their XOR.
-- Note that $L(C) = \emptyset$ iff $L(A) = L(B)$.
-- Use the emptiness testing machine on $C$.
+*Proof.*
 
-# Return Exams
+>- Regular languages are closed under XOR. (old exercise)
+>- Given two DFA's $A$, $B$, build a DFA $C$ recognizing their XOR.
+>- Note that $L(C) = \emptyset$ iff $L(A) = L(B)$.
+>- Use the emptiness testing machine on $C$.
+

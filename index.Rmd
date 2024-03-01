@@ -54,8 +54,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 16. [Turing Machine Variants](slides/s32AvariantTMs.html)
 17. [The Church-Turing Thesis](slides/s33ACTthesis.html) <br>
 17b. [A couple more review problems](slides/s33Breview.html) <br> Exam #2
-18. Decidable Languages
-
+18. [Decidable Languages](slides/s41Adecidable.html)
 
 ---
 # s31a wednesday
@@ -86,6 +85,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 15. [More Turing Machines](prework/p31Bturingmachines.pdf)
 16. [Turing Machine Variants](prework/p32AtmVariants.pdf)
 17. [Selected Review Problems](prework/p33ACTthesis.pdf)
+18. [Decidable Languages](prework/p41Adecideable.pdf)
 
 ---
 ---
