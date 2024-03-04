@@ -3,19 +3,19 @@ geometry: left=0.75in, right=0.75in, top=0.8in, bottom=0.4in
 classoption: twoside
 output: 
   pdf_document:
-    keep_tex: true
+    keep_tex: false
     includes:
       in_header: preworkheader.tex
 ---
 
 ```{r include=FALSE}
-set.seed(22820)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+set.seed(3424)
+fnames <- sample(c("Ky", "Curtis", "Micah", "Todd", "Andrew", "Meghan", "Allie", "David", "Connor", "Levi", "Ben", "Grace", "Joshua"))
 ```
 
 ## Prework 4.1b: Countable Sets
 
-Write your preliminary solutions to each problem on this sheet of paper (front and back). Use additional sheets if necessary. The names in brackets indicate the subset responsible for presenting the problem.
+Write your preliminary solutions to each problem and submit a PDF on Canvas. The names in brackets indicate the subset responsible for presenting the problem.
 
 1. Explain why the floor function $f : \mathbb{R} \longrightarrow \mathbb{N}$ given by $f(x) = \lfloor x \rfloor$ is not one-to-one.
 

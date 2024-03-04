@@ -1,62 +1,21 @@
 ---
 title: "Section 4.1: Decidable Languages involving Grammars"
-output:
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    reveal_plugins: notes
-    self_contained: no
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-date: "February 28, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-```{r include=FALSE}
-set.seed(22620)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
-```
-
-# Prework Presentations
-
-## 1. [`r paste(fnames[1:3], sep = ',')`]  
-
-Let $X_1 = \{\langle A \rangle \mid A \text{ is a DFA and } L(A) = \{\texttt{0}, \texttt{1}\}^\ast \}$. Show that $X_1$ is decidable.
-
-## 2. [`r paste(fnames[4:6], sep = ',')`] 
-
-Let $X_2 = \{\langle A, B\rangle \mid A,B \text{ are DFA's and } L(A) \subseteq L(B)\}$. Show that $X_2$ is decidable.
-
-## 3. [`r paste(fnames[7:9], sep = ',')`] 
-
-Consider the following grammar.
-\begin{align*}
-S & \rightarrow UV \\
-V & \rightarrow VV \\
-U & \rightarrow WU \\
-U & \rightarrow \mathtt{a} \\
-V & \rightarrow \mathtt{b} \\
-W & \rightarrow \mathtt{c}
-\end{align*}
-    a. Explain why the derivation of any string of length $n$ derived by this grammar requires exactly $2n-1$ steps.
-    b. Simplify the grammar into an equivalent grammar with as few rules as possible.
 
 # Decidable Languages involving Grammars
 
