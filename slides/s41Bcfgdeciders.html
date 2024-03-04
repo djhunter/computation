@@ -1867,22 +1867,15 @@ where <span class="math inline">\(x\)</span> is a terminal and <span class="math
 \rightarrow \varepsilon\)</span>.)</p>
 <p>Proof: Add variables as needed, and add rules to maintain the
 grammar.</p>
-</section>
-<section id="chomsky-normal-form-1" class="slide level2">
-<h2>Chomsky Normal Form</h2>
-<p><strong>Theorem.</strong> Any context-free grammar can be rewritten
-so the rules all have the form <span class="math inline">\(A \rightarrow
-BC\)</span> or <span class="math inline">\(A \rightarrow x\)</span>,
-where <span class="math inline">\(x\)</span> is a terminal and <span class="math inline">\(A,B,C\)</span> are variables, where <span class="math inline">\(B\neq S\)</span> and <span class="math inline">\(C
-\neq S\)</span>. (We also allow <span class="math inline">\(S
-\rightarrow \varepsilon\)</span>.)</p>
+<div class="fragment">
 <p>Example: Convert the following to Chomsky Normal Form.</p>
 <p><span class="math display">\[\begin{align*}
 S &amp; \rightarrow \varepsilon \\
 S &amp; \rightarrow \mathtt{0}S\mathtt{1}
 \end{align*}\]</span></p>
+</div>
 </section>
-<section id="chomsky-normal-form-2" class="slide level2">
+<section id="chomsky-normal-form-1" class="slide level2">
 <h2>Chomsky Normal Form</h2>
 <p><strong>Theorem.</strong> Any context-free grammar can be rewritten
 so the rules all have the form <span class="math inline">\(A \rightarrow
@@ -1894,13 +1887,19 @@ where <span class="math inline">\(x\)</span> is a terminal and <span class="math
 form, than any derivation of <span class="math inline">\(|w|\)</span>
 takes <span class="math inline">\(2|w|-1\)</span> steps.</p>
 </section>
-<section id="a_textcfg-is-decidable" class="slide level2">
-<h2><span class="math inline">\(A_\text{CFG}\)</span> is decidable</h2>
+<section id="theorem-a_textcfg-is-decidable" class="slide level2">
+<h2>Theorem: <span class="math inline">\(A_\text{CFG}\)</span> is
+decidable</h2>
 <p><span class="math inline">\(A_\text{CFG} = \{ \langle G, w\rangle
 \mid G \text{ is a CFG generating } w\}\)</span></p>
+<div class="fragment">
+<p><strong>Corollary.</strong> Every context-free language is
+decidable.</p>
+</div>
 </section>
-<section id="e_textcfg-is-decidable" class="slide level2">
-<h2><span class="math inline">\(E_\text{CFG}\)</span> is decidable</h2>
+<section id="theorem-e_textcfg-is-decidable" class="slide level2">
+<h2>Theorem: <span class="math inline">\(E_\text{CFG}\)</span> is
+decidable</h2>
 <p><span class="math inline">\(E_\text{CFG} = \{ \langle G \rangle \mid
 G \text{ is a CFG and } L(G) = \emptyset \}\)</span></p>
 </section></section>

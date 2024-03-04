@@ -50,9 +50,7 @@ S & \rightarrow \mathtt{0}S\mathtt{1}
 
 Proof: Add variables as needed, and add rules to maintain the grammar.
 
-## Chomsky Normal Form
-
-**Theorem.** Any context-free grammar can be rewritten so the rules all have the form $A \rightarrow BC$ or $A \rightarrow x$, where $x$ is a terminal and $A,B,C$ are variables, where $B\neq S$ and $C \neq S$. (We also allow $S \rightarrow \varepsilon$.)
+. . .
 
 Example: Convert the following to Chomsky Normal Form.
 
@@ -67,11 +65,15 @@ S & \rightarrow \mathtt{0}S\mathtt{1}
 
 **Lemma.** If a grammar is expressed in Chomsky normal form, than any derivation of $|w|$ takes $2|w|-1$ steps.
 
-## $A_\text{CFG}$ is decidable
+## Theorem: $A_\text{CFG}$ is decidable
 
 $A_\text{CFG} =  \{ \langle G, w\rangle \mid G \text{ is a CFG generating } w\}$
 
-## $E_\text{CFG}$ is decidable
+. . .
+
+**Corollary.** Every context-free language is decidable.
+
+## Theorem: $E_\text{CFG}$ is decidable
 
 $E_\text{CFG} = \{ \langle G \rangle \mid G \text{ is a CFG and } L(G) = \emptyset \}$
 

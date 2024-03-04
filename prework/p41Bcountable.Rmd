@@ -17,13 +17,16 @@ fnames <- sample(c("Ky", "Curtis", "Micah", "Todd", "Andrew", "Meghan", "Allie",
 
 Write your preliminary solutions to each problem and submit a PDF on Canvas. The names in brackets indicate the subset responsible for presenting the problem.
 
-1. Explain why the floor function $f : \mathbb{R} \longrightarrow \mathbb{N}$ given by $f(x) = \lfloor x \rfloor$ is not one-to-one.
+1. [`r paste(fnames[1:3], sep = ',')`] Determine whether each of the following functions is one-to-one, and explain why/why not.
+    a. $f : \mathbb{R} \longrightarrow \mathbb{N}$ given by $f(x) = \lfloor x \rfloor$ (the floor function)
+    b. $f : \mathbb{Z} \longrightarrow \mathbb{N}$ given by $f(x) = x^2 + 1$.
+    c. $f : \mathbb{N} \longrightarrow \mathbb{N}$ given by $f(x) = x^2 + 1$.
 
-2. [`r paste(fnames[1:3], sep = ',')`] Prove that the integers $\mathbb{Z}$ are countable.
+2. [`r paste(fnames[4:6], sep = ',')`] Prove that the integers $\mathbb{Z}$ are countable.
 
-3. [`r paste(fnames[4:6], sep = ',')`] Recall the argument that shows that $\mathbb{Q}$ is countable. Generalize the argument to show that $X \times Y$ is countable, for any countable $X$ and $Y$. Conclude that $X_1 \times X_2 \times \cdots \times X_n$ is countable for a finite collection of countable sets $X_i$. (Recall that $X \times Y$ is the set of all ordered pairs $(x,y)$ with $x \in X$ and $y\in Y$.)
+3. [`r paste(fnames[7:9], sep = ',')`] Recall the argument that shows that $\mathbb{Q}$ is countable. Generalize the argument to show that $X \times Y$ is countable, for any countable $X$ and $Y$. Conclude that $X_1 \times X_2 \times \cdots \times X_n$ is countable for a finite collection of countable sets $X_i$. (Recall that $X \times Y$ is the set of all ordered pairs $(x,y)$ with $x \in X$ and $y\in Y$.)
 
-4. [`r paste(fnames[7:9], sep = ',')`] Is the set of all polynomials $a_0 + a_1x + \cdots + a_nx^n$ with integer coefficients countable? Justify your answer.
+4. [`r paste(fnames[10:13], sep = ',')`] Is the set of all polynomials $a_0 + a_1x + \cdots + a_nx^n$ with integer coefficients countable? Justify your answer.
 
 \medskip
 \mbox{}\xrfill[2pt]{1pt}\textsc{\small begin your solutions below this line}\xrfill[2pt]{1pt}\mbox{}
