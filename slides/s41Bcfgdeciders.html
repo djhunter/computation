@@ -1857,6 +1857,32 @@ S &amp; \rightarrow \varepsilon \\
 S &amp; \rightarrow \mathtt{0}S\mathtt{1}
 \end{align*}\]</span></p>
 </section>
+<section id="a_textcfg" class="slide level2">
+<h2><span class="math inline">\(A_\text{CFG}\)</span></h2>
+<p>Can we show <span class="math inline">\(A_\text{CFG} = \{ \langle G,
+w\rangle \mid G \text{ is a CFG generating } w\}\)</span> is
+decidable?</p>
+<ul>
+<li class="fragment">We could simulate a pushdown automaton using a TM,
+but would it always halt?</li>
+<li class="fragment">We could have a TM try applying derivation rules to
+get <span class="math inline">\(w\)</span>, but how do we know when we
+have tried enough rules (and will it always halt)?</li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[\begin{align*}
+S &amp; \rightarrow U\\
+U &amp; \rightarrow V \\
+V &amp; \rightarrow S \\
+  &amp; \vdots &amp;
+\end{align*}\]</span></p>
+</div>
+</section></section>
+<section>
+<section id="decidable-problems-using-grammars" class="title-slide slide level1">
+<h1>Decidable problems using grammars</h1>
+
+</section>
 <section id="chomsky-normal-form" class="slide level2">
 <h2>Chomsky Normal Form</h2>
 <p><strong>Theorem.</strong> Any context-free grammar can be rewritten

@@ -44,6 +44,27 @@ S & \rightarrow \varepsilon \\
 S & \rightarrow \mathtt{0}S\mathtt{1}
 \end{align*}
 
+## $A_\text{CFG}$
+
+Can we show $A_\text{CFG} =  \{ \langle G, w\rangle \mid G \text{ is a CFG generating } w\}$ is decidable?
+
+>- We could simulate a pushdown automaton using a TM, but would it always halt?
+>- We could have a TM try applying derivation rules to get $w$, but how do we know when we have tried enough rules (and will it always halt)?
+
+. . .
+
+\begin{align*}
+S & \rightarrow U\\
+U & \rightarrow V \\
+V & \rightarrow S \\
+  & \vdots &
+\end{align*}
+
+
+
+
+# Decidable problems using grammars
+
 ## Chomsky Normal Form
 
 **Theorem.** Any context-free grammar can be rewritten so the rules all have the form $A \rightarrow BC$ or $A \rightarrow x$, where $x$ is a terminal and $A,B,C$ are variables, where $B\neq S$ and $C \neq S$. (We also allow $S \rightarrow \varepsilon$.)
