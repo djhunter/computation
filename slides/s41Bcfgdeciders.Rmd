@@ -44,7 +44,12 @@ S & \rightarrow \varepsilon \\
 S & \rightarrow \mathtt{0}S\mathtt{1}
 \end{align*}
 
-## $A_\text{CFG}$
+## Are context free languages decidable?
+
+We know that all pushdown automata can be simulated by TMs. But pushdown automata (and hence their TM simulators) are not guaranteed to halt. So context free languages are recognizable, but are they decidable?
+
+
+## Related question: $A_\text{CFG}$
 
 Can we show $A_\text{CFG} =  \{ \langle G, w\rangle \mid G \text{ is a CFG generating } w\}$ is decidable?
 
@@ -57,11 +62,10 @@ Can we show $A_\text{CFG} =  \{ \langle G, w\rangle \mid G \text{ is a CFG gener
 S & \rightarrow U\\
 U & \rightarrow V \\
 V & \rightarrow S \\
+V & \rightarrow UW \\
+W & \rightarrow \varepsilon \\
   & \vdots &
 \end{align*}
-
-
-
 
 # Decidable problems using grammars
 

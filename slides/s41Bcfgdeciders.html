@@ -1857,8 +1857,15 @@ S &amp; \rightarrow \varepsilon \\
 S &amp; \rightarrow \mathtt{0}S\mathtt{1}
 \end{align*}\]</span></p>
 </section>
-<section id="a_textcfg" class="slide level2">
-<h2><span class="math inline">\(A_\text{CFG}\)</span></h2>
+<section id="are-context-free-languages-decidable" class="slide level2">
+<h2>Are context free languages decidable?</h2>
+<p>We know that all pushdown automata can be simulated by TMs. But
+pushdown automata (and hence their TM simulators) are not guaranteed to
+halt. So context free languages are recognizable, but are they
+decidable?</p>
+</section>
+<section id="related-question-a_textcfg" class="slide level2">
+<h2>Related question: <span class="math inline">\(A_\text{CFG}\)</span></h2>
 <p>Can we show <span class="math inline">\(A_\text{CFG} = \{ \langle G,
 w\rangle \mid G \text{ is a CFG generating } w\}\)</span> is
 decidable?</p>
@@ -1874,6 +1881,8 @@ have tried enough rules (and will it always halt)?</li>
 S &amp; \rightarrow U\\
 U &amp; \rightarrow V \\
 V &amp; \rightarrow S \\
+V &amp; \rightarrow UW \\
+W &amp; \rightarrow \varepsilon \\
   &amp; \vdots &amp;
 \end{align*}\]</span></p>
 </div>
