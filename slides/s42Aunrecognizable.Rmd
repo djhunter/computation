@@ -57,7 +57,7 @@ A *Turing Machine* is a 7-tuple $(Q, \Sigma, \Gamma, \delta, q_0, q_\mathrm{acce
 
 . . .
 
-*A.* There are countably many Turing Machines.
+*A.* There are countably many Turing Machines. (They are representable as finite binary strings, and the set to all finite binary strings is $\{\mathtt{0},\mathtt{1}\}^\ast$, which is countable.)
 
 ## Languages
 

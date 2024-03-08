@@ -17,13 +17,13 @@ fnames <- sample(c("Ky", "Curtis", "Micah", "Todd", "Andrew", "Meghan", "Allie",
 
 Write your preliminary solutions to each problem and submit a PDF on Canvas. The names in brackets indicate the subset responsible for presenting the problem.
 
-1. [`r paste(fnames[1:3], sep = ',')`] Let $\mathcal{B}$ be the set of all infinite binary sequences. Use a diagonalization argument to explain why $\mathcal{B}$ is uncountable.
+1. Let $\mathcal{B}$ be the set of all infinite binary sequences. In class, we used a diagonalization argument to prove that $\mathcal{B}$ is uncountable. Let $\mathcal{B}_\text{F1}$ be the set of all infinite binary sequences with a finite number of $\mathtt{1}$'s.
+    a. [`r paste(fnames[1:3], sep = ',')`] Explain where the diagonalization argument fails when applied to $\mathcal{B}_\text{F1}$.
+    b. [`r paste(fnames[4:6], sep = ',')`] Prove that $\mathcal{B}_\text{F1}$ is, in fact, countable.
 
-2. [`r paste(fnames[4:6], sep = ',')`] Recall that a \textit{one-to-one correspondence} is a function that is both one-to-one and onto. Describe a natural one-to-one correspondence $f:\mathcal{B} \longrightarrow \mathcal{P}(\mathbb{N})$, where $\mathcal{P}(\mathbb{N})$ is the power set of $\mathbb{N}$ and $\mathcal{B}$ is the set of all infinite binary sequences. (This shows that $\mathcal{P}(\mathbb{N})$ is uncountable.)
+2. [`r paste(fnames[7:9], sep = ',')`] Let $A_\text{TM} = \{ \langle M, w\rangle \mid M \text{ is a TM that accepts } w\}$. Prove that $A_\text{TM}$ is recognizable by giving a description of a TM that recognizes it. Is your TM a decider? Explain why or why not.
 
-3. [`r paste(fnames[7:9], sep = ',')`] Let $A_\text{TM} = \{ \langle M, w\rangle \mid M \text{ is a TM that accepts } w\}$. Prove that $A_\text{TM}$ is recognizable by giving a description of a TM that recognizes it. Is your TM a decider? Explain why or why not.
-
-4. [`r paste(fnames[10:13], sep = ',')`] Find a countably infinite collection of countably infinite disjoint subsets of $\mathbb{N}$. That is, give a description of an infinite sequence of subsets $X_1, X_2, X_3, \ldots$ of natural numbers such that $X_i \cap X_j = \emptyset$ whenever $i\neq j$ and such that each $X_i$ is countably infinite.
+3. [`r paste(fnames[10:13], sep = ',')`] Find a countably infinite collection of countably infinite disjoint subsets of $\mathbb{N}$. That is, give a description of an infinite sequence of subsets $X_1, X_2, X_3, \ldots$ of natural numbers such that $X_i \cap X_j = \emptyset$ whenever $i\neq j$ and such that each $X_i$ is countably infinite.
 
 \medskip
 \mbox{}\xrfill[2pt]{1pt}\textsc{\small begin your solutions below this line}\xrfill[2pt]{1pt}\mbox{}
