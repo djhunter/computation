@@ -57,6 +57,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 18. [Decidable Languages](slides/s41Adecidable.html)
 19. [Decidable Languages involving Grammars](slides/s41Bcfgdeciders.html)
 20. [Uncountablility and Recognizability](slides/s42Aunrecognizable.html)
+21. [An Undecidable Language](slides/s42Bundecidable.html)
 
 ---
 # exam 2 (chapter 2) wednesday, 2/28
@@ -84,6 +85,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 18. [Decidable Languages](prework/p41Adecideable.pdf)
 19. [Countable Sets](prework/p41Bcountable.pdf)
 20. [Uncountability and non-recognizable languages](prework/p42Aunrecognizable.pdf)
+21. [More decidability and recognizability problems](prework/p42Bdecidability.pdf)
 
 ---
 ---

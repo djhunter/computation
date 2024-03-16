@@ -1,53 +1,21 @@
 ---
 title: "Section 4.2: An Undecidable Language"
-output:
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    reveal_plugins: notes
-    self_contained: no
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-date: "March 4, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-```{r include=FALSE}
-set.seed(3220)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
-```
-
-# Prework Presentations
-
-## 1. [`r paste(fnames[1:3], sep = ',')`] 
-
-Let $\mathcal{B}$ be the set of all infinite binary sequences. Use a diagonalization argument to explain why $\mathcal{B}$ is uncountable.
-
-## 3. [`r paste(fnames[4:6], sep = ',')`] 
-
-- In class we described a TM $M$ that decided the language $A_\text{CFG} = \{\langle G, w \rangle \mid G \text{ is a CFG that generates } w\}$. Let $X$ be any context-free language. Prove that $X$ is decidable by building a decider for $X$. (Use $M$ and $X$ in your construction.)
-- Let $A_\text{TM} = \{ \langle M, w\rangle \mid M \text{ is a TM that accepts } w\}$. Prove that $A_\text{TM}$ is recognizable by giving a description of a TM that recognizes it. Is your TM a decider? Explain why or why not.
-
-## 4. [`r paste(fnames[7:9], sep = ',')`] 
-
-Find a countably infinite collection of countably infinite disjoint subsets of $\mathbb{N}$. That is, give a description of an infinite sequence of subsets $X_1, X_2, X_3, \ldots$ of natural numbers such that $X_i \cap X_j = \emptyset$ whenever $i\neq j$ and such that each $X_i$ is countably infinite.
 
 # Languages as Problems
 

@@ -3,27 +3,27 @@ geometry: left=0.75in, right=0.75in, top=0.8in, bottom=0.4in
 classoption: twoside
 output: 
   pdf_document:
-    keep_tex: true
+    keep_tex: false
     includes:
       in_header: preworkheader.tex
 ---
 
 ```{r include=FALSE}
-set.seed(3420)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+set.seed(31824)
+fnames <- sample(c("Ky", "Curtis", "Micah", "Todd", "Andrew", "Meghan", "Allie", "David", "Connor", "Levi", "Ben", "Grace", "Joshua"))
 ```
 
 ## Prework 4.2b: More decidability and recognizability problems
 
-Write your preliminary solutions to each problem on this sheet of paper (front and back). Use additional sheets if necessary. The names in brackets indicate the subset responsible for presenting the problem.
+Write your preliminary solutions to each problem and submit a PDF on Canvas. The names in brackets indicate the subset responsible for presenting the problem.
 
-1. Suppose that $A$ and its complement $\overline{A}$ are both recognizable. Prove that $A$ is decidable. 
+1. [`r paste(fnames[1:3], sep = ',')`] Suppose that $A$ and its complement $\overline{A}$ are both recognizable. Prove that $A$ is decidable. 
 
-2. [`r paste(fnames[1:3], sep = ',')`] Sometimes pushdown automata have states that are never entered on any input. Construct a TM decider that will input a PDA description $\langle P \rangle$ and accept if $P$ has such a state and reject if $P$ doesn't have such a state. (Hint: We know that $E_\text{CFG}$ is decidable, so there is a TM decider $M_\emptyset$ that decides $E_\text{PDA} = \{\langle P \rangle \mid P \text{ is a PDA and } L(P) = \emptyset\}$. Use $M_\emptyset$ in your construction.)
+2. [`r paste(fnames[4:6], sep = ',')`] Sometimes pushdown automata have states that are never entered on any input. Construct a TM decider that will input a PDA description $\langle P \rangle$ and accept if $P$ has such a state and reject if $P$ doesn't have such a state. (Hint: We know that $E_\text{CFG}$ is decidable, so there is a TM decider $M_\emptyset$ that decides $E_\text{PDA} = \{\langle P \rangle \mid P \text{ is a PDA and } L(P) = \emptyset\}$. Use $M_\emptyset$ in your construction.)
 
-3. [`r paste(fnames[4:6], sep = ',')`] We say that a language is *closed under reversal* if, for every $w$ in the language, its reverse $w^R$ is also in the language. Construct a TM decider that inputs a DFA description $\langle D \rangle$ and accepts iff $L(D)$ is closed under reversal. (Hint: We have a decider for $EQ_\text{DFA}$.)
+3. [`r paste(fnames[7:9], sep = ',')`] We say that a language is *closed under reversal* if, for every $w$ in the language, its reverse $w^R$ is also in the language. Construct a TM decider that inputs a DFA description $\langle D \rangle$ and accepts iff $L(D)$ is closed under reversal. (Hint: We have a decider for $EQ_\text{DFA}$.)
 
-4. [`r paste(fnames[7:9], sep = ',')`] Let $Q = \{\langle D \rangle \mid D \text{ is a DFA and } L(D) \text{ contains a string with } \mathtt{01110} \text{ as a substring}\}$. Show that $Q$ is decidable by building a TM decider for it. (Hint: We have a decider for $E_\text{DFA}$.)
+4. [`r paste(fnames[10:13], sep = ',')`] Let $Q = \{\langle D \rangle \mid D \text{ is a DFA and } L(D) \text{ contains a string with } \mathtt{01110} \text{ as a substring}\}$. Show that $Q$ is decidable by building a TM decider for it. (Hint: We have a decider for $E_\text{DFA}$.)
 
 \medskip
 \mbox{}\xrfill[2pt]{1pt}\textsc{\small begin your solutions below this line}\xrfill[2pt]{1pt}\mbox{}
