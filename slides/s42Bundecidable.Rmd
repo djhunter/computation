@@ -69,7 +69,9 @@ Suppose to the contrary that a TM $H$ decides $A_\text{TM}$.
 
 ## The Halting Problem
 
-Given $\langle M, w\rangle$ a description of a TM $M$ and a string $w$, is there a TM decider $T$ that will accept if $M$ halts on $w$ and reject if it doesn't?
+Given $\langle M, w\rangle$ a description of a TM $M$ and a string $w$, is there a TM decider $T$ that will accept if $M$ *halts* on $w$ and reject if it doesn't?
+
+. . .
 
 Suppose there were. Then we could decide the acceptance problem:
 

@@ -1889,7 +1889,8 @@ undecidable.
 <h2>The Halting Problem</h2>
 <p>Given <span class="math inline">\(\langle M, w\rangle\)</span> a
 description of a TM <span class="math inline">\(M\)</span> and a string
-<span class="math inline">\(w\)</span>, is there a TM decider <span class="math inline">\(T\)</span> that will accept if <span class="math inline">\(M\)</span> halts on <span class="math inline">\(w\)</span> and reject if it doesn’t?</p>
+<span class="math inline">\(w\)</span>, is there a TM decider <span class="math inline">\(T\)</span> that will accept if <span class="math inline">\(M\)</span> <em>halts</em> on <span class="math inline">\(w\)</span> and reject if it doesn’t?</p>
+<div class="fragment">
 <p>Suppose there were. Then we could decide the acceptance problem:</p>
 <ul>
 <li>Given <span class="math inline">\(\langle M, w\rangle\)</span>, run
@@ -1899,6 +1900,7 @@ description of a TM <span class="math inline">\(M\)</span> and a string
 </ul>
 <p>Since the acceptance problem is undecidable, the halting problem must
 be also.</p>
+</div>
 </section></section>
     </div>
   </div>
