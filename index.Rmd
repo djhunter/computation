@@ -58,9 +58,15 @@ This site provides slides, assignments, and other resources that I use in my cla
 19. [Decidable Languages involving Grammars](slides/s41Bcfgdeciders.html)
 20. [Uncountablility and Recognizability](slides/s42Aunrecognizable.html)
 21. [An Undecidable Language](slides/s42Bundecidable.html)
+22. [Reduction Arguments](slides/s51Areduction.html)
 
 ---
-# exam 2 (chapter 2) wednesday, 2/28
+# 51B comphist friday 3/22
+# 52A post correspondence 3/25
+# 53A map reduction 3/27
+# 53B more map red 4/3
+# 53C chapters 4-5 review 4/5
+# exam 3 (chapters 4-5) monday, 4/8
 ---
 
 # Prework
@@ -86,6 +92,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 19. [Countable Sets](prework/p41Bcountable.pdf)
 20. [Uncountability and non-recognizable languages](prework/p42Aunrecognizable.pdf)
 21. [More decidability and recognizability problems](prework/p42Bdecidability.pdf)
+22. [Reduction Arguments](prework/p51Areductions.pdf)
 
 ---
 ---
