@@ -1,65 +1,42 @@
 ---
 title: "Section 5.1: Reduction Arguments"
-output:
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-  html_document:
-    self_contained: true
-    theme: spacelab
-    code_download: true
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
+    self_contained: true
+    theme: night
     highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    self_contained: yes
-    theme: black
+    css: slidesdjh.css
+    center: false
     transition: slide
-date: "March 16, 2020"
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
 
-# Remote Learning Adjustments
+# An Unrecognizable Language
 
-## Class Routine
+## Prework #1
 
-- Meet Online at the usual time.
-    + Google Meet today.
-    + Maybe Discord in future?
-    + Use earbuds!
-- Submit Prework the night before on Canvas.
-    + Use a scanner app to scan your work to PDF (multipage if necessary).
-    + We can present solutions online. You can share screens.
+1. Suppose that $A$ and its complement $\overline{A}$ are both recognizable. Prove that $A$ is decidable. 
 
-## Slides
+## $\overline{A_\text{TM}}$ is unrecognizable
 
-- Slides will have more detail.
-- PDF versions will be posted on Canvas, as usual.
-    + Look for "s_nn_foo.pdf" in the Files section.
-    + Print these out for taking notes?
+>- $A_\text{TM}$ is recognizable (last prework).
+>- $A_\text{TM}$ is undecidable (last time).
+>    - Therefore, $A_\text{TM}$ and $\overline{A_\text{TM}}$ can't both be recognizable (today's prework).
+>- So $\overline{A_\text{TM}}$ is unrecognizable.
 
-## Office Hours
+# Gödel, Escher, Bach
 
-- Discord text chats remain there for everyone to see.
-- Can post images.
-- Can share screens.
-- Can talk on voice channel.
+## {data-background="https://i.pinimg.com/originals/88/0e/1f/880e1f7c71ecf950de5dde824a900270.jpg" data-background-size="contain"}
 
-## Exams
+## "Limitative Theorems"
 
-- The remaining exams will be open-book exams.
-- More-or-less the same.
-- Download a PDF, write on it, scan it, upload it to Canvas.
-- Don't collaborate (honor system).
+All the limitative Theorems of ... the theory of computation suggest that once the ability to represent your own structure has reached a certain critical point, that is the kiss of death: it guarantees that you never represent yourself totally. [These theorems] all have the flavor of some ancient fairy tale which warns you that "To seek self-knowledge is to embark on a journey which will always be incomplete, cannot be charted on any map, will never halt, cannot be described." -- Douglas Hofstadter
 
 # Limits of Computation, so far
 
@@ -89,8 +66,6 @@ We used properties of TM's to prove the following.
 - $A_\text{TM}$ is **not** decidable!
 
 We also observed that $\overline{A_\text{TM}}$ is not recognizable.
-
-## {data-background="https://i.pinimg.com/originals/88/0e/1f/880e1f7c71ecf950de5dde824a900270.jpg" data-background-size="contain"}
 
 ## Undecidability
 
@@ -138,7 +113,7 @@ Since $A_\text{TM}$ is undecidable, $\mathit{HALT}_\text{TM}$ must be also.
 
 ## Example: $E_\text{TM}$ is undecidable
 
-We show that $A_\text{TM}$ reduces to $E\text{TM}$.
+We show that $A_\text{TM}$ reduces to $E_\text{TM}$.
 
 - Suppose $R$ is a decider for $E_\text{TM}$.
 - Given a string $w$ and a TM $M$, we can build a machine $M_w$:
