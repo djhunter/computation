@@ -59,6 +59,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 20. [Uncountablility and Recognizability](slides/s42Aunrecognizable.html)
 21. [An Undecidable Language](slides/s42Bundecidable.html)
 22. [Reduction Arguments](slides/s51Areduction.html)
+23. [Computation Histories](slides/s51Bcomphist.html)
 
 ---
 # 51B comphist friday 3/22
@@ -93,6 +94,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 20. [Uncountability and non-recognizable languages](prework/p42Aunrecognizable.pdf)
 21. [More decidability and recognizability problems](prework/p42Bdecidability.pdf)
 22. [Reduction Arguments](prework/p51Areductions.pdf)
+23. [Arguments using Computation Histories](prework/p51Bcomphist.pdf)
 
 ---
 ---
