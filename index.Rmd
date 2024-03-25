@@ -60,6 +60,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 21. [An Undecidable Language](slides/s42Bundecidable.html)
 22. [Reduction Arguments](slides/s51Areduction.html)
 23. [Computation Histories](slides/s51Bcomphist.html)
+24. [The Post Correspondence Problem](slides/s52Apostcorrprob.html)
 
 ---
 # 51B comphist friday 3/22
@@ -95,6 +96,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 21. [More decidability and recognizability problems](prework/p42Bdecidability.pdf)
 22. [Reduction Arguments](prework/p51Areductions.pdf)
 23. [Arguments using Computation Histories](prework/p51Bcomphist.pdf)
+24. [The Post Correspondence Problem](prework/p52Apostcorprob.pdf)
 
 ---
 ---
