@@ -1,47 +1,30 @@
 ---
 title: "Section 5.2: The Post Correspondence Problem"
-output:
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    self_contained: yes
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-date: "March 20, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
 
-# Prework Presentations
-
-## Online presentations
-
-2. Sophia, Drake, Trevor$^\ast$
-3. (Wesley, Sam, James)
-4. Carolyn$^\ast$, Tristan, Ryley
-    
 # How do I explain to my parents what this course is about?
 
 ## The theoretical limits of computing
 
 - Some problems are *undecidable*.
 - Undecidable problems are *problems that computers can't solve*.
+
+. . .
 
 Like what?
 
@@ -189,7 +172,7 @@ Given a TM $M$ and an input $w = s_1s_2\cdots s_l$,
 
 Study pp. 228--232 in the book.
 
-- Don't get to bogged down in the technicalities.
+- Don't get too bogged down in the technicalities.
 - Try to understand how the dominos fit together to *check* whether a computation history is accepting.
 - Exercises on Prework for this.
 
