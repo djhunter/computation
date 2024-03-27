@@ -95,7 +95,7 @@ Notice that $\langle M \rangle \in E_\text{TM} \Longleftrightarrow \langle M, M_
         + If $x = w$, run $M$ on $w$ and accept if $M$ does.
     - *Output* $\langle M_w \rangle$.
 
-Notice that $\langle M, w\rangle \in A_\text{TM} \Longleftrightarrow \langle M_w \rangle \not\in E_\text{TM}$. 
+Notice that $\langle M, w\rangle \in A_\text{TM} \Longleftrightarrow \langle M_w \rangle \not\in E_\text{TM} \Longleftrightarrow \langle M_w \rangle \in \overline{E_\text{TM}}$. 
 
 - Since $A_\text{TM}$ reduces to $\overline{E_\text{TM}}$, we have shown that $\overline{E_\text{TM}}$ is undecidable.
 - But we already knew that, because we already proved that $E_\text{TM}$ is undecidable, and (un)decidability is not affected by taking complements.
