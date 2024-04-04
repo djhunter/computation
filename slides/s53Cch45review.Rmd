@@ -1,73 +1,21 @@
 ---
 title: "Chapters 4-5 Review: Decidability, Recognizability, and Reduction"
-output:
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    self_contained: yes
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-date: "March 27, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-# Exam #3
-
-## Exam #3 Plan
-
-- Take-home, open book, open slides, open notes.
-- Do not collaborate.
-- Do not use outside resources (e.g., Internet or other books).
-- Hand in a PDF (written or typed) to Canvas.
-- Will open this afternoon (around 1pm). Due 11:59pm Monday.
-    - No class meeting on Monday.
-    - No time limit (other than due date).
-
-# Prework Presentations
-
-```{r include=FALSE}
-set.seed(32520)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
-```
-
-## 1. 
-
-Show that $\overline{E_\text{TM}}$ is recognizable by describing a TM that accepts $\langle M \rangle$ whenever $L(M) \neq \emptyset$. What does your TM do if $L(M) = \emptyset$?
-
-## 2. [`r paste(fnames[1:3], sep = ',')`] 
-
-Show that a language $A$ is recognizable if and only if $A \leq_\text{m} A_\text{TM}$.
-
-## 3. [`r paste(fnames[4:6], sep = ',')`] 
-
-Let $J = \{w \mid w=\mathtt{0}x \text{ for some } x\in A_\text{TM}\text{, or } w=\mathtt{1}y \text{ for some } y \in \overline{A_\text{TM}}\}$.
-    a. Show that $J$ is not recognizable by showing that $\overline{A_\text{TM}} \leq_\text{m} J$. 
-    b. Show that $\overline{J}$ is not recognizable by showing that $A_\text{TM} \leq_\text{m} J$. 
-
-## 4. [`r paste(fnames[7:9], sep = ',')`] 
-
-Let $J$ be as given in #3. Show that $J \leq_\text{m} \overline{J}$.
-
-## 5. 
-
-Let $X = \{\langle M, w\rangle \mid M \text{ is a single-tape TM that never writes over its input when computing on }w\}$. Suppose (to the contrary) that $D$ is a TM that decides $X$. Describe how to use $D$ to build a TM $E$ that decides $A_\text{TM}$. What does this prove about $X$? 
 
 # Main Results of Chapters 4
 
