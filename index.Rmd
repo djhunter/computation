@@ -63,6 +63,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 24. [The Post Correspondence Problem](slides/s52Apostcorrprob.html)
 25. [Mapping Reducibility](slides/s53Amapreduce.html)
 26. [More Mapping Reducibility](slides/s53Bmoremapreduce.html)
+27. [Review for Test #3](slides/s53Cch45review.html)
 
 ---
 # 51B comphist friday 3/22
