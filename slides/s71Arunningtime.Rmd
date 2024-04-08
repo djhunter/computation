@@ -1,31 +1,20 @@
 ---
 title: "Section 7.1: Running Time"
-output:
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    self_contained: yes
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-date: "April 1, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
 
 # Chapter 7
@@ -74,12 +63,6 @@ We adopt the book's abuse of notation. Here "=" doesn't mean equals. It means, "
 - If $f_1(n) = O(g_1(n))$ and $f_2(n) = O(g_2(n))$, then $f_1(n)f_2(n) = O(g_1(n)g_2(n))$
 - Exponential and log rules in Prework 7.1a.
 
-## Check your understanding
-
-See the #macs-135 channel for a link to a (non-graded) quiz.
-
-https://forms.gle/zHoN3LGK4pUfzte17
-
 ## Usually big-Oh is a tight bound
 
 - If $f(n) = O(g(n))$, we call $g(n)$ an *asymptotic upper bound* for $f(n)$.
@@ -108,20 +91,7 @@ Consider the following TM: On input $w$
     
 ## Activity
 
-- See the #macs-135 channel for a link to the shared Google Doc.
-- Go to the voice channel (Group 1, Group 2, Group 3) corresponding to your group. 
-- The first person listed should be the primary writer on the board, but everyone can write.
-
-https://docs.google.com/document/d/1AMCvQfaynxl5Cnb8teRBrjR4yQFADnRtzJXwAE5KBnI/edit?usp=sharing
-
-Groups: 
-
-1. Tristan, Sophia, James
-2. Ryley, Carolyn, Sam
-3. Trevor, Drake, Wesley
-
 For each machine, determine how many operations are performed on each step, on an input string of length n, and give a big-Oh upper bound on the total number of operations performed.
-
 
 ## Moral
 
