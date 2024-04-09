@@ -1,0 +1,55 @@
+---
+geometry: left=0.75in, right=0.75in, top=0.8in, bottom=0.4in
+classoption: twoside
+output: 
+  pdf_document:
+    keep_tex: false
+    includes:
+      in_header: preworkheader.tex
+---
+
+**For each machine, determine how many operations are performed on each step, on an input string of length n, and give a big-Oh upper bound on the total number of operations performed.**
+
+\bigskip
+
+*Group 1:*
+
+```
+On input string w:
+1. Scan across the tape and reject if a 0 is found to the right of a 1.
+2. Repeat if both 0s and 1s remain on the tape:
+   	3. Scan across the tape, crossing off a single 0 and a single 1.
+4. If 0s still remain after all the 1s have been crossed off, or if 
+   1s still remain after all the 0s have been crossed off, reject. 
+   Otherwise, if neither 0s nor 1s remain on the tape, accept.
+```
+
+\vspace{1.5in}
+
+*Group 2:*
+
+```
+On input string w:
+1. Scan across the tape and reject if a 0 is found to the right of a 1.
+2. Repeat as long as some 0s and some 1s remain on the tape:
+3. Scan across the tape, checking whether the total number of 0s and 1s 
+   remaining is even or odd. If it is odd, reject. 
+4. Scan again across the tape, crossing off every other 0 starting with the 
+   first 0, and then crossing off every other 1 starting with the first 1. 
+5. If no 0s and no 1s remain on the tape, accept. Otherwise, reject.
+```
+
+\vspace{1.5in}
+
+*Group 3:*
+
+```
+On input string w:
+1. Scan across tape 1 and reject if a 0 is found to the right of a 1.
+2. Scan across the 0s on tape 1 until the first 1. At the same time, 
+   copy the 0s onto tape 2.
+3. Scan across the 1s on tape 1 until the end of the input. For each 1 
+   read on tape 1, cross off a 0 on tape 2. If all 0s are crossed off 
+   before all the 1s are read, reject.
+4. If all the 0s have now been crossed off, accept. If any 0s remain, reject. 
+```
