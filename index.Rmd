@@ -62,8 +62,8 @@ This site provides slides, assignments, and other resources that I use in my cla
 23. [Computation Histories](slides/s51Bcomphist.html)
 24. [The Post Correspondence Problem](slides/s52Apostcorrprob.html)
 25. [Mapping Reducibility](slides/s53Amapreduce.html)
-26. [More Mapping Reducibility](slides/s53Bmoremapreduce.html)
-27. [Review for Test #3](slides/s53Cch45review.html)
+26. [More Mapping Reducibility](slides/s53Bmoremapreduce.html) <br> [Review for Test #3](slides/s53Cch45review.html) <br> Exam #3
+27. [Running Time](slides/s71Arunningtime.html)
 
 ---
 # 51B comphist friday 3/22
@@ -102,6 +102,8 @@ This site provides slides, assignments, and other resources that I use in my cla
 24. [The Post Correspondence Problem](prework/p52Apostcorprob.pdf)
 25. [Mapping Reducibility](prework/p53Amapreduce.pdf)
 26. [Mapping reducibility and recognizability proofs](prework/p53Bmoremapreduce.pdf)
+27. [Running Time](prework/p71Arunningtime.pdf)
+
 
 ---
 ---
