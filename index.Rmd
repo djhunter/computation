@@ -64,6 +64,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 25. [Mapping Reducibility](slides/s53Amapreduce.html)
 26. [More Mapping Reducibility](slides/s53Bmoremapreduce.html) <br> [Review for Test #3](slides/s53Cch45review.html) <br> Exam #3
 27. [Running Time](slides/s71Arunningtime.html)
+28. [Polynomial versus Exponential Time](slides/s71Bpolyvsexp.html)
 
 ---
 # 51B comphist friday 3/22
@@ -103,6 +104,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 25. [Mapping Reducibility](prework/p53Amapreduce.pdf)
 26. [Mapping reducibility and recognizability proofs](prework/p53Bmoremapreduce.pdf)
 27. [Running Time](prework/p71Arunningtime.pdf)
+28. [Polynomial and Exponential Time](prework/p71Bpolyvsexp.pdf)
 
 
 ---

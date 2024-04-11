@@ -3,31 +3,34 @@ geometry: left=0.75in, right=0.75in, top=0.8in, bottom=0.4in
 classoption: twoside
 output: 
   pdf_document:
-    keep_tex: true
+    keep_tex: false
     includes:
       in_header: preworkheader.tex
 ---
 
 ```{r include=FALSE}
-set.seed(4320)
-fnames <- sample(c("Sam", "James", "Drake", "Wesley", "Sophia", "Carolyn", "Trevor", "Tristan", "Ryley"))
+set.seed(41224)
+fnames <- sample(c("Ky", "Curtis", "Micah", "Todd", "Andrew", "Meghan", "Allie", "David", "Connor", "Levi", "Ben", "Grace", "Joshua"))
 ```
 
 ## Prework 7.1b: Polynomial and Exponential Time
 
-1. Which is bigger (asymptotically), $n!$ or $n^n$? How about $\log(n!)$ or $\log(n^n)$?
+Write your preliminary solutions to each problem and submit a PDF on Canvas. The names in brackets indicate the subset responsible for presenting the problem.
 
-2. [`r paste(fnames[1:3], sep = ',')`] Refresh your memory about *graphs* by reading pages 10--13, if necessary. By default, when we say ``graph,'' we mean an undirected graph. A *complete graph* is a graph where every two vertices have an edge between them. A *Hamilton path* is a path in a graph that visits every vertex. How many Hamilton paths are there in a complete graph on $n$ vertices? 
 
-3. [`r paste(fnames[4:6], sep = ',')`] Give an asymptotic upper bound for the number of edges in a graph with $n$ vertices. If the $n$ vertices are represented by binary numbers, and the edges are represented by pairs of binary numbers (representing pairs of vertices), give an asymptotic upper bound for the length of a binary representation of a graph with $n$ vertices.
+1. [`r paste(fnames[1:3], sep = ',')`] Which is bigger (asymptotically), $n!$ or $n^n$? How about $\log(n!)$ or $\log(n^n)$?
 
-4. [`r paste(fnames[7:9], sep = ',')`] The *greatest common divisor* of two natural numbers $j$ and $k$ is the largest natural number $g$ such that $j$ and $k$ are both multiples of $g$. We write $g = \text{gcd}(j,k)$. Give an asymptotic estimate in terms of $n$ of the running time of the following TM that computes $\text{gcd}(j,k)$, where $n$ is the number of digits in both $j$ and $k$ combined. On input $\langle j, k\rangle$,
+2. [`r paste(fnames[3:5], sep = ',')`] Refresh your memory about *graphs* by reading pages 10--13, if necessary. By default, when we say ``graph,'' we mean an undirected graph. A *complete graph* is a graph where every two vertices have an edge between them. A *Hamilton path* is a path in a graph that visits every vertex. How many Hamilton paths are there in a complete graph on $n$ vertices? 
+
+3. [`r paste(fnames[6:8], sep = ',')`] Give an asymptotic upper bound for the number of edges in a graph with $n$ vertices. If the $n$ vertices are represented by binary numbers, and the edges are represented by pairs of binary numbers (representing pairs of vertices), give an asymptotic upper bound for the length of a binary representation of a graph with $n$ vertices.
+
+4. [`r paste(fnames[9:11], sep = ',')`] The *greatest common divisor* of two natural numbers $j$ and $k$ is the largest natural number $g$ such that $j$ and $k$ are both multiples of $g$. We write $g = \text{gcd}(j,k)$. Give an asymptotic estimate in terms of $n$ of the running time of the following TM that computes $\text{gcd}(j,k)$, where $n$ is the number of digits in both $j$ and $k$ combined. On input $\langle j, k\rangle$,
 
     1: For every number $i$ from 1 up to the largest of $j$ and $k$: Check to see if $i$ divides both $j$ and $k$. If it does save it by writing it at the front of the tape.  
     
     2: Erase the tape except for the last number saved. Accept.
 
-5. Two natural numbers are *relatively prime* if their greatest common divisor is 1. Let $\mathit{RELPRIME} = \{ \langle x, y \rangle \mid \text{gcd}(x,y) = 1 \}$. Explain how you could modify the TM in #4 to decide the language $\mathit{RELPRIME}$.
+5. [`r paste(fnames[12:13], sep = ',')`] Two natural numbers are *relatively prime* if their greatest common divisor is 1. Let $\mathit{RELPRIME} = \{ \langle x, y \rangle \mid \text{gcd}(x,y) = 1 \}$. Explain how you could modify the TM in #4 to decide the language $\mathit{RELPRIME}$.
 
 
 \medskip
