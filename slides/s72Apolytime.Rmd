@@ -1,54 +1,21 @@
 ---
 title: "Section 7.2: Polynomial Time Languages"
-output:
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-  html_document:
-    self_contained: true
-    theme: spacelab
-    code_download: true
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
+    self_contained: true
+    theme: night
     highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    self_contained: yes
-    theme: black
+    css: slidesdjh.css
+    center: false
     transition: slide
-date: "April 6, 2020"
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-# Prework 
-
-## Which is bigger?
-
-1. Which is bigger (asymptotically), $n!$ or $n^n$? How about $\log(n!)$ or $\log(n^n)$?
-
-Answer the poll on Discord.
-
-## Prework Discussion
-
-- See the #macs-135 channel for a link to the shared Google Doc.
-- Go to the voice channel (Group 1, Group 2, Group 3) corresponding to your group. 
-- The starred person should be the presenter/writer on the board, but everyone can write and/or paste images.
-
-Groups: 
-
-1. (Question 2) Ryley*, Wesley, Tristan
-2. (Question 3) Sam, James*, Trevor
-3. (Question 4) Drake*, Sophia, Carolyn
-
-https://docs.google.com/document/d/1hzvH4Xbit523XfDldFOTDmbDeA6VU8PAmahMt0eKaPQ/edit?usp=sharing
 
 # Languages and Machines; Problems and Algorithms
 
@@ -72,13 +39,13 @@ When we analyze how hard a problem is, we need to agree on a computational model
 
 Last time we found that single-tape and multi-tape machines are *polynomially equivalent*.
 
-- **Assumption:** Any reasonable deterministic conputational model is polynomially equivalent to a single-tape TM.
+- **Assumption:** Any reasonable deterministic computational model is polynomially equivalent to a single-tape TM.
 
 # The Class $\text{P}$
 
 ## $\text{P}$ is a set of languages/problems
 
-Given that any reasonable deterministic conputational model is polynomially equivalent to a single-tape TM,
+Given that any reasonable deterministic computational model is polynomially equivalent to a single-tape TM,
 
 - When we classify the difficulty of computational problems, we can only do so up to polynomial equivalence.
 - Instead of implementation-level descriptions, we can use high-level descriptions.
