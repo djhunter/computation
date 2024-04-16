@@ -1,55 +1,21 @@
 ---
 title: "Section 7.2: More Languages in P"
-output:
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    self_contained: yes
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-date: "April 8, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-# Prework 
-
-## Which is something else?
-
-1. Let $D$ be a TM decider for $E_\text{DFA}$. Classify each of the following objects as *languages*, *strings*, *machines*, or something else.
-$$ D, \quad E_\text{DFA}, \quad \langle D \rangle, \quad A_\text{TM}, \quad \mathit{RELPRIME}, \quad \langle 17,31\rangle, \quad \text{P}$$
-
-Answer the poll on Discord.
-
-## Prework Discussion
-
-- See the #macs-135 channel for a link to the shared Google Doc.
-- Go to the voice channel (Group 1, Group 2, Group 3) corresponding to your group. 
-- The starred person should be the presenter/writer on the board, but everyone can write and/or paste images.
-
-Groups: 
-
-1. (Question 2) Wesley, Tristan, Carolyn*
-2. (Question 3) Ryley, Sam, James*
-3. (Question 4) Sophia*, Drake, Trevor
-
-https://docs.google.com/document/d/1mJDi2_ocFsijEG7jtVGFgzY_8s8tZo4aMdihmEdcRgU/edit?usp=sharing
 
 # More languages in $\text{P}$
 
@@ -221,7 +187,7 @@ So $A \in \text{P}$.
 
 ## Formal Algorithm
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.height=500}
 library(knitr)
 include_graphics("images/cfgdecider.png", auto_pdf = TRUE)
 ```
