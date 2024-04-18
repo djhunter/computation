@@ -66,7 +66,8 @@ This site provides slides, assignments, and other resources that I use in my cla
 27. [Running Time](slides/s71Arunningtime.html)
 28. [Polynomial versus Exponential Time](slides/s71Bpolyvsexp.html)
 29. [Polynomial-Time Languages](slides/s72Apolytime.html)
-29. [More Languages in P](slides/s72BlanguagesinP.html)
+30. [More Languages in P](slides/s72BlanguagesinP.html)
+31. [Languages in NP](slides/s73AlanguagesinNP.html)
 
 ---
 # 51B comphist friday 3/22
@@ -109,7 +110,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 28. [Polynomial and Exponential Time](prework/p71Bpolyvsexp.pdf)
 29. [Polynomial-Time Languages](prework/p72Apolytime.pdf)
 30. [More Languages in P](prework/p72BlanguagesinP.pdf)
-
+31. [Languages in NP](prework/p73AlanguagesinNP.pdf)
 
 ---
 ---

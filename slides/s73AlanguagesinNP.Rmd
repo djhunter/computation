@@ -1,48 +1,21 @@
 ---
 title: "Section 7.3: Languages in NP"
-output:
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    self_contained: yes
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-date: "April 15, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-# Prework 
-
-## Prework Discussion
-
-- See the #macs-135 channel for a link to the shared Google Doc.
-- Go to the voice channel (Group 1, Group 2, Group 3) corresponding to your group. 
-- The starred person should be the presenter/writer on the board, but everyone can write and/or paste images.
-
-Groups: 
-
-1. (Question 1) Ryley, Tristan*, Wesley
-2. (Question 3) James, Carolyn*, Trevor
-3. (Question 4) Drake*, Sophia, Sam
-
-https://docs.google.com/document/d/1BWPEYwh3mmyxyg0bWEJEECIlvGb7aHJ94ioJ910J86I/edit?usp=sharing
 
 # Motivating Example: Euler Paths and Hamilton Paths
 
@@ -50,7 +23,7 @@ https://docs.google.com/document/d/1BWPEYwh3mmyxyg0bWEJEECIlvGb7aHJ94ioJ910J86I/
 
 - An *Euler path* in a graph $G$ is a path that visits every *edge* exactly once.
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.height=400}
 library(knitr) # add out.width="4cm" for pdf output
 include_graphics("images/petersen.png", auto_pdf = TRUE)
 ```
@@ -69,7 +42,7 @@ So $\mathit{EULER}$ is decidable in *polynomial time*.
 
 - A *Hamilton path* in a graph $G$ is a path that visits every *vertex* exactly once.
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.height=400}
 library(knitr) # add out.width="4cm" for pdf output
 include_graphics("images/petersen.png", auto_pdf = TRUE)
 ```
