@@ -1,48 +1,21 @@
 ---
 title: "Section 7.4: NP-Complete Languages"
-output:
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    self_contained: yes
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-date: "April 17, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-# Prework 
-
-## Prework Discussion
-
-- See the #macs-135 channel for a link to the shared Google Doc.
-- Go to the voice channel (Group 1, Group 2, Group 3) corresponding to your group. 
-- The starred person should be the presenter/writer on the board, but everyone can write and/or paste images.
-
-Groups: 
-
-1. (Question 2) Sam*, Tristan, Ryley
-2. (Question 4) Carolyn*, Drake, James
-3. (Question 5) Wesley*, Sophia, Trevor
-
-https://docs.google.com/document/d/1OLw9yZuqmPOh-wDqh9CRwRKTCE43j-gbbD9K1s_ZsCk/edit?usp=sharing
 
 # Polynomial-time Reductions
 
