@@ -69,6 +69,7 @@ This site provides slides, assignments, and other resources that I use in my cla
 30. [More Languages in P](slides/s72BlanguagesinP.html)
 31. [Languages in NP](slides/s73AlanguagesinNP.html)
 32. [NP-Complete Languages](slides/s74ANPcomplete.html)
+33. [Reduction Argument Examples](slides/s75Areducefrom3sat.html)
 
 ---
 # 51B comphist friday 3/22

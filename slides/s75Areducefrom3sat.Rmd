@@ -1,48 +1,21 @@
 ---
 title: "Section 7.5: Reductions from 3SAT"
-output:
+output: 
   revealjs::revealjs_presentation:
-    center: no
-    css: slidesdjh.css
+    fig_width: 14 
     fig_height: 7
-    fig_width: 14
-    highlight: zenburn
-    reveal_options:
-      controls: yes
-      height: 600
-      progress: no
-      width: 1080
-    self_contained: yes
-    theme: black
-    transition: slide
-  html_document:
     self_contained: true
-    theme: spacelab
-    code_download: true
-  pdf_document:
-    keep_tex: true
-    fig_width: 3
-    fig_height: 3
-    includes:
-      in_header: notesheader.tex
-date: "April 20, 2020"
+    theme: night
+    highlight: zenburn
+    css: slidesdjh.css
+    center: false
+    transition: slide
+    reveal_options:
+      controls: true
+      progress: false
+      width: 1080
+      height: 540
 ---
-
-# Prework 
-
-## Prework Discussion
-
-- See the #macs-135 channel for a link to the shared Google Doc.
-- Go to the voice channel (Group 1, Group 2, Group 3) corresponding to your group. 
-- The starred person should be the presenter/writer on the board, but everyone can write and/or paste images.
-
-Groups: 
-
-1. (Question 3) Drake, Tristan, Carolyn*
-2. (Question 4) James*, Ryley, Wesley
-3. (Question 5) Trevor, Sam, Sophia*
-
-https://docs.google.com/document/d/1H3FnPFMRHCheRBqBc0g7YR1vqh7JLUUgZQJTYKKkqVo/edit?usp=sharing
 
 # Last time: Polynomial-time Reductions
 
@@ -143,7 +116,7 @@ Given a 3cnf-formula $\phi$,
 - Each clause makes a combo of OR gadgets.
     - The OR gadget only gets colored F at the top if both its feet are colored F.
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.height=250}
 library(knitr) # add out.width="4cm" for pdf output
 include_graphics("images/3sat3color.png", auto_pdf = TRUE)
 ```
@@ -152,7 +125,7 @@ include_graphics("images/3sat3color.png", auto_pdf = TRUE)
 
 - $(x_1 \vee x_1 \vee x_2) \wedge (\overline{x_1} \vee \overline{x_2} \vee \overline {x_2}) \wedge (\overline{x_1}\vee x_2 \vee x_2)$
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.height=400}
 library(knitr) # add out.width="4cm" for pdf output
 include_graphics("images/3colorgadgets.png", auto_pdf = TRUE)
 ```
@@ -162,7 +135,7 @@ include_graphics("images/3colorgadgets.png", auto_pdf = TRUE)
 - Each clause has one true literal, so each OR-OR gadget has at least one non-red foot.
     - So the top of each OR-OR gadget doesn't have to be red.
     
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.height=380}
 library(knitr) # add out.width="4cm" for pdf output
 include_graphics("images/3colorgadgets.png", auto_pdf = TRUE)
 ```
@@ -174,7 +147,7 @@ include_graphics("images/3colorgadgets.png", auto_pdf = TRUE)
 - 3-colorability implies that none of the OR-OR gadgets has all red feet.
     - So all the the clauses have at least one true literal.
     
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.height=350}
 library(knitr) # add out.width="4cm" for pdf output
 include_graphics("images/3colorgadgets.png", auto_pdf = TRUE)
 ```
